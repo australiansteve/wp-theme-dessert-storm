@@ -17,7 +17,7 @@ get_header(); ?>
 
 	<div class="medium-8 columns">
 
-		<div id="primary" class="content-area">
+		<div id="primary" class="content-area index">
 			<main id="main" class="site-main" role="main">
 
 			<?php if ( have_posts() ) : ?>
@@ -28,20 +28,19 @@ get_header(); ?>
 					</header>
 				<?php endif; ?>
 
-				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php
 
-					<?php
-						/* Include the Post-Format-specific template for the content.
-						 * If you want to override this in a child theme, then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						get_template_part( 'components/content', get_post_format() );
+				$sections = get_theme_mod('austeve_general_sections', 0);
+
+				for ($s = 0; $s < $sections; $s++)
+				{
 					?>
-
-				<?php endwhile; ?>
-
-				<?php the_posts_navigation(); ?>
+					<div id="section-<?php echo $s; ?>" class="row columns">
+						<?php echo $s;?>
+					</div>
+					<?php
+				}
+				?>
 
 			<?php else : ?>
 

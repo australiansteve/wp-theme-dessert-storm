@@ -16,6 +16,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
 	//All our sections, settings, and controls will be added here
+   	$wp_customize->add_setting( 'austeve_general_sections' );
    	$wp_customize->add_setting( 'austeve_background_image' );
    	$wp_customize->add_setting( 'austeve_background_opacity' );
 
@@ -24,7 +25,18 @@ function dessertstorm_customize_register( $wp_customize ) {
 	    'priority'    => 30,
 	    'description' => 'Upload a background image',
 	) );
-	
+
+	//Front page content sections
+	$wp_customize->add_control( 
+   		'austeve_general_sections', 
+		array(
+			'label'    => __( 'Number of content sections', 'dessertstorm' ),
+			'section'  => 'static_front_page',
+			'settings' => 'austeve_general_sections',
+			'type'     => 'text',
+		)
+	);
+
 	//Background Image
    	$wp_customize->add_control( 
    		new WP_Customize_Image_Control( 
