@@ -3,7 +3,7 @@ var	gulp			= require('gulp'),
 	sass			= require('gulp-sass'),  // Our sass compiler
 	notify			= require('gulp-notify'), // Basic gulp notificatin using OS
 	sourcemaps		= require('gulp-sourcemaps'), // Sass sourcemaps
-	autoprefixer		= require('gulp-autoprefixer'), // Adds vendor prefixes for us
+	//autoprefixer		= require('gulp-autoprefixer'), // Adds vendor prefixes for us
 	svgSprite				= require('gulp-svg-sprite'),
 	size					= require('gulp-size'),
 	browserSync		= require('browser-sync'), // Sends php, js, and css updates to browser for us
@@ -84,10 +84,10 @@ gulp.task('styles', function() {
 			return "Error: " + error.message;
 		}))
 		)
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-			cascade: false
-		}))
+		//.pipe(autoprefixer({
+		//	browsers: ['last 2 versions'],
+		//	cascade: false
+		//}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(size({showFiles: true}))
 		.pipe(gulp.dest(paths.destPath + 'css')) // Location of our app.css file
