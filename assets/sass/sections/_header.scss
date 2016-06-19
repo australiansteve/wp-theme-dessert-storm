@@ -1,5 +1,5 @@
 #masthead {
-	margin-bottom: 1.25rem;
+	
 }
 
 .site-title {
@@ -8,4 +8,30 @@
 
 .site-description {
 	margin-bottom: 1.25rem;
+}
+
+.main-navigation ul {
+	margin: 0;
+}
+
+#background-div {
+    z-index: -1;
+    min-width: 100%;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+#bgImage {
+    background-position: 50% 100%;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
 }

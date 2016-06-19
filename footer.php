@@ -2,33 +2,27 @@
 /**
  * The template for displaying the footer.
  *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ * Contains the closing of the #content div and all content after
  *
  * @package Dessertstorm
  */
 ?>
 
-			</div><!-- #content -->
+<?php
 
-			<footer id="colophon" class="site-footer" role="contentinfo">
+	get_footer(); 
 
-				<div class="column row">
+?>
+	</div> <!-- #page -->
 
-					<p class="text-center">
-						<svg class="specific-icon icon">
-							<use xlink:href="#fi-graph-pie"></use>
-						</svg>
-						This is the footer</p>
+	<div id="spacer">
+	</div>
 
-				</div><!-- .column.row -->
-
-			</footer><!-- #colophon -->
-
-		</div> <!-- .off-canvas-content -->
-	</div><!-- .off-canvas-wrapper-inner -->
-</div><!-- .off-canvas-wrapper -->
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div>
+			<p class="footer">Website by: <a class="fa fa-copyright" href="http://australiansteve.com"><?php echo date("Y"); ?> AustralianSteve.com</a></p>
+		</div>
+	</footer><!-- #colophon -->
 
 <?php wp_footer(); ?>
 </body>
