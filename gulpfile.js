@@ -65,7 +65,7 @@ gulp.task('browser-sync', function() {
 	];
 
 	browserSync.init(files, {
-		proxy: 'heisenberg.dev/'
+		proxy: 'localhost/'
 	});
 });
 
@@ -167,6 +167,61 @@ gulp.task('foundation-js', function() {
 	.pipe(gulp.dest(paths.destPath + 'js'));
 });
 
+
+// Our 'fonts' task, which handles our sass actions such as compliling and minification
+gulp.task('fonts', function() {
+		
+		//Copy web fonts to dist folder
+		gulp.src('./assets/fonts/**/*')
+		.pipe(gulp.dest('./assets/dist/fonts'));
+
+		gulp.src('./node_modules/font-awesome/fonts/**/*', {base: './node_modules/font-awesome/fonts'})
+		.pipe(gulp.dest('./assets/dist/fonts'));
+
+		gulp.src('./node_modules/font-awesome/scss/**/*.scss')
+		.pipe(sass({
+			style: 'expanded',
+			sourceComments: true
+		})
+		.on('error', notify.onError(function(error) {
+			return "Error: " + error.message;
+		}))
+		)
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions', 'ie >= 8']
+		})) // our autoprefixer - add and remove vendor prefixes using caniuse.com
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest('./assets/dist/css')) // Location of our .css file
+		.pipe(browserSync.stream({match: '**/*.css'}))
+		.pipe(notify({
+			message: "Font task complete!"
+		}));
+
+
+});
+
+//Our 'deploy' task which deploys on a local dev environment
+gulp.task('deploylocal', function() {
+
+	var files = [
+		'assets/components/modernizr/modernizr.js',
+		'assets/components/fastclick/lib/fastclick.js',
+		'assets/dist/**/*', 
+		'node_modules/foundation-sites/dist/**/*', 
+		'woocommerce/**/*.*',
+		'inc/**/*.*',
+		'js/**/*.js',
+		'languages/**.*',
+		'page-templates/**/*',
+		'screenshot.png',
+		'*.php',
+		'*.css'];
+
+	var dest = '/var/www/html/theme-dev/wp-content/themes/dessertstorm';
+
+	return gulp.src(files, {base:"."})
+	        .pipe(gulp.dest(dest));
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 // Watch our files and fire off a task when something changes

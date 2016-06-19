@@ -1,13 +1,13 @@
 <?php
 /**
- * Heisenberg functions and definitions.
+ * Dessertstorm functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Heisenberg
+ * @package Dessertstorm
  */
 
-if ( ! function_exists( 'heisenberg_setup' ) ) :
+if ( ! function_exists( 'dessertstorm_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -15,15 +15,15 @@ if ( ! function_exists( 'heisenberg_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function heisenberg_setup() {
+function dessertstorm_setup() {
 
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Heisenberg, use a find and replace
-	 * to change 'heisenberg' to the name of your theme in all the template files.
+	 * If you're building a theme based on Dessertstorm, use a find and replace
+	 * to change 'dessertstorm' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'heisenberg', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'dessertstorm', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -45,7 +45,7 @@ function heisenberg_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary Menu', 'heisenberg' ),
+		'primary' => esc_html__( 'Primary Menu', 'dessertstorm' ),
 	) );
 
 	/*
@@ -73,13 +73,13 @@ function heisenberg_setup() {
 	) );
 
 	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'heisenberg_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( 'dessertstorm_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
 }
-endif; // heisenberg_setup
-add_action( 'after_setup_theme', 'heisenberg_setup' );
+endif; // dessertstorm_setup
+add_action( 'after_setup_theme', 'dessertstorm_setup' );
 
 
 /**
@@ -89,19 +89,19 @@ add_action( 'after_setup_theme', 'heisenberg_setup' );
  *
  * @global int $content_width
  */
-function _heisenberg_content_width() {
-	$GLOBALS['content_width'] = apply_filters( '_heisenberg_content_width', 640 );
+function _dessertstorm_content_width() {
+	$GLOBALS['content_width'] = apply_filters( '_dessertstorm_content_width', 640 );
 }
-add_action( 'after_setup_theme', '_heisenberg_content_width', 0 );
+add_action( 'after_setup_theme', '_dessertstorm_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function heisenberg_widgets_init() {
+function dessertstorm_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'heisenberg' ),
+		'name'          => esc_html__( 'Sidebar', 'dessertstorm' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -110,24 +110,29 @@ function heisenberg_widgets_init() {
 		'after_title'   => '</h1>',
 	) );
 }
-add_action( 'widgets_init', 'heisenberg_widgets_init' );
+add_action( 'widgets_init', 'dessertstorm_widgets_init' );
 
 /**
  * Enqueue styles.
  */
-if ( !function_exists( 'heisenberg_styles' ) ) :
+if ( !function_exists( 'dessertstorm_styles' ) ) :
 
-	function heisenberg_styles() {
+	function dessertstorm_styles() {
 		// Enqueue our stylesheet
-		$handle = 'heisenberg_styles';
+		$handle = 'dessertstorm_styles';
 		$src =  get_template_directory_uri() . '/assets/dist/css/app.css';
 		$deps = '';
 		$ver = filemtime( get_template_directory() . '/assets/dist/css/app.css');
 		$media = '';
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+
+		wp_enqueue_style( 'dessertstorm_web_fonts', get_stylesheet_directory_uri() . '/assets/dist/css/web-fonts.css', '', '1.0' );
+		wp_enqueue_style( 'fontawesome_styles', get_stylesheet_directory_uri() . '/assets/dist/css/font-awesome.css', '', '9' );
+		wp_enqueue_style( 'home_styles', get_stylesheet_directory_uri() . '/style.css', '', '9' );
+
 	}
 
-add_action( 'wp_enqueue_scripts', 'heisenberg_styles' );
+add_action( 'wp_enqueue_scripts', 'dessertstorm_styles' );
 
 endif;
 
@@ -135,7 +140,7 @@ endif;
 /**
  * Enqueue scripts.
  */
-function heisenberg_scripts() {
+function dessertstorm_scripts() {
 
 	// Add Foundation JS to footer
 	wp_enqueue_script( 'foundation-js',
@@ -144,7 +149,7 @@ function heisenberg_scripts() {
 	);
 
 	// Add our concatenated JS file after Foundation
-	$handle = 'heisenberg_appjs';
+	$handle = 'dessertstorm_appjs';
 	$src =  get_template_directory_uri() . '/assets/dist/js/app.js';
 	$deps = array( 'jquery' );
 	$ver = filemtime( get_template_directory() . '/assets/dist/js/app.js');
@@ -155,7 +160,7 @@ function heisenberg_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'heisenberg_scripts' );
+add_action( 'wp_enqueue_scripts', 'dessertstorm_scripts' );
 
 
 /**
@@ -180,9 +185,9 @@ require get_template_directory() . '/inc/jetpack.php';
 
 
 
-add_filter( 'wp_nav_menu', 'heisenberg_nav_menu', 10, 2 );
+add_filter( 'wp_nav_menu', 'dessertstorm_nav_menu', 10, 2 );
 
-function heisenberg_nav_menu( $menu ){
+function dessertstorm_nav_menu( $menu ){
 	$menu = str_replace('current-menu-item', 'current-menu-item active', $menu);
 	return $menu;
 }
@@ -193,13 +198,13 @@ function heisenberg_nav_menu( $menu ){
 * class wrapper around any oembeds
 *******************************************************************************/
 
-function heisenberg_oembed_flex_wrapper( $html, $url, $attr, $post_ID ) {
+function dessertstorm_oembed_flex_wrapper( $html, $url, $attr, $post_ID ) {
 	if ( strpos($url, 'youtube') || strpos($url, 'youtu.be') || strpos($url, 'vimeo') ) {
 		return '<div class="flex-video widescreen">' . $html . '</div>';
 	}
 	return $html;
 }
-add_filter( 'embed_oembed_html', 'heisenberg_oembed_flex_wrapper', 10, 4 );
+add_filter( 'embed_oembed_html', 'dessertstorm_oembed_flex_wrapper', 10, 4 );
 
 /*******************************************************************************
 * Custom login styles for the theme. Sass file is located in ./assets/login.scss
@@ -208,23 +213,23 @@ add_filter( 'embed_oembed_html', 'heisenberg_oembed_flex_wrapper', 10, 4 );
 *******************************************************************************/
 
 // Load the CSS
-add_action( 'login_enqueue_scripts', 'heisenberg_login_css' );
+add_action( 'login_enqueue_scripts', 'dessertstorm_login_css' );
 
-function heisenberg_login_css() {
-	wp_enqueue_style( 'heisenberg_login_css', get_template_directory_uri() .
+function dessertstorm_login_css() {
+	wp_enqueue_style( 'dessertstorm_login_css', get_template_directory_uri() .
 	'/assets/dist/css/login.css', false );
 }
 
 // Change header link to our site instead of wordpress.org
-add_filter( 'login_headerurl', 'heisenberg_remove_logo_link' );
+add_filter( 'login_headerurl', 'dessertstorm_remove_logo_link' );
 
-function heisenberg_remove_logo_link() {
+function dessertstorm_remove_logo_link() {
 	return get_bloginfo( 'url' );
 }
 
 // Change logo title in from WordPress to our site name
-add_filter( 'login_headertitle', 'heisenberg_change_login_logo_title' );
+add_filter( 'login_headertitle', 'dessertstorm_change_login_logo_title' );
 
-function heisenberg_change_login_logo_title() {
+function dessertstorm_change_login_logo_title() {
 	return get_bloginfo( 'name' );
 }

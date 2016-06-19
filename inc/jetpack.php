@@ -4,28 +4,28 @@
  *
  * @link http://jetpack.me/
  *
- * @package Heisenberg
+ * @package Dessertstorm
  */
 
 /**
  * Add theme support for Infinite Scroll.
  * See: https://jetpack.me/support/infinite-scroll/
  */
-function heisenberg_jetpack_setup() {
+function dessertstorm_jetpack_setup() {
 	add_theme_support( 'infinite-scroll', array(
 		'container' => 'main',
-		'render'    => 'heisenberg_infinite_scroll_render',
+		'render'    => 'dessertstorm_infinite_scroll_render',
 		'footer'    => 'page',
 	) );
-} // end function heisenberg_jetpack_setup
-add_action( 'after_setup_theme', 'heisenberg_jetpack_setup' );
+} // end function dessertstorm_jetpack_setup
+add_action( 'after_setup_theme', 'dessertstorm_jetpack_setup' );
 
 /**
  * Custom render function for Infinite Scroll.
  */
-function heisenberg_infinite_scroll_render() {
+function dessertstorm_infinite_scroll_render() {
 	while ( have_posts() ) {
 		the_post();
 		get_template_part( 'page-templates/content', get_post_format() );
 	}
-} // end function heisenberg_infinite_scroll_render
+} // end function dessertstorm_infinite_scroll_render
