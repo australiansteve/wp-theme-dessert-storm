@@ -62,6 +62,68 @@ function dessertstorm_customize_register( $wp_customize ) {
 	);
 
 
+	$sections = get_theme_mod('austeve_general_sections', 0);
+
+	for ($s = 0; $s < $sections; $s++) {
+		
+		//Add a section
+		$wp_customize->add_section( 'dessertstorm_content_section_'.$s , array(
+		    'title'       => __( 'Content section '.($s+1), 'dessertstorm' ),
+		    'priority'    => 200,
+		    'description' => 'Content section '.($s+1),
+		) );
+
+		//Add settings
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_style' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_page' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar' );
+
+	   	//Add a top-level control
+	   	$wp_customize->add_control(
+		    new WP_Customize_Control(
+		        $wp_customize,
+		        'dessertstorm_content_'.$s.'_style',
+		        array(
+					'label' 	=> __( 'Content', 'dessertstorm' ),
+					'section' 	=> 'dessertstorm_content_section_'.$s,
+					'settings' 	=> 'dessertstorm_content_'.$s.'_style',
+					'type' 		=> 'radio',
+					'choices' 	=> array(
+						'page' 		=> 'Page',
+						'sidebar' 	=> 'Sidebar',
+					),
+		        )
+		    )
+		);
+
+		//Add a page selector control
+	   	$wp_customize->add_control(
+		    new WP_Customize_Page_Control(
+		        $wp_customize,
+		        'dessertstorm_content_'.$s.'_page',
+		        array(
+					'label' 	=> __( 'Page', 'dessertstorm' ),
+					'section' 	=> 'dessertstorm_content_section_'.$s,
+					'settings' 	=> 'dessertstorm_content_'.$s.'_page',
+		        )
+		    )
+		);
+
+		//Add a sidebar selector control
+	   	$wp_customize->add_control(
+		    new WP_Customize_Sidebar_Control(
+		        $wp_customize,
+		        'dessertstorm_content_'.$s.'_sidebar',
+		        array(
+					'label' 	=> __( 'Sidebar', 'dessertstorm' ),
+					'section' 	=> 'dessertstorm_content_section_'.$s,
+					'settings' 	=> 'dessertstorm_content_'.$s.'_sidebar',
+					'description' 	=> __('Ensure your sidebar is populated with at least one widget first', 'dessertstorm' ),
+		        )
+		    )
+		);
+
+	}
 }
 add_action( 'customize_register', 'dessertstorm_customize_register' );
 
@@ -88,3 +150,55 @@ function dessertstorm_customize_css()
     <?php
 }
 add_action( 'wp_head', 'dessertstorm_customize_css');
+
+
+if( class_exists( 'WP_Customize_Control' ) ):
+	class WP_Customize_Page_Control extends WP_Customize_Control {
+		public $type = 'page_dropdown';
+ 
+		public function render_content() {
+
+		$pages = new WP_Query( array(
+			'post_type'   => 'page',
+			'post_status' => 'publish',
+			'orderby'     => 'title',
+			'order'       => 'ASC'
+		));
+
+		?>
+			<label>
+				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<select <?php $this->link(); ?>>
+					<option value="0" <?php echo selected( $this->value(), get_the_ID() )?>>Select page...</option>
+					<?php 
+					while( $pages->have_posts() ) {
+						$pages->the_post();
+						echo "<option " . selected( $this->value(), get_the_ID() ) . " value='" . get_the_ID() . "'>" . the_title( '', '', false ) . "</option>";
+					}
+					?>
+				</select>
+			</label>
+		<?php
+		}
+	}
+
+	class WP_Customize_Sidebar_Control extends WP_Customize_Control {
+		public $type = 'sidebar_dropdown';
+ 
+		public function render_content() {
+		?>
+			<label>
+				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<select <?php $this->link(); ?>>
+					<option value="0" <?php echo selected( $this->value(), get_the_ID() )?>>Select sidebar...</option>
+				<?php foreach ( $GLOBALS['wp_registered_sidebars'] as $sidebar ) { 
+					echo "<option " . selected( $this->value(), ucwords($sidebar['id']) ) . " value='" . ucwords( $sidebar['id'] ) . "'>" . ucwords( $sidebar['name'] ) . "</option>";
+						} 
+				?>
+				</select>
+			</label>
+		<?php
+		}
+	}
+endif;

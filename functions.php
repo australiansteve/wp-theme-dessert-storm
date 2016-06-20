@@ -72,6 +72,24 @@ function dessertstorm_setup() {
 		'link',
 	) );
 
+
+	/*
+	 * Register sidebars
+	 *
+	 */
+	$sidebars = get_theme_mod('austeve_general_sections', 0);
+    for ( $s = 0; $s < $sidebars; $s++ ) {
+    	//Get widget widths
+
+        register_sidebar( array(
+            'name'          => 'Front page content '.($s+1),
+            'id'            => 'austeve_content_'.($s+1),
+            'before_widget' => '<div class="columns">',
+            'after_widget'  => '</div>',
+            'before_title'  => '',
+            'after_title'   => '',
+        ) );
+    }
 }
 endif; // dessertstorm_setup
 add_action( 'after_setup_theme', 'dessertstorm_setup' );

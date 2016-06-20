@@ -36,7 +36,22 @@ get_header(); ?>
 				{
 					?>
 					<div id="section-<?php echo $s; ?>" class="row columns">
-						<?php echo $s;?>
+						<?php 
+							$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'page');
+
+							if ( $section_style === 'page') {
+								$id=get_theme_mod('dessertstorm_content_'.$s.'_page', 0); 
+								$post = get_post($id); 
+								$content = apply_filters('the_content', $post->post_content); 
+								echo $content;  
+							}
+							else if ( $section_style === 'sidebar') {
+								dynamic_sidebar(get_theme_mod('dessertstorm_content_'.$s.'_sidebar', null)); 
+							}
+							else {
+								echo ' - Unknown'; 
+							}
+							?>
 					</div>
 					<?php
 				}
