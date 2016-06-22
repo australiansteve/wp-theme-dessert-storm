@@ -28,20 +28,25 @@
 		<div id="bgImage">&nbsp;</div>
 	</div>
 	
-	<header id="masthead" class="" role="banner">
-		<section class="row column">
-			<h1 class="site-title">
-				<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
-					<?php bloginfo( 'name' ); ?>
-				</a>
-			</h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</section>
-		<nav id="site-navigation" class="top-bar show-for-medium" data-topbar role="navigation">
-			<section class="top-bar-section row column">
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			</section>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
+		<div data-sticky-container>
+			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+				<div class="title-bar-left">
+					<h1 class="site-title">
+						<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+							<?php bloginfo( 'name' ); ?>
+						</a>
+					</h1>
+					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+				</div>
+				<div class="title-bar-right">
+					<ul class="dropdown menu align-right" data-dropdown-menu>
+						<li>
+							<a href="#">Menu</a>
+							<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu' ) ); ?>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    
 	<div id="content" class="site-content">
