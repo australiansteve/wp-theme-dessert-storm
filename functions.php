@@ -84,7 +84,7 @@ function dessertstorm_setup() {
         register_sidebar( array(
             'name'          => 'Front page content '.($s+1),
             'id'            => 'austeve_content_'.($s+1),
-            'before_widget' => '<div class="columns">',
+            'before_widget' => '<div class="small-12 columns">',
             'after_widget'  => '</div>',
             'before_title'  => '',
             'after_title'   => '',

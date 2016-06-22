@@ -15,7 +15,7 @@ get_header(); ?>
 
 <div class="row">
 
-	<div class="medium-8 columns">
+	<div class="small-12 columns">
 
 		<div id="primary" class="content-area index">
 			<main id="main" class="site-main" role="main">
@@ -46,7 +46,9 @@ get_header(); ?>
 								echo $content;  
 							}
 							else if ( $section_style === 'sidebar') {
+								echo "<div class='row'>";
 								dynamic_sidebar(get_theme_mod('dessertstorm_content_'.$s.'_sidebar', null)); 
+								echo "</div>";
 							}
 							else {
 								echo ' - Unknown'; 
@@ -67,12 +69,6 @@ get_header(); ?>
 		</div><!-- #primary -->
 
 	</div><!-- .columns  -->
-
-	<div class="medium-4 columns">
-
-		<?php get_sidebar(); ?>
-
-	</div><!-- .columns -->
 
 </div><!-- .row -->
 

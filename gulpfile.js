@@ -187,9 +187,9 @@ gulp.task('fonts', function() {
 			return "Error: " + error.message;
 		}))
 		)
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions', 'ie >= 8']
-		})) // our autoprefixer - add and remove vendor prefixes using caniuse.com
+		//.pipe(autoprefixer({
+		//	browsers: ['last 2 versions', 'ie >= 8']
+		//})) // our autoprefixer - add and remove vendor prefixes using caniuse.com
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('./assets/dist/css')) // Location of our .css file
 		.pipe(browserSync.stream({match: '**/*.css'}))
