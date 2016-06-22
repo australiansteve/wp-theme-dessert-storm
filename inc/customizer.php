@@ -77,24 +77,27 @@ function dessertstorm_customize_register( $wp_customize ) {
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_style' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_page' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar_small' );
 
 	   	//Add a top-level control
 	   	$wp_customize->add_control(
-		    new WP_Customize_Control(
+		    new WP_Customize_ContentStyle_Control(
 		        $wp_customize,
 		        'dessertstorm_content_'.$s.'_style',
 		        array(
 					'label' 	=> __( 'Content', 'dessertstorm' ),
 					'section' 	=> 'dessertstorm_content_section_'.$s,
 					'settings' 	=> 'dessertstorm_content_'.$s.'_style',
-					'type' 		=> 'radio',
 					'choices' 	=> array(
 						'page' 		=> 'Page',
 						'sidebar' 	=> 'Sidebar',
 					),
+					'content_section' => $s,
 		        )
 		    )
 		);
+
+		$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style');
 
 		//Add a page selector control
 	   	$wp_customize->add_control(
@@ -105,6 +108,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 					'label' 	=> __( 'Page', 'dessertstorm' ),
 					'section' 	=> 'dessertstorm_content_section_'.$s,
 					'settings' 	=> 'dessertstorm_content_'.$s.'_page',
+					'content_section' => $s,
 		        )
 		    )
 		);
@@ -119,10 +123,30 @@ function dessertstorm_customize_register( $wp_customize ) {
 					'section' 	=> 'dessertstorm_content_section_'.$s,
 					'settings' 	=> 'dessertstorm_content_'.$s.'_sidebar',
 					'description' 	=> __('Ensure your sidebar is populated with at least one widget first', 'dessertstorm' ),
+					'content_section' => $s,
 		        )
 		    )
 		);
 
+	   	$selected_sidebar = get_theme_mod('dessertstorm_content_'.$s.'_sidebar');
+	   	global $sidebars_widgets;
+		$count = ($selected_sidebar) ? count($sidebars_widgets[strtolower($selected_sidebar)]) : 0;
+
+		//Add a widget sizing control (small)
+	   	$wp_customize->add_control(
+		    new WP_Customize_WidgetSize_Control(
+		        $wp_customize,
+		        'dessertstorm_content_'.$s.'_sidebar_small',
+		        array(
+					'label' 	=> __( 'Widget sizes', 'dessertstorm' ),
+					'section' 	=> 'dessertstorm_content_section_'.$s,
+					'settings' 	=> 'dessertstorm_content_'.$s.'_sidebar_small',
+					'description' 	=> __('Widget sizes on small screens', 'dessertstorm' ),
+					'screen_size' => 'small',
+					'num_widgets' => $count, 
+		        )
+		    )
+		);
 	}
 }
 add_action( 'customize_register', 'dessertstorm_customize_register' );
@@ -153,8 +177,62 @@ add_action( 'wp_head', 'dessertstorm_customize_css');
 
 
 if( class_exists( 'WP_Customize_Control' ) ):
+	class WP_Customize_ContentStyle_Control extends WP_Customize_Control {
+		public $type = 'style_radio';
+		public $content_section;
+ 
+		public function render_content() {
+
+		?>
+			<label>
+				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+
+				<select <?php $this->link(); ?>>
+					<option value="0" <?php echo selected( $this->value(), get_the_ID() )?>>Select content style...</option>
+					<?php foreach ( $this->choices as $key => $value ) { 
+						echo "<option " . selected( $this->value(), $key ) . " value='" . $key . "'>" . ucwords( $value ) . "</option>";
+							} 
+					?>
+				</select>
+				<script>
+				
+				function hideAll(s) {
+					jQuery('#customize-control-dessertstorm_content_'+s+'_page, #customize-control-dessertstorm_content_'+s+'_sidebar, #customize-control-dessertstorm_content_'+s+'_sidebar_small' ).hide();
+				}
+
+				jQuery(function($){
+					var s = '<?php echo $this->content_section; ?>';
+					var v = '<?php echo $this->value(); ?>';
+
+					hideAll(s);
+
+					$('#customize-control-dessertstorm_content_'+s+'_'+v ).show();
+
+					if (v == 'sidebar')
+					{
+						$('#customize-control-dessertstorm_content_'+s+'_'+v+'_small' ).show();
+					}
+					
+					$('#customize-control-dessertstorm_content_'+s+'_style select').change(function() {
+						hideAll(s);
+						$('#customize-control-dessertstorm_content_'+s+'_'+this.value ).show();
+
+						if (this.value == 'sidebar')
+						{
+							$('#customize-control-dessertstorm_content_'+s+'_'+this.value+'_small' ).show();
+						}
+					});
+				});
+
+				</script>
+			</label>
+		<?php
+		}
+	}
+
 	class WP_Customize_Page_Control extends WP_Customize_Control {
 		public $type = 'page_dropdown';
+		public $content_section;
  
 		public function render_content() {
 
@@ -184,6 +262,7 @@ if( class_exists( 'WP_Customize_Control' ) ):
 
 	class WP_Customize_Sidebar_Control extends WP_Customize_Control {
 		public $type = 'sidebar_dropdown';
+		public $content_section;
  
 		public function render_content() {
 		?>
@@ -197,6 +276,25 @@ if( class_exists( 'WP_Customize_Control' ) ):
 						} 
 				?>
 				</select>
+				
+				<script>
+				</script>
+			</label>
+		<?php
+		}
+	}
+
+	class WP_Customize_WidgetSize_Control extends WP_Customize_Control {
+		public $type = 'widgetsize_dropdown';
+		public $screen_size;
+		public $num_widgets;
+ 
+		public function render_content() {
+		?>
+			<label>
+				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<p><?php echo esc_html( $this->screen_size ); ?>-<?php echo esc_html( $this->num_widgets ); ?></p>
 			</label>
 		<?php
 		}
