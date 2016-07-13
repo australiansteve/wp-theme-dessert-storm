@@ -207,6 +207,7 @@ gulp.task('deploylocal', function() {
 		'assets/components/modernizr/modernizr.js',
 		'assets/components/fastclick/lib/fastclick.js',
 		'assets/dist/**/*', 
+		'components/**/*', 
 		'node_modules/foundation-sites/dist/**/*', 
 		'woocommerce/**/*.*',
 		'inc/**/*.*',

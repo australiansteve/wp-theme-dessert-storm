@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Sidebar Left
+ * Template Name: Sidebar Right
  * The template for displaying a page with the sidebar on the left side.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
@@ -12,9 +12,9 @@ get_header(); ?>
 
 <div class="row">
 
-	<div class="medium-8 medium-push-4 columns">
+	<div class="medium-8 columns">
 
-		<div id="primary" class="content-area">
+		<div id="primary" class="content-area page">
 			<main id="main" class="site-main" role="main">
 
 				<?php while ( have_posts() ) : the_post(); ?>
@@ -33,13 +33,13 @@ get_header(); ?>
 			</main><!-- #main -->
 		</div><!-- #primary -->
 
-	</div>
+	</div><!-- .columns -->
 
-	<div class="medium-4 medium-pull-8 columns">
+	<div class="medium-4 columns">
 
 		<?php get_sidebar(); ?>
 
-	</div>
+	</div><!-- .columns -->
 
 </div><!-- .row -->
 
