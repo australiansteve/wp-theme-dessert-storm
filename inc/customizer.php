@@ -240,7 +240,8 @@ if( class_exists( 'WP_Customize_Control' ) ):
 			'post_type'   => 'page',
 			'post_status' => 'publish',
 			'orderby'     => 'title',
-			'order'       => 'ASC'
+			'order'       => 'ASC',
+			'posts_per_page' => -1
 		));
 
 		?>

@@ -31,12 +31,21 @@
 		<div data-sticky-container>
 			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
 				<div class="title-bar-left">
+		<?php			
+				if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+					the_custom_logo();
+				}
+				else {
+						?>
 					<h1 class="site-title">
 						<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
 							<?php bloginfo( 'name' ); ?>
 						</a>
 					</h1>
 					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+					<?php			
+				}
+						?>
 				</div>
 				<div class="title-bar-right">
 					<ul class="dropdown menu align-right" data-dropdown-menu>
