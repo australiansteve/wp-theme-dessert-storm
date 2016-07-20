@@ -28,34 +28,38 @@
 		<div id="bgImage">&nbsp;</div>
 	</div>
 	
-		<div data-sticky-container>
-			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
-				<div class="title-bar-left">
-		<?php			
-				if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
-					the_custom_logo();
-				}
-				else {
-						?>
-					<h1 class="site-title">
-						<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
-							<?php bloginfo( 'name' ); ?>
-						</a>
-					</h1>
-					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-					<?php			
-				}
-						?>
-				</div>
-				<div class="title-bar-right">
-					<ul class="dropdown menu align-right" data-dropdown-menu>
-						<li>
-							<a href="#">Menu</a>
-							<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu' ) ); ?>
-						</li>
-					</ul>
-				</div>
+	<div data-sticky-container class="header">
+		<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+			<div class="title-bar-left">
+				<h1 class="site-title">
+					<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+						<?php 
+						if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+							the_custom_logo();
+						}
+						else {
+							?>
+							<h1>
+								<?php
+								bloginfo( 'name' );
+								?>
+							</h1>
+							<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+						<?php
+						}
+		 				?>
+					</a>
+				</h1>
+			</div>
+			<div class="title-bar-right">
+				<ul class="dropdown menu align-right" data-dropdown-menu>
+					<li>
+						<a href="#">Menu</a>
+						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu' ) ); ?>
+					</li>
+				</ul>
 			</div>
 		</div>
+	</div>
     
 	<div id="content" class="site-content">

@@ -163,7 +163,10 @@ gulp.task('foundation-js', function() {
 
 	])
 	.pipe(concat('foundation.js'))
-	.pipe(uglify())
+	//.pipe(uglify().on('error', notify.onError(function(error) {
+	//	return "Error: " + error.message;
+	//	}))
+	//)
 	.pipe(gulp.dest(paths.destPath + 'js'));
 });
 

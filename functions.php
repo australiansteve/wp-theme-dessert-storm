@@ -77,9 +77,9 @@ function dessertstorm_setup() {
 	 * See https://codex.wordpress.org/Theme_Logo
 	 */
 	add_theme_support( 'custom-logo', array(
-		'height'      => 100,
-		'width'       => 400,
-		'flex-height' => true,
+		'height'      => 75,
+		'width'       => 300,
+		'flex-height' => false,
 		'flex-width'  => true,
 		'header-text' => array( 'site-title', 'site-description' ),
 	) );
@@ -169,7 +169,7 @@ function dessertstorm_scripts() {
 	// Add Foundation JS to footer
 	wp_enqueue_script( 'foundation-js',
 		get_template_directory_uri() . '/assets/dist/js/foundation.js',
-		array( 'jquery' ), '6.1.1', true
+		array( 'jquery' ), '6.2.1', true
 	);
 
 	// Add our concatenated JS file after Foundation
