@@ -5,3 +5,17 @@ a {
 a:hover, a:active {
 	color: rgba(0, 0, 0, 0.7);
 }
+
+#primary.index .row.content-section {
+	max-width: none; /* Full width for background colour effect */
+}
+
+#primary.index .content-section>.content-container {
+	max-width: 75rem;
+	margin: auto;
+}
+
+#primary.index .content-section>.content-container>.row {
+	margin-left: 0;
+	margin-right: 0;
+}

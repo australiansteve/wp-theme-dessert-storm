@@ -51,7 +51,7 @@
 					</a>
 				</h1>
 			</div>
-			<div class="title-bar-right">
+			<div class="title-bar-right show-for-medium-only" id="medium-menu-container">
 				<ul class="dropdown menu align-right" data-dropdown-menu>
 					<li>
 						<a href="#">Menu</a>
@@ -59,7 +59,19 @@
 					</li>
 				</ul>
 			</div>
+			<div class="title-bar-right show-for-large" id="large-menu-container">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+			</div>
 		</div>
 	</div>
     
+	<div class="row columns show-for-small-only" id="small-menu-container">
+		<ul class="vertical menu" data-accordion-menu>
+			<li>
+				<a href="#">Menu</a>
+				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+			</li>
+		</ul>
+	</div>
+
 	<div id="content" class="site-content">

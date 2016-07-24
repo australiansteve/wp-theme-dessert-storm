@@ -33,6 +33,7 @@ get_header(); ?>
 		{
 			?>
 			<div id="section-<?php echo $s; ?>" class="row columns content-section">
+				<div class="content-container">
 				<?php 
 					$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'page');
 
@@ -51,6 +52,7 @@ get_header(); ?>
 						echo ' - Unknown'; 
 					}
 					?>
+				</div>
 			</div>
 			<?php
 		}
