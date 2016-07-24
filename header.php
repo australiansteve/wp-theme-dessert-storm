@@ -28,50 +28,52 @@
 		<div id="bgImage">&nbsp;</div>
 	</div>
 	
-	<div data-sticky-container class="header">
-		<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
-			<div class="title-bar-left">
-				<h1 class="site-title">
-					<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
-						<?php 
-						if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
-							the_custom_logo();
-						}
-						else {
-							?>
-							<h1>
-								<?php
-								bloginfo( 'name' );
+	<div id="page">
+
+		<div data-sticky-container class="header">
+			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+				<div class="title-bar-left">
+					<h1 class="site-title">
+						<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+							<?php 
+							if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+								the_custom_logo();
+							}
+							else {
 								?>
-							</h1>
-							<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-						<?php
-						}
-		 				?>
-					</a>
-				</h1>
-			</div>
-			<div class="title-bar-right show-for-medium-only" id="medium-menu-container">
-				<ul class="dropdown menu align-right" data-dropdown-menu>
-					<li>
-						<a href="#">Menu</a>
-						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu' ) ); ?>
-					</li>
-				</ul>
-			</div>
-			<div class="title-bar-right show-for-large" id="large-menu-container">
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+								<h1>
+									<?php
+									bloginfo( 'name' );
+									?>
+								</h1>
+								<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+							<?php
+							}
+			 				?>
+						</a>
+					</h1>
+				</div>
+				<div class="title-bar-right show-for-medium-only" id="medium-menu-container">
+					<ul class="dropdown menu align-right" data-dropdown-menu>
+						<li>
+							<a href="#">Menu</a>
+							<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu' ) ); ?>
+						</li>
+					</ul>
+				</div>
+				<div class="title-bar-right show-for-large" id="large-menu-container">
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+				</div>
 			</div>
 		</div>
-	</div>
-    
-	<div class="row columns show-for-small-only" id="small-menu-container">
-		<ul class="vertical menu" data-accordion-menu>
-			<li>
-				<a href="#">Menu</a>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
-			</li>
-		</ul>
-	</div>
+	    
+		<div class="row columns show-for-small-only" id="small-menu-container">
+			<ul class="vertical menu" data-accordion-menu>
+				<li>
+					<a href="#">Menu</a>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+				</li>
+			</ul>
+		</div>
 
-	<div id="content" class="site-content">
+		<div id="content" class="site-content">

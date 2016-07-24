@@ -172,6 +172,12 @@ function dessertstorm_scripts() {
 		array( 'jquery' ), '6.2.1', true
 	);
 
+	//Add underscore JS library
+	wp_enqueue_script( 'underscore-js', 
+		get_template_directory_uri() . '/node_modules/underscore/underscore-min.js', 
+		array( 'jquery' ), '1.8.3', true 
+	);
+
 	// Add our concatenated JS file after Foundation
 	$handle = 'dessertstorm_appjs';
 	$src =  get_template_directory_uri() . '/assets/dist/js/app.js';

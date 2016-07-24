@@ -13,6 +13,8 @@
 	get_footer(); 
 
 ?>
+		</div> <!-- #content -->
+
 	</div> <!-- #page -->
 
 	<div id="spacer">
