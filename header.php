@@ -30,7 +30,7 @@
 	
 	<div id="page">
 
-		<div data-sticky-container class="header">
+		<div data-sticky-container class="header show-for-medium">
 			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
 				<div class="title-bar-left">
 					<h1 class="site-title">
