@@ -14,14 +14,10 @@ jQuery(document).ready(function($) {
 
 function footerSpacing()
 {
-	console.log(jQuery(window).height()+ " " +  jQuery("#page").outerHeight() + " " + jQuery("footer").outerHeight());
-
 	var marginNeeded = jQuery(window).height() - jQuery("#page").outerHeight() - jQuery("footer").outerHeight();
-	console.log(marginNeeded);
-
+	
 	if (marginNeeded > 0)
 	{
 		jQuery("#spacer").css("margin-top", marginNeeded);
-		console.log("done");
 	}
 }
