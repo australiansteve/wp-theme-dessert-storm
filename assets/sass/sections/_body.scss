@@ -19,3 +19,21 @@ a:hover, a:active {
 	margin-left: 0;
 	margin-right: 0;
 }
+
+nav.post-navigation {
+
+	.nav-links>div{
+		display: inline-block;
+    	width: 50%;
+	}
+
+	.nav-links .nav-previous {
+		text-align: left;
+		float: left;
+	}
+
+	.nav-links .nav-next {
+		text-align: right;
+		float: right;
+	}
+}
