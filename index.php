@@ -33,6 +33,9 @@ get_header(); ?>
 		{
 			?>
 			<div id="section-<?php echo $s; ?>" class="row columns content-section">
+				<div class="content-background-div">
+					<div class="content-background-image">&nbsp;</div>
+				</div>
 				<div class="content-container">
 				<?php 
 					$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'page');

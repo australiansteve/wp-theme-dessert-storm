@@ -130,6 +130,9 @@ function dessertstorm_customize_register( $wp_customize ) {
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_page' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar_small' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_bgImage' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_bgColour' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_bgOpacity' );
 
 	   	//Add a top-level control
 	   	$wp_customize->add_control(
@@ -199,6 +202,44 @@ function dessertstorm_customize_register( $wp_customize ) {
 		        )
 		    )
 		);
+
+		//Section background image
+	   	$wp_customize->add_control( 
+	   		new WP_Customize_Image_Control( 
+	   			$wp_customize, 
+	   			'dessertstorm_content_'.$s.'_bgImage', 
+	   			array(
+				    'label'    => __( 'Background image:', 'dessertstorm' ),
+				    'section'  => 'dessertstorm_content_section_'.$s,
+				    'settings' => 'dessertstorm_content_'.$s.'_bgImage',
+				) 
+			) 
+		);
+
+	   	//Section background colour
+	   	$wp_customize->add_control( 
+			new WP_Customize_Color_Control( 
+				$wp_customize, 
+				'dessertstorm_content_'.$s.'_bgColour', 
+				array(
+					'label'      => __( 'Background colour:', 'dessertstorm' ),
+					'section'    => 'dessertstorm_content_section_'.$s,
+					'settings'   => 'dessertstorm_content_'.$s.'_bgColour',
+				) 
+			) 
+		);
+
+	   	//Section background opacity
+	   	$wp_customize->add_control( 
+	   		'dessertstorm_content_'.$s.'_bgOpacity', 
+			array(
+				'label'    => __( 'Background opacity', 'dessertstorm' ),
+				'section'  => 'dessertstorm_content_section_'.$s,
+				'settings' => 'dessertstorm_content_'.$s.'_bgOpacity',
+				'type'     => 'text',
+			)
+		);
+
 	}
 }
 add_action( 'customize_register', 'dessertstorm_customize_register' );
@@ -230,6 +271,20 @@ function dessertstorm_customize_css()
              	background-image: url(<?php echo get_theme_mod('austeve_background_image_3', ''); ?>);
              	opacity: <?php echo get_theme_mod('austeve_background_opacity_3', '1.0'); ?>;
             }
+
+            <?php
+            
+			$sections = get_theme_mod('austeve_general_sections', 0);
+
+			for ($s = 0; $s < $sections; $s++) {
+
+            	echo "#section-".$s." .content-background-image { ";
+            	echo "    background-image: url(".get_theme_mod('dessertstorm_content_'.$s.'_bgImage', '').");";
+            	echo "    background-color: ".get_theme_mod('dessertstorm_content_'.$s.'_bgColour', '').";";
+            	echo "    opacity: ".get_theme_mod('dessertstorm_content_'.$s.'_bgOpacity', '1.0').";";
+            	echo "}";
+        	}
+            ?>
         </style>
     <?php
 }
@@ -361,3 +416,4 @@ if( class_exists( 'WP_Customize_Control' ) ):
 		}
 	}
 endif;
+?>
