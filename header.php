@@ -25,7 +25,9 @@
 
 
 	<div id="background-div">
-		<div id="bgImage">&nbsp;</div>
+		<div id="bgImage" class="bgImage">&nbsp;</div>
+		<div id="bgImage2" class="bgImage">&nbsp;</div>
+		<div id="bgImage3" class="bgImage">&nbsp;</div>
 	</div>
 	
 	<div id="page">
