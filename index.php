@@ -34,7 +34,7 @@ get_header(); ?>
 			?>
 			<div id="section-<?php echo $s; ?>" class="row columns content-section">
 				<div class="content-background-div">
-					<div class="content-background-image">&nbsp;</div>
+					<div class="content-background-image <?php echo (get_theme_mod('dessertstorm_content_'.$s.'_bgForSmall', true) == true ) ? '' : 'show-for-medium'; ?>">&nbsp;</div>
 				</div>
 				<div class="content-container">
 				<?php 

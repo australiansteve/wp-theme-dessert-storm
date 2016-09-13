@@ -139,10 +139,14 @@ function dessertstorm_customize_register( $wp_customize ) {
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_style' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_page' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar' );
-   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar_small' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_bgImage' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_bgColour' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_bgOpacity' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_bgForSmall', 
+   			array (
+				'default'  => true
+			) 
+   		);
 
 	   	//Add a top-level control
 	   	$wp_customize->add_control(
@@ -194,26 +198,6 @@ function dessertstorm_customize_register( $wp_customize ) {
 		    )
 		);
 
-	   	$selected_sidebar = get_theme_mod('dessertstorm_content_'.$s.'_sidebar');
-	   	global $sidebars_widgets;
-		$count = ($selected_sidebar) ? count($sidebars_widgets[strtolower($selected_sidebar)]) : 0;
-
-		//Add a widget sizing control (small)
-	   	$wp_customize->add_control(
-		    new WP_Customize_WidgetSize_Control(
-		        $wp_customize,
-		        'dessertstorm_content_'.$s.'_sidebar_small',
-		        array(
-					'label' 	=> __( 'Widget sizes', 'dessertstorm' ),
-					'section' 	=> 'dessertstorm_content_section_'.$s,
-					'settings' 	=> 'dessertstorm_content_'.$s.'_sidebar_small',
-					'description' 	=> __('Widget sizes on small screens', 'dessertstorm' ),
-					'screen_size' => 'small',
-					'num_widgets' => $count, 
-		        )
-		    )
-		);
-
 		//Section background image
 	   	$wp_customize->add_control( 
 	   		new WP_Customize_Image_Control( 
@@ -251,6 +235,17 @@ function dessertstorm_customize_register( $wp_customize ) {
 			)
 		);
 
+	   	//Section background image for small screens
+	   	$wp_customize->add_control( 
+	   		'dessertstorm_content_'.$s.'_bgForSmall', 
+			array(
+				'label'    => __( 'Display background image for small screens', 'dessertstorm' ),
+				'section'  => 'dessertstorm_content_section_'.$s,
+				'settings' => 'dessertstorm_content_'.$s.'_bgForSmall',
+				'type'     => 'checkbox',
+			)
+		);
+
 	}
 }
 add_action( 'customize_register', 'dessertstorm_customize_register' );
@@ -284,10 +279,13 @@ function dessertstorm_customize_css()
 
 			for ($s = 0; $s < $sections; $s++) {
 
-            	echo "#section-".$s." .content-background-image { ";
-            	echo "    background-image: url(".get_theme_mod('dessertstorm_content_'.$s.'_bgImage', '').");";
+            	echo "#section-".$s." .content-background-div { ";
             	echo "    background-color: ".get_theme_mod('dessertstorm_content_'.$s.'_bgColour', '').";";
             	echo "    opacity: ".get_theme_mod('dessertstorm_content_'.$s.'_bgOpacity', '1.0').";";
+            	echo "}";
+
+            	echo "#section-".$s." .content-background-image { ";
+            	echo "    background-image: url(".get_theme_mod('dessertstorm_content_'.$s.'_bgImage', '').");";
             	echo "}";
         	}
             ?>
@@ -338,7 +336,7 @@ if( class_exists( 'WP_Customize_Control' ) ):
 				<script>
 				
 				function hideAll(s) {
-					jQuery('#customize-control-dessertstorm_content_'+s+'_page, #customize-control-dessertstorm_content_'+s+'_sidebar, #customize-control-dessertstorm_content_'+s+'_sidebar_small' ).hide();
+					jQuery('#customize-control-dessertstorm_content_'+s+'_page, #customize-control-dessertstorm_content_'+s+'_sidebar' ).hide();
 				}
 
 				jQuery(function($){
@@ -348,20 +346,11 @@ if( class_exists( 'WP_Customize_Control' ) ):
 					hideAll(s);
 
 					$('#customize-control-dessertstorm_content_'+s+'_'+v ).show();
-
-					if (v == 'sidebar')
-					{
-						$('#customize-control-dessertstorm_content_'+s+'_'+v+'_small' ).show();
-					}
 					
 					$('#customize-control-dessertstorm_content_'+s+'_style select').change(function() {
 						hideAll(s);
 						$('#customize-control-dessertstorm_content_'+s+'_'+this.value ).show();
 
-						if (this.value == 'sidebar')
-						{
-							$('#customize-control-dessertstorm_content_'+s+'_'+this.value+'_small' ).show();
-						}
 					});
 				});
 
@@ -426,20 +415,5 @@ if( class_exists( 'WP_Customize_Control' ) ):
 		}
 	}
 
-	class WP_Customize_WidgetSize_Control extends WP_Customize_Control {
-		public $type = 'widgetsize_dropdown';
-		public $screen_size;
-		public $num_widgets;
- 
-		public function render_content() {
-		?>
-			<label>
-				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-				<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
-				<p><?php echo esc_html( $this->screen_size ); ?>-<?php echo esc_html( $this->num_widgets ); ?></p>
-			</label>
-		<?php
-		}
-	}
 endif;
 ?>
