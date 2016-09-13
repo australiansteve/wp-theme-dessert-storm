@@ -21,17 +21,50 @@
 
 <body <?php body_class(); ?>>
 
-<?php echo file_get_contents( get_template_directory() . '/assets/dist/sprite/sprite.svg' ); ?>
+<?php echo file_get_contents( get_template_directory() . '/assets/dist/sprite/sprite.svg' ); 
 
 
-	<div id="background-div">
-		<div id="bgImage" class="bgImage">&nbsp;</div>
-		<div id="bgImage2" class="bgImage">&nbsp;</div>
-		<div id="bgImage3" class="bgImage">&nbsp;</div>
+	$fixedBackground = get_theme_mod('austeve_background_fixed', 'fixed');
+	$backgrounds = get_theme_mod('austeve_backgrounds', 0);
+
+	if ($fixedBackground == 'fixed') 
+	{
+	?>
+
+
+	<div id="background-div" class="fixed">
+	<?php
+	for ($b = 0; $b < $backgrounds; $b++) {
+		echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+	}
+	?>
 	</div>
 	
 	<div id="page">
 
+<?php 
+	}
+	else {
+		//Scrolling
+		?>
+
+	<div id="background-div" class="scrolling">
+		<?php
+	for ($b = 0; $b < $backgrounds; $b++) {
+		echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+	}
+	?>
+
+		<div id="page">
+		<?php
+	}
+
+	$menuLayout = get_theme_mod('austeve_menu_layout', 'topbar-right');
+
+	if ($menuLayout == 'topbar-right') 
+	{
+
+?>				
 		<div data-sticky-container class="header">
 			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
 				<div class="title-bar-left">
@@ -55,6 +88,8 @@
 						</a>
 					</h1>
 				</div>
+
+			
 				<div class="title-bar-right show-for-medium-only" id="medium-menu-container">
 					<ul class="dropdown menu align-right" data-dropdown-menu>
 						<li>
@@ -77,5 +112,38 @@
 				</li>
 			</ul>
 		</div>
+<?php 
+	} /* End if ($menuLayout == 'top-bar-right') */
+	else if ($menuLayout == 'none')
+	{
+?>
+		<div class="header">
+			<div class="title-bar">
+				<div class="title-bar-left">
+					<h1 class="site-title">
+						<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+							<?php 
+							if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+								the_custom_logo();
+							}
+							else {
+								?>
+								<h1>
+									<?php
+									bloginfo( 'name' );
+									?>
+								</h1>
+								<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+							<?php
+							}
+			 				?>
+						</a>
+					</h1>
+				</div>
+			</div>
+		</div>
+<?php		
+	}
+?>
 
 		<div id="content" class="site-content">

@@ -17,17 +17,20 @@ function dessertstorm_customize_register( $wp_customize ) {
 
 	//All our sections, settings, and controls will be added here
    	$wp_customize->add_setting( 'austeve_general_sections' );
-   	$wp_customize->add_setting( 'austeve_background_image' );
-   	$wp_customize->add_setting( 'austeve_background_opacity' );
-   	$wp_customize->add_setting( 'austeve_background_image_2' );
-   	$wp_customize->add_setting( 'austeve_background_opacity_2' );
-   	$wp_customize->add_setting( 'austeve_background_image_3' );
-   	$wp_customize->add_setting( 'austeve_background_opacity_3' );
+   	$wp_customize->add_setting( 'austeve_background_fixed' );
+   	$wp_customize->add_setting( 'austeve_backgrounds' );
+   	$wp_customize->add_setting( 'austeve_menu_layout' );
 
 	$wp_customize->add_section( 'dessertstorm_bg_section' , array(
 	    'title'       => __( 'Background', 'dessertstorm' ),
 	    'priority'    => 30,
 	    'description' => 'Upload a background image',
+	) );
+
+	$wp_customize->add_section( 'dessertstorm_menu_section' , array(
+	    'title'       => __( 'Menu layout', 'dessertstorm' ),
+	    'priority'    => 30,
+	    'description' => 'Choose desired menu layout',
 	) );
 
 	//Front page content sections
@@ -41,76 +44,83 @@ function dessertstorm_customize_register( $wp_customize ) {
 		)
 	);
 
-	//Background Image
-   	$wp_customize->add_control( 
-   		new WP_Customize_Image_Control( 
-   			$wp_customize, 
-   			'austeve_background_image', 
-   			array(
-			    'label'    => __( 'Image #1:', 'dessertstorm' ),
-			    'section'  => 'dessertstorm_bg_section',
-			    'settings' => 'austeve_background_image',
-			) 
-		) 
+   	//Background fixed/scrolling
+   	$wp_customize->add_control(
+	    new WP_Customize_Dropdown_Control(
+	        $wp_customize,
+	        'austeve_background_fixed',
+	        array(
+				'label' 	=> __( 'Fixed/Scrolling?', 'dessertstorm' ),
+				'description' => __( 'Should the background image be fixed, or scroll with the content (Image #1 will be repeated vertically)', 'dessertstorm' ),
+				'section' 	=> 'dessertstorm_bg_section',
+				'settings' 	=> 'austeve_background_fixed',
+				'choices' 	=> array(
+					'fixed' 	=> 'Fixed',
+					'scroll' 	=> 'Scrolling',
+				)
+	        )
+	    )
 	);
 
-   	//Background opacity
-   	$wp_customize->add_control( 
-   		'austeve_background_opacity', 
+	//Backgrounds
+	$wp_customize->add_control( 
+   		'austeve_backgrounds', 
 		array(
-			'label'    => __( '#1 opacity', 'dessertstorm' ),
+			'label'    => __( 'Number of background images', 'dessertstorm' ),
 			'section'  => 'dessertstorm_bg_section',
-			'settings' => 'austeve_background_opacity',
+			'settings' => 'austeve_backgrounds',
 			'type'     => 'text',
 		)
 	);
 
-	//Background Image #2
-   	$wp_customize->add_control( 
-   		new WP_Customize_Image_Control( 
-   			$wp_customize, 
-   			'austeve_background_image_2', 
-   			array(
-			    'label'    => __( 'Image #2:', 'dessertstorm' ),
-			    'section'  => 'dessertstorm_bg_section',
-			    'settings' => 'austeve_background_image_2',
+	$backgrounds = get_theme_mod('austeve_backgrounds', 0);
+
+	for ($b = 0; $b < $backgrounds; $b++) {
+
+   		$wp_customize->add_setting( 'austeve_background_image_'.($b+1) );
+   		$wp_customize->add_setting( 'austeve_background_opacity_'.($b+1) );
+
+		//Background Image
+	   	$wp_customize->add_control( 
+	   		new WP_Customize_Image_Control( 
+	   			$wp_customize, 
+	   			'austeve_background_image_'.($b+1), 
+	   			array(
+				    'label'    => __( 'Image #'.($b+1).':', 'dessertstorm' ),
+				    'section'  => 'dessertstorm_bg_section',
+				    'settings' => 'austeve_background_image_'.($b+1),
+				) 
 			) 
-		) 
-	);
+		);
 
-   	//Background opacity #2
-   	$wp_customize->add_control( 
-   		'austeve_background_opacity_2', 
-		array(
-			'label'    => __( '#2 opacity', 'dessertstorm' ),
-			'section'  => 'dessertstorm_bg_section',
-			'settings' => 'austeve_background_opacity_2',
-			'type'     => 'text',
-		)
-	);
+	   	//Background opacity
+	   	$wp_customize->add_control( 
+	   		'austeve_background_opacity_'.($b+1), 
+			array(
+				'label'    => __( '#'.($b+1).' opacity', 'dessertstorm' ),
+				'section'  => 'dessertstorm_bg_section',
+				'settings' => 'austeve_background_opacity_'.($b+1),
+				'type'     => 'text',
+			)
+		);
 
-	//Background Image #3
-   	$wp_customize->add_control( 
-   		new WP_Customize_Image_Control( 
-   			$wp_customize, 
-   			'austeve_background_image_3', 
-   			array(
-			    'label'    => __( 'Image #3:', 'dessertstorm' ),
-			    'section'  => 'dessertstorm_bg_section',
-			    'settings' => 'austeve_background_image_3',
-			) 
-		) 
-	);
+	}
 
-   	//Background opacity #3
-   	$wp_customize->add_control( 
-   		'austeve_background_opacity_3', 
-		array(
-			'label'    => __( '#3 opacity', 'dessertstorm' ),
-			'section'  => 'dessertstorm_bg_section',
-			'settings' => 'austeve_background_opacity_3',
-			'type'     => 'text',
-		)
+   	//Menu layouts
+   	$wp_customize->add_control(
+	    new WP_Customize_Dropdown_Control(
+	        $wp_customize,
+	        'austeve_menu_layout',
+	        array(
+				'label' 	=> __( 'Layout', 'dessertstorm' ),
+				'section' 	=> 'dessertstorm_menu_section',
+				'settings' 	=> 'austeve_menu_layout',
+				'choices' 	=> array(
+					'topbar-right' 	=> 'Top-bar Right',
+					'none' 	=> 'None',
+				)
+	        )
+	    )
 	);
 
 
@@ -146,6 +156,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 					'choices' 	=> array(
 						'page' 		=> 'Page',
 						'sidebar' 	=> 'Sidebar',
+						'none' 	=> 'No content (spacing only)',
 					),
 					'content_section' => $s,
 		        )
@@ -259,20 +270,15 @@ function dessertstorm_customize_css()
 {
     ?>
         <style type="text/css">
-            #bgImage { 
-             	background-image: url(<?php echo get_theme_mod('austeve_background_image', ''); ?>);
-             	opacity: <?php echo get_theme_mod('austeve_background_opacity', '1.0'); ?>;
-            }
-            #bgImage2 { 
-             	background-image: url(<?php echo get_theme_mod('austeve_background_image_2', ''); ?>);
-             	opacity: <?php echo get_theme_mod('austeve_background_opacity_2', '1.0'); ?>;
-            }
-            #bgImage3 { 
-             	background-image: url(<?php echo get_theme_mod('austeve_background_image_3', ''); ?>);
-             	opacity: <?php echo get_theme_mod('austeve_background_opacity_3', '1.0'); ?>;
-            }
-
             <?php
+            $backgrounds = get_theme_mod('austeve_backgrounds', 0);
+
+			for ($b = 0; $b < $backgrounds; $b++) {
+				echo "#bgImage".($b+1)." {";
+				echo "background-image: url(".get_theme_mod('austeve_background_image_'.($b+1), '').");";
+				echo "opacity: ".get_theme_mod('austeve_background_opacity_'.($b+1), '1.0').";";
+            	echo "}";
+			}
             
 			$sections = get_theme_mod('austeve_general_sections', 0);
 
@@ -292,6 +298,26 @@ add_action( 'wp_head', 'dessertstorm_customize_css');
 
 
 if( class_exists( 'WP_Customize_Control' ) ):
+	class WP_Customize_Dropdown_Control extends WP_Customize_Control {
+		public $type = 'style_radio';
+ 
+		public function render_content() {
+		?>
+			<label>
+				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+
+				<select <?php $this->link(); ?>>
+					<option value="0" <?php echo selected( $this->value(), get_the_ID() )?>>Select menu layout...</option>
+					<?php foreach ( $this->choices as $key => $value ) { 
+						echo "<option " . selected( $this->value(), $key ) . " value='" . $key . "'>" . ucwords( $value ) . "</option>";
+							} 
+					?>
+				</select>				
+			</label>
+		<?php
+		}
+	}
+
 	class WP_Customize_ContentStyle_Control extends WP_Customize_Control {
 		public $type = 'style_radio';
 		public $content_section;

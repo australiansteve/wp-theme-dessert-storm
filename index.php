@@ -51,6 +51,11 @@ get_header(); ?>
 						dynamic_sidebar(get_theme_mod('dessertstorm_content_'.$s.'_sidebar', null)); 
 						echo "</div>";
 					}
+					else if ( $section_style === 'none') {
+						echo "<div class='row columns empty-content'>";
+						echo "&nbsp;";
+						echo "</div>";
+					}
 					else {
 						echo ' - Unknown'; 
 					}
