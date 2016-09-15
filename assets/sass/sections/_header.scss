@@ -59,6 +59,12 @@
 
 .scrolling #bgImage1 {
     background-repeat: repeat-y;
+    background-size: cover;
+}
+
+.scrolling #bgImage3 {
+    right: 0;
+    margin: auto;
 }
 
 .header.sticky-container {
