@@ -158,9 +158,9 @@ function dessertstorm_customize_register( $wp_customize ) {
 					'section' 	=> 'dessertstorm_content_section_'.$s,
 					'settings' 	=> 'dessertstorm_content_'.$s.'_style',
 					'choices' 	=> array(
+						'none' 	=> 'No content (spacing only)',
 						'page' 		=> 'Page',
 						'sidebar' 	=> 'Sidebar',
-						'none' 	=> 'No content (spacing only)',
 					),
 					'content_section' => $s,
 		        )
@@ -329,7 +329,7 @@ if( class_exists( 'WP_Customize_Control' ) ):
 				<select <?php $this->link(); ?>>
 					<option value="0" <?php echo selected( $this->value(), get_the_ID() )?>>Select content style...</option>
 					<?php foreach ( $this->choices as $key => $value ) { 
-						echo "<option " . selected( $this->value(), $key ) . " value='" . $key . "'>" . ucwords( $value ) . "</option>";
+						echo "<option " . selected( $this->value(), $key ) . " value='" . $key . "'>" . $value . "</option>";
 							} 
 					?>
 				</select>
