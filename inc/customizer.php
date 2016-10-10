@@ -297,12 +297,12 @@ function dessertstorm_customize_css()
 
 			for ($s = 0; $s < $sections; $s++) {
 
-            	echo "#section-".$s." .content-background-div { ";
+            	echo ".section-".$s." .content-background-div { ";
             	echo "    background-color: ".get_theme_mod('dessertstorm_content_'.$s.'_bgColour', '').";";
             	echo "    opacity: ".get_theme_mod('dessertstorm_content_'.$s.'_bgOpacity', '1.0').";";
             	echo "}";
 
-            	echo "#section-".$s." .content-background-image { ";
+            	echo ".section-".$s." .content-background-image { ";
             	echo "    background-image: url(".get_theme_mod('dessertstorm_content_'.$s.'_bgImage', '').");";
             	echo "}";
         	}
