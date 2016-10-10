@@ -128,14 +128,21 @@ function dessertstorm_customize_register( $wp_customize ) {
 
 	for ($s = 0; $s < $sections; $s++) {
 		
+		//Get section name
+		$sectionName = get_theme_mod('dessertstorm_content_'.$s.'_name', null);
+		if (!$sectionName)
+		{
+			$sectionName = '#'.($s+1);
+		}
+
 		//Add a section
 		$wp_customize->add_section( 'dessertstorm_content_section_'.$s , array(
-		    'title'       => __( 'Content section '.($s+1), 'dessertstorm' ),
+		    'title'       => __( 'Section: '.$sectionName, 'dessertstorm' ),
 		    'priority'    => 200,
-		    'description' => 'Content section '.($s+1),
 		) );
 
 		//Add settings
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_name' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_style' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_page' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar' );
@@ -147,6 +154,17 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'default'  => true
 			) 
    		);
+
+   		//Section ID control
+		$wp_customize->add_control( 
+	   		'dessertstorm_content_'.$s.'_name', 
+			array(
+				'label'    => __( 'Section Name', 'dessertstorm' ),
+				'section'  => 'dessertstorm_content_section_'.$s,
+				'settings' => 'dessertstorm_content_'.$s.'_name',
+				'type'     => 'text',
+			)
+		);
 
 	   	//Add a top-level control
 	   	$wp_customize->add_control(
