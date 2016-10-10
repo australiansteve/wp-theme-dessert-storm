@@ -12,6 +12,10 @@ jQuery(document).ready(function($) {
 		$(window).resize(resizeSpinner);
 		resizeSpinner();
 
+		var resizePolaroids = _.debounce(polarize, 750);
+		$(window).resize(resizePolaroids);
+		resizePolaroids();
+
 		$("#background-div.scrolling").each(function() {
 			var backgroundHeight = $(this).css('height');
 			console.log("backgroundHeight: " + backgroundHeight);
@@ -74,4 +78,34 @@ function spinBackground()
 		jQuery(this).css('-ms-animation-name', 'spin');
 		jQuery(this).css('animation-name', 'spin');
 	});
+}
+
+function polarize()
+{
+	jQuery(".sbi_photo_wrap").each(function() {
+		
+		//Set padding of each wrapper to be in poaloid proportions
+		jQuery(this).css('padding', '6.06% 7.14% 21.21% 7.14%');
+
+		//Set the height of each image to match the width now that the dimensions have changed due to padding
+		jQuery(this).find('.sbi_photo').each( function() {
+			//set height = width
+			jQuery(this).css('height', jQuery(this).css('width'));
+		});
+		
+		//Randomize the angle of each image
+		var angle = getRandomInt(-20, 20);
+		jQuery(this).css('-webkit-transform', 'rotate(' + angle +'deg)');
+		jQuery(this).css('-moz-transform', 'rotate(' + angle +'deg)');
+		jQuery(this).css('-ms-transform', 'rotate(' + angle +'deg)');
+		jQuery(this).css('-o-transform', 'rotate(' + angle +'deg)');
+		jQuery(this).css('transform', 'rotate(' + angle +'deg)');
+
+	});
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
 }
