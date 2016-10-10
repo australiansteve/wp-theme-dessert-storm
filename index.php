@@ -38,7 +38,7 @@ get_header(); ?>
 				</div>
 				<div class="content-container">
 				<?php 
-					$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'page');
+					$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'none');
 
 					if ( $section_style === 'page') {
 						$id=get_theme_mod('dessertstorm_content_'.$s.'_page', 0); 
@@ -57,7 +57,7 @@ get_header(); ?>
 						echo "</div>";
 					}
 					else {
-						echo ' - Unknown'; 
+						echo 'Unknown'; 
 					}
 					?>
 				</div>
