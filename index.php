@@ -31,8 +31,14 @@ get_header(); ?>
 
 		for ($s = 0; $s < $sections; $s++)
 		{
+			$sectionName = get_theme_mod('dessertstorm_content_'.$s.'_name', null);
+			if (!$sectionName)
+			{
+				$sectionName = $s;
+			}
+			$sectionId = strtolower(str_replace(' ', '-', $sectionName));
 			?>
-			<div id="section-<?php echo $s; ?>" class="row columns content-section">
+			<div id="section-<?php echo $sectionId; ?>" class="row columns content-section">
 				<div class="content-background-div">
 					<div class="content-background-image <?php echo (get_theme_mod('dessertstorm_content_'.$s.'_bgForSmall', true) == true ) ? '' : 'show-for-medium'; ?>">&nbsp;</div>
 				</div>
