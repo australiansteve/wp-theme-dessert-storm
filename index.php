@@ -38,7 +38,7 @@ get_header(); ?>
 			}
 			$sectionId = strtolower(str_replace(' ', '-', $sectionName));
 			?>
-			<div id="section-<?php echo $sectionId; ?>" class="row columns content-section">
+			<div id="section-<?php echo $sectionId; ?>" class="row columns content-section section-<?php echo $s; ?>">
 				<div class="content-background-div">
 					<div class="content-background-image <?php echo (get_theme_mod('dessertstorm_content_'.$s.'_bgForSmall', true) == true ) ? '' : 'show-for-medium'; ?>">&nbsp;</div>
 				</div>
