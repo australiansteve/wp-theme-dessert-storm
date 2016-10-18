@@ -65,6 +65,31 @@ function dessertstorm_customize_register( $wp_customize ) {
 			'type'     => 'text',
 		)
 	);
+	//Text colour
+   	$wp_customize->add_setting( 'dessertstorm_footer_textColour' );
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+			$wp_customize, 
+			'dessertstorm_footer_textColour', 
+			array(
+				'label'      => __( 'Text colour:', 'dessertstorm' ),
+				'section'    => 'dessertstorm_footer_section',
+				'settings'   => 'dessertstorm_footer_textColour',
+			) 
+		) 
+	);
+
+   	//Text opacity
+   	$wp_customize->add_setting( 'dessertstorm_footer_textOpacity' );
+   	$wp_customize->add_control( 
+   		'dessertstorm_footer_textOpacity', 
+		array(
+			'label'    => __( 'Text opacity', 'dessertstorm' ),
+			'section'  => 'dessertstorm_footer_section',
+			'settings' => 'dessertstorm_footer_textOpacity',
+			'type'     => 'text',
+		)
+	);
 	#endregion
 
 	//Front page content sections
@@ -341,9 +366,18 @@ function dessertstorm_customize_css()
             	echo "}";
         	}
 
+        	$footerBgColour = (get_theme_mod('dessertstorm_footer_bgColour', 'white') === '' ? 'white' : get_theme_mod('dessertstorm_footer_bgColour'));
+			$footerTextColour_hex = (get_theme_mod('dessertstorm_footer_textColour', '#000000') === '' ? '#000000' : get_theme_mod('dessertstorm_footer_textColour') );
+			list($ftc_r, $ftc_g, $ftc_b) = sscanf($footerTextColour_hex, "#%02x%02x%02x");
+			
             echo "#colophon {";
-        	echo "    background-color: ".get_theme_mod('dessertstorm_footer_bgColour', 'white').";";
+        	echo "    background-color: ".$footerBgColour.";";
         	echo "    opacity: ".get_theme_mod('dessertstorm_footer_bgOpacity', '1.0').";";
+        	echo "    color: rgba($ftc_r, $ftc_g, $ftc_b, ".get_theme_mod('dessertstorm_footer_textOpacity', '1.0').");";
+        	echo "}";
+
+            echo "#colophon a{";
+        	echo "    color: rgba($ftc_r, $ftc_g, $ftc_b, ".get_theme_mod('dessertstorm_footer_textOpacity', '1.0').");";
         	echo "}";
         	?>
         </style>
