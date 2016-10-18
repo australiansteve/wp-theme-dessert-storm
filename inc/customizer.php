@@ -33,6 +33,40 @@ function dessertstorm_customize_register( $wp_customize ) {
 	    'description' => 'Choose desired menu layout',
 	) );
 
+	$wp_customize->add_section( 'dessertstorm_footer_section' , array(
+	    'title'       => __( 'Footer', 'dessertstorm' ),
+	    'priority'    => 40,
+	    'description' => 'Customize the footer',
+	) );
+
+	#region Footer settings
+	//Background colour
+   	$wp_customize->add_setting( 'dessertstorm_footer_bgColour' );
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+			$wp_customize, 
+			'dessertstorm_footer_bgColour', 
+			array(
+				'label'      => __( 'Background colour:', 'dessertstorm' ),
+				'section'    => 'dessertstorm_footer_section',
+				'settings'   => 'dessertstorm_footer_bgColour',
+			) 
+		) 
+	);
+
+   	//Background opacity
+   	$wp_customize->add_setting( 'dessertstorm_footer_bgOpacity' );
+   	$wp_customize->add_control( 
+   		'dessertstorm_footer_bgOpacity', 
+		array(
+			'label'    => __( 'Background opacity', 'dessertstorm' ),
+			'section'  => 'dessertstorm_footer_section',
+			'settings' => 'dessertstorm_footer_bgOpacity',
+			'type'     => 'text',
+		)
+	);
+	#endregion
+
 	//Front page content sections
 	$wp_customize->add_control( 
    		'austeve_general_sections', 
@@ -306,7 +340,12 @@ function dessertstorm_customize_css()
             	echo "    background-image: url(".get_theme_mod('dessertstorm_content_'.$s.'_bgImage', '').");";
             	echo "}";
         	}
-            ?>
+
+            echo "#colophon {";
+        	echo "    background-color: ".get_theme_mod('dessertstorm_footer_bgColour', 'white').";";
+        	echo "    opacity: ".get_theme_mod('dessertstorm_footer_bgOpacity', '1.0').";";
+        	echo "}";
+        	?>
         </style>
     <?php
 }

@@ -21,7 +21,7 @@
 	</div>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div>
+		<div class="row columns">
 			<p class="footer">Website by: <a class="fa fa-copyright" href="http://australiansteve.com"><?php echo date("Y"); ?> AustralianSteve.com</a></p>
 		</div>
 	</footer><!-- #colophon -->
