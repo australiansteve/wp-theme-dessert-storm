@@ -33,6 +33,103 @@ function dessertstorm_customize_register( $wp_customize ) {
 	    'description' => 'Choose desired menu layout',
 	) );
 
+	$wp_customize->add_section( 'dessertstorm_footer_section' , array(
+	    'title'       => __( 'Footer', 'dessertstorm' ),
+	    'priority'    => 40,
+	    'description' => 'Customize the footer',
+	) );
+
+	#region Footer settings
+	//Background colour
+   	$wp_customize->add_setting( 'dessertstorm_footer_bgColour' );
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+			$wp_customize, 
+			'dessertstorm_footer_bgColour', 
+			array(
+				'label'      => __( 'Background colour:', 'dessertstorm' ),
+				'section'    => 'dessertstorm_footer_section',
+				'settings'   => 'dessertstorm_footer_bgColour',
+			) 
+		) 
+	);
+
+   	//Background opacity
+   	$wp_customize->add_setting( 'dessertstorm_footer_bgOpacity' );
+   	$wp_customize->add_control( 
+   		'dessertstorm_footer_bgOpacity', 
+		array(
+			'label'    => __( 'Background opacity', 'dessertstorm' ),
+			'section'  => 'dessertstorm_footer_section',
+			'settings' => 'dessertstorm_footer_bgOpacity',
+			'type'     => 'text',
+		)
+	);
+	//Text colour
+   	$wp_customize->add_setting( 'dessertstorm_footer_textColour' );
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+			$wp_customize, 
+			'dessertstorm_footer_textColour', 
+			array(
+				'label'      => __( 'Text colour:', 'dessertstorm' ),
+				'section'    => 'dessertstorm_footer_section',
+				'settings'   => 'dessertstorm_footer_textColour',
+			) 
+		) 
+	);
+
+   	//Text opacity
+   	$wp_customize->add_setting( 'dessertstorm_footer_textOpacity' );
+   	$wp_customize->add_control( 
+   		'dessertstorm_footer_textOpacity', 
+		array(
+			'label'    => __( 'Text opacity', 'dessertstorm' ),
+			'section'  => 'dessertstorm_footer_section',
+			'settings' => 'dessertstorm_footer_textOpacity',
+			'type'     => 'text',
+		)
+	);
+
+	//Alignment
+   	$wp_customize->add_setting( 'dessertstorm_footer_textAlign' );
+	$wp_customize->add_control(
+	    new WP_Customize_Dropdown_Control(
+	        $wp_customize,
+	        'dessertstorm_footer_textAlign',
+	        array(
+				'label' 	=> __( 'Alignment', 'dessertstorm' ),
+				'section' 	=> 'dessertstorm_footer_section',
+				'settings' 	=> 'dessertstorm_footer_textAlign',
+				'help_text'	=> 'Select alignment...',
+				'choices' 	=> array(
+					'left' 	=> 'Left',
+					'center' 	=> 'Center',
+					'right' 	=> 'Right',
+					'justify' 	=> 'Justify',
+				)
+	        )
+	    )
+	);
+
+	//Content
+   	$wp_customize->add_setting( 'dessertstorm_footer_content' );
+	$wp_customize->add_control(
+	    new WP_Customize_Textarea_Control(
+	        $wp_customize,
+	        'dessertstorm_footer_content',
+	        array(
+				'label' 	=> __( 'Content', 'dessertstorm' ),
+				'section' 	=> 'dessertstorm_footer_section',
+				'settings' 	=> 'dessertstorm_footer_content',
+				'default_value' => 'Website by: <a class="fa fa-copyright" href="http://weavercrawford.com">'.date("Y").' Weaver Crawford Creative</a>'
+	        )
+	    )
+	);
+
+
+	#endregion
+
 	//Front page content sections
 	$wp_customize->add_control( 
    		'austeve_general_sections', 
@@ -54,6 +151,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'description' => __( 'Should the background image be fixed, or scroll with the content (Image #1 will be repeated vertically)', 'dessertstorm' ),
 				'section' 	=> 'dessertstorm_bg_section',
 				'settings' 	=> 'austeve_background_fixed',
+				'help_text'  => 'Select style',
 				'choices' 	=> array(
 					'fixed' 	=> 'Fixed',
 					'scroll' 	=> 'Scrolling',
@@ -115,6 +213,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'label' 	=> __( 'Layout', 'dessertstorm' ),
 				'section' 	=> 'dessertstorm_menu_section',
 				'settings' 	=> 'austeve_menu_layout',
+				'help_text'  => 'Select menu layout...',
 				'choices' 	=> array(
 					'topbar-right' 	=> 'Top-bar Right',
 					'none' 	=> 'None',
@@ -306,7 +405,22 @@ function dessertstorm_customize_css()
             	echo "    background-image: url(".get_theme_mod('dessertstorm_content_'.$s.'_bgImage', '').");";
             	echo "}";
         	}
-            ?>
+
+        	$footerBgColour = (get_theme_mod('dessertstorm_footer_bgColour', 'white') === '' ? 'white' : get_theme_mod('dessertstorm_footer_bgColour'));
+			$footerTextColour_hex = (get_theme_mod('dessertstorm_footer_textColour', '#000000') === '' ? '#000000' : get_theme_mod('dessertstorm_footer_textColour') );
+			list($ftc_r, $ftc_g, $ftc_b) = sscanf($footerTextColour_hex, "#%02x%02x%02x");
+			
+            echo "#colophon {";
+        	echo "    background-color: ".$footerBgColour.";";
+        	echo "    opacity: ".get_theme_mod('dessertstorm_footer_bgOpacity', '1.0').";";
+        	echo "    color: rgba($ftc_r, $ftc_g, $ftc_b, ".get_theme_mod('dessertstorm_footer_textOpacity', '1.0').");";
+        	echo "    text-align: ".get_theme_mod('dessertstorm_footer_textAlign', 'center').";";
+        	echo "}";
+
+            echo "#colophon a{";
+        	echo "    color: rgba($ftc_r, $ftc_g, $ftc_b, ".get_theme_mod('dessertstorm_footer_textOpacity', '1.0').");";
+        	echo "}";
+        	?>
         </style>
     <?php
 }
@@ -314,8 +428,25 @@ add_action( 'wp_head', 'dessertstorm_customize_css');
 
 
 if( class_exists( 'WP_Customize_Control' ) ):
+
+	class WP_Customize_Textarea_Control extends WP_Customize_Control {
+	    public $type = 'textarea';
+		public $default_value;
+	 
+	    public function render_content() {
+	    	$content = ($this->value() == '') ? $this->default_value : $this->value();
+	        ?>
+	        <label>
+	        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+	        <textarea rows="5" style="width:100%;" <?php $this->link(); ?>><?php echo esc_textarea( $content ); ?></textarea>
+	        </label>
+	        <?php
+	    }
+	}
+
 	class WP_Customize_Dropdown_Control extends WP_Customize_Control {
 		public $type = 'style_radio';
+		public $help_text;
  
 		public function render_content() {
 		?>
@@ -323,7 +454,7 @@ if( class_exists( 'WP_Customize_Control' ) ):
 				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 
 				<select <?php $this->link(); ?>>
-					<option value="0" <?php echo selected( $this->value(), get_the_ID() )?>>Select menu layout...</option>
+					<option value="0" <?php echo selected( $this->value(), get_the_ID() )?>><?php echo $this->help_text; ?></option>
 					<?php foreach ( $this->choices as $key => $value ) { 
 						echo "<option " . selected( $this->value(), $key ) . " value='" . $key . "'>" . ucwords( $value ) . "</option>";
 							} 
@@ -432,6 +563,5 @@ if( class_exists( 'WP_Customize_Control' ) ):
 		<?php
 		}
 	}
-
 endif;
 ?>
