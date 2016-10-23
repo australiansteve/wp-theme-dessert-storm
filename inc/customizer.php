@@ -111,6 +111,23 @@ function dessertstorm_customize_register( $wp_customize ) {
 	        )
 	    )
 	);
+
+	//Content
+   	$wp_customize->add_setting( 'dessertstorm_footer_content' );
+	$wp_customize->add_control(
+	    new WP_Customize_Textarea_Control(
+	        $wp_customize,
+	        'dessertstorm_footer_content',
+	        array(
+				'label' 	=> __( 'Content', 'dessertstorm' ),
+				'section' 	=> 'dessertstorm_footer_section',
+				'settings' 	=> 'dessertstorm_footer_content',
+				'default_value' => 'Website by: <a class="fa fa-copyright" href="http://weavercrawford.com">'.date("Y").' Weaver Crawford Creative</a>'
+	        )
+	    )
+	);
+
+
 	#endregion
 
 	//Front page content sections
@@ -411,6 +428,22 @@ add_action( 'wp_head', 'dessertstorm_customize_css');
 
 
 if( class_exists( 'WP_Customize_Control' ) ):
+
+	class WP_Customize_Textarea_Control extends WP_Customize_Control {
+	    public $type = 'textarea';
+		public $default_value;
+	 
+	    public function render_content() {
+	    	$content = ($this->value() == '') ? $this->default_value : $this->value();
+	        ?>
+	        <label>
+	        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+	        <textarea rows="5" style="width:100%;" <?php $this->link(); ?>><?php echo esc_textarea( $content ); ?></textarea>
+	        </label>
+	        <?php
+	    }
+	}
+
 	class WP_Customize_Dropdown_Control extends WP_Customize_Control {
 		public $type = 'style_radio';
 		public $help_text;
