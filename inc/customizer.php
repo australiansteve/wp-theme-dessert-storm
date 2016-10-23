@@ -406,7 +406,7 @@ function dessertstorm_customize_css()
             	echo "}";
         	}
 
-        	$footerBgColour = (get_theme_mod('dessertstorm_footer_bgColour', 'white') === '' ? 'white' : get_theme_mod('dessertstorm_footer_bgColour'));
+        	$footerBgColour = (get_theme_mod('dessertstorm_footer_bgColour', 'transparent') === '' ? 'transparent' : get_theme_mod('dessertstorm_footer_bgColour'));
 			$footerTextColour_hex = (get_theme_mod('dessertstorm_footer_textColour', '#000000') === '' ? '#000000' : get_theme_mod('dessertstorm_footer_textColour') );
 			list($ftc_r, $ftc_g, $ftc_b) = sscanf($footerTextColour_hex, "#%02x%02x%02x");
 			
