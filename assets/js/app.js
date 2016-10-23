@@ -12,22 +12,33 @@ jQuery(document).ready(function($) {
 		$(window).resize(resizeSpinner);
 		resizeSpinner();
 
-		var resizePolaroids = _.debounce(polarize, 750);
+		var resizePolaroids = _.debounce(polarize, 250);
 		$(window).resize(resizePolaroids);
 		resizePolaroids();
 
-		$("#background-div.scrolling").each(function() {
-			var backgroundHeight = $(this).css('height');
-			console.log("backgroundHeight: " + backgroundHeight);
+	}, 100);
 
-			//Set the first background image to be the same height so that it repeats vertically
-			$(this).find("#bgImage1").css('height', backgroundHeight);
-		});
+	setTimeout(function() {		
 
-	}, 500);
+		var resizeScrollingBackground = _.debounce(scrollingBackground, 400);
+		$(window).resize(resizeScrollingBackground);
+		resizeScrollingBackground();
+
+	}, 400);
 
 });
 
+
+function scrollingBackground()
+{
+	jQuery("#background-div.scrolling").each(function() {
+		var backgroundHeight = jQuery(this).css('height');
+		console.log("backgroundHeight: " + backgroundHeight);
+
+		//Set the first background image to be the same height so that it repeats vertically
+		jQuery(this).find("#bgImage1").css('height', backgroundHeight);
+	});
+}
 
 function footerSpacing()
 {
