@@ -2,7 +2,6 @@ jQuery(document).ready(function($) {
 
 	$(document).foundation();
 
-
 	setTimeout(function() {
 		var spaceFooter = _.debounce(footerSpacing, 250);
 		$(window).resize(spaceFooter);
@@ -16,15 +15,14 @@ jQuery(document).ready(function($) {
 		$(window).resize(resizePolaroids);
 		resizePolaroids();
 
-	}, 100);
+	}, 300);
 
 	setTimeout(function() {		
-
-		var resizeScrollingBackground = _.debounce(scrollingBackground, 400);
+		//resize background a few seconds after loading finishes in case image loading was slow
+		var resizeScrollingBackground = _.debounce(scrollingBackground, 750);
 		$(window).resize(resizeScrollingBackground);
 		resizeScrollingBackground();
-
-	}, 400);
+	}, 1000);
 
 });
 
