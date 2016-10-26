@@ -192,6 +192,12 @@ function dessertstorm_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'dessertstorm_scripts' );
 
+/* Declare WooCommerce support */
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'woocommerce_support' );
+
 
 /**
  * Custom template tags for this theme.
