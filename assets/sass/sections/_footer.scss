@@ -1,6 +1,16 @@
 #colophon {
+	background: #eee;
 	padding: 1rem 0;
 	font-family: FontAwesome, sans-serif;
+	color: transparentize(#000, .7);
+
+	.row { 
+		max-width: none;
+	}
+
+	.return-to-top:before {
+		margin-right: 0.25rem;
+	}
 }
 
 #colophon #a {

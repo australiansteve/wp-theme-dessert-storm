@@ -1,16 +1,30 @@
 // Typography
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
+body, p, a, li, h1, h2, h3, h4, h5, h6 {
+	font-family: "Avenir Light", "Times New Roman",Times,serif;
+}
+
 p {
 	margin: 0;
 }
 
 h1 {
-	font-size: 2rem;
-	font-weight: 700;
+	font-size: 1.65rem;
 }
 
 h2 {
 	font-size: 1.25rem;
 	font-weight: 700;
+}
+
+a { 
+	font-size: 1rem;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 1);
+}
+
+a:hover, a:hover, a:focus {
+	font-weight: 700;
+	color: rgba(0, 0, 0, 1);
 }
