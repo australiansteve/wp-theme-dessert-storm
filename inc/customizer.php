@@ -39,6 +39,35 @@ function dessertstorm_customize_register( $wp_customize ) {
 	    'description' => 'Customize the footer',
 	) );
 
+	$wp_customize->add_section( 'dessertstorm_fonts_colours' , array(
+	    'title'      	=> __('Fonts & Colours','dessertstorm'),
+	    'description'	=> __('Font & colour customizations.','dessertstorm'),
+	    'priority'   	=> 30,
+	) );
+
+	/* Font family */
+	$wp_customize->add_setting( 'font_family' , array(
+	    'default'     => 'Helvetica, Roboto, Arial, sans-serif',
+	    'transport'   => 'postMessage',
+	) );
+
+	$wp_customize->add_control( 'font_family', array(
+			'label'    => __( 'Base font', 'churchpew' ),
+			'section'  => 'dessertstorm_fonts_colours',
+			'settings' => 'font_family',
+			'type'     => 'select',
+			'choices'  => array(
+				'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'  => 'Helvetica Neue',
+				'\'Neou Thin\', Helvetica, Roboto, Arial, sans-serif' => 'Neou (thin)',
+				'\'Neou Bold\', Helvetica, Roboto, Arial, sans-serif' => 'Neou (thick)',
+				'\'Fairfield Light\', Times, Serif' => 'Fairfield Light',
+				'\'Times New Roman\', Times, Serif' => 'Times New Roman',
+				'\'Avenir Light\', Arial, sans-serif' => 'Avenir Light',
+			),
+	) );
+
+	$wp_customize->get_setting( 'font_family' )->transport = 'postMessage';
+
 	#region Footer settings
 	//Background colour
    	$wp_customize->add_setting( 'dessertstorm_footer_bgColour' );
@@ -382,7 +411,13 @@ function dessertstorm_customize_css()
 {
     ?>
         <style type="text/css">
+
+            body, h1, h2, h3, h4, h5, h6, a, .menu-item a, .title-bar-title, #colophon { 
+				font-family: <?php echo get_theme_mod('font_family', 'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'); ?>;
+			}
+			
             <?php
+
             $backgrounds = get_theme_mod('austeve_backgrounds', 0);
 
 			for ($b = 0; $b < $backgrounds; $b++) {
