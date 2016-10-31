@@ -90,21 +90,16 @@
 				</div>
 
 			
-				<div class="title-bar-right show-for-medium-only" id="medium-menu-container">
-					<ul class="dropdown menu align-right" data-dropdown-menu>
-						<li>
-							<a href="#">Menu</a>
-							<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu' ) ); ?>
-						</li>
-					</ul>
+				<div class="title-bar-right show-for-medium-only primary-navigation" id="medium-menu-container">
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 				</div>
-				<div class="title-bar-right show-for-large" id="large-menu-container">
+				<div class="title-bar-right show-for-large primary-navigation" id="large-menu-container">
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 				</div>
 			</div>
 		</div>
 	    
-		<div class="row columns show-for-small-only" id="small-menu-container">
+		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
 			<ul class="vertical menu" data-accordion-menu>
 				<li>
 					<a href="#">Menu</a>
