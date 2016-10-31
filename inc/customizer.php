@@ -52,7 +52,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'font_family', array(
-			'label'    => __( 'Base font', 'churchpew' ),
+			'label'    => __( 'Base font', 'dessertstorm' ),
 			'section'  => 'dessertstorm_fonts_colours',
 			'settings' => 'font_family',
 			'type'     => 'select',
@@ -67,6 +67,34 @@ function dessertstorm_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->get_setting( 'font_family' )->transport = 'postMessage';
+
+	/* Header background colour */
+	$wp_customize->add_setting( 'header_background_color' , array(
+	    'default'     => '#FFFFFF',
+	    'transport'   => 'postMessage',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
+		'label'        => __( 'Header colour', 'dessertstorm' ),
+		'section'    => 'dessertstorm_fonts_colours',
+		'settings'   => 'header_background_color',
+	) ) );
+
+	$wp_customize->get_setting( 'header_background_color' )->transport = 'postMessage';
+
+	/* Header text colour */
+	$wp_customize->add_setting( 'header_text_color' , array(
+	    'default'     => '#00FF77',
+	    'transport'   => 'postMessage',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_text_color', array(
+		'label'        => __( 'Header Text colour', 'dessertstorm' ),
+		'section'    => 'dessertstorm_fonts_colours',
+		'settings'   => 'header_text_color',
+	) ) );
+
+	$wp_customize->get_setting( 'header_text_color' )->transport = 'postMessage';
 
 	#region Footer settings
 	//Background colour
@@ -416,6 +444,33 @@ function dessertstorm_customize_css()
 				font-family: <?php echo get_theme_mod('font_family', 'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'); ?>;
 			}
 			
+            @media only screen and (max-width: 40em) { 
+            	
+             	.primary-navigation {
+				    border-left: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+				    border-right: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+             	}
+
+             	.primary-navigation ul li {
+				    border-bottom: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+				}
+
+             	#small-menu-container .is-accordion-submenu-parent > a {
+             		background:<?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+        	  		color:<?php echo get_theme_mod('header_background_color', '#000000'); ?>;  
+             	}
+
+			}
+
+            .site-title a, .title-bar li a:not(.button), .title-bar li a:not(.button):hover { 
+        	  	color:<?php echo get_theme_mod('header_text_color', '#000000'); ?>; 
+            }
+
+            #colophon button[type="submit"] {
+            	background: <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+            	color: <?php echo get_theme_mod('header_background_color', '#000000'); ?>;
+            }
+
             <?php
 
             $backgrounds = get_theme_mod('austeve_backgrounds', 0);
