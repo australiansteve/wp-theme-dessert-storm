@@ -59,6 +59,10 @@
 	}
 }
 
+#small-menu-container {
+	
+}
+
 /* Small screens only */
 @media only screen and (max-width: 40em) { 
 
@@ -72,13 +76,16 @@
 // Medium screens
 @media only screen and (min-width: 40.063em) { 
 
+
+	ul.menu li > a {
+		text-transform: uppercase;
+		padding: 0.7rem 0.6rem;
+		font-size: 0.7rem;
+	}
+
 	.primary-navigation {
 
-		ul li > a {
-			text-transform: uppercase;
-			padding: 0.3rem 0.4rem;
-    		font-size: 0.8rem;
-		}
+		margin-top: 4rem;
 
 		ul {
 			display: inline-block;
@@ -88,10 +95,10 @@
 
 	.secondary-navigation {
 
-		ul li > a {
-			font-size: 0.75rem;
-			text-transform: uppercase;
+		ul {
+			float: right;
 		}
+
 	}
 
 	.quatro-navigation {
@@ -113,12 +120,9 @@
 // Large screens
 @media only screen and (min-width: 64.063em) { 
 
-	.primary-navigation {
-
-		ul li > a {
-    		font-size: 1rem;
-		}
-
+	ul.menu li > a {
+		font-size: 1rem;
+		padding: 0.5rem 1rem;
 	}
 
 }

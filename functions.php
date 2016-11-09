@@ -47,6 +47,18 @@ function dessertstorm_setup() {
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary Menu', 'dessertstorm' ),
 	) );
+	register_nav_menus( array(
+		'logged-in-registered' => esc_html__( 'Logged in and registered', 'dessertstorm' ),
+	) );
+	register_nav_menus( array(
+		'logged-in-account' => esc_html__( 'Logged in but not registered', 'dessertstorm' ),
+	) );
+	register_nav_menus( array(
+		'logged-out-account' => esc_html__( 'Not logged in', 'dessertstorm' ),
+	) );
+
+	// Enable shortcodes in text widgets
+	add_filter('widget_text','do_shortcode');
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -92,15 +104,32 @@ function dessertstorm_setup() {
     for ( $s = 0; $s < $sidebars; $s++ ) {
     	//Get widget widths
 
+    	$sizes = 'small-12';
+
+    	if ($s == 2) {
+    		$sizes.= ' medium-4';
+    	}
+
         register_sidebar( array(
             'name'          => 'Front page content '.($s+1),
             'id'            => 'austeve_content_'.($s+1),
-            'before_widget' => '<div class="small-12 columns">',
-            'after_widget'  => '</div>',
-            'before_title'  => '',
-            'after_title'   => '',
+            'before_widget' => '<div class="'.$sizes.' columns"><div class="widget">',
+            'after_widget'  => '</div></div>',
+            'before_title'  => '<h3 class="widget-title">',
+            'after_title'   => '</h3>',
         ) );
     }
+
+
+    register_sidebar( array(
+        'name'          => 'Down under content',
+        'id'            => 'austeve_content_underneath',
+        'before_widget' => '<div class="small-12 medium-6 columns"><div class="widget">',
+        'after_widget'  => '</div></div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ) );
+
 }
 endif; // dessertstorm_setup
 add_action( 'after_setup_theme', 'dessertstorm_setup' );

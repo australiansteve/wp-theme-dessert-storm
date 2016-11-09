@@ -89,13 +89,62 @@
 					</h1>
 				</div>
 
-			
-				<div class="title-bar-right show-for-medium-only primary-navigation" id="medium-menu-container">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+				<div class="title-bar-right show-for-medium" id="medium-menu-container">
+
+					<div class="secondary-navigation">
+						<ul class="vertical medium-horizontal menu">
+
+						<?php if(is_user_logged_in()): ?>
+
+							<?php if(current_user_can('mepr-active','rule: '.MEPR_REGISTERED_RULE)): ?>
+								<?php 
+								 	$args = array (
+									 	'theme_location' 	=> 'logged-in-registered',
+									 	'container' 		=> '',
+									 	'menu_class' 		=> '',
+									 	'menu_id' 			=> '',
+									 	'items_wrap' 		=> '%3$s'
+								 	);
+									wp_nav_menu( $args );
+								?>
+							<?php else: ?>
+
+							<?php 
+							 	$args = array (
+								 	'theme_location' 	=> 'logged-in-account',
+								 	'container' 		=> '',
+								 	'menu_class' 		=> '',
+								 	'menu_id' 			=> '',
+								 	'items_wrap' 		=> '%3$s'
+							 	);
+								wp_nav_menu( $args );
+							?>	
+							<?php endif; ?>							
+
+						<?php else: ?>	
+
+							<?php 
+							 	$args = array (
+								 	'theme_location' 	=> 'logged-out-account',
+								 	'container' 		=> '',
+								 	'menu_class' 		=> '',
+								 	'menu_id' 			=> '',
+								 	'items_wrap' 		=> '%3$s'
+							 	);
+								wp_nav_menu( $args );
+							?>
+
+						<?php endif; ?>	
+
+						
+						</ul> 
+					</div>
+
+					<div class="primary-navigation">				
+						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+					</div>
 				</div>
-				<div class="title-bar-right show-for-large primary-navigation" id="large-menu-container">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
-				</div>
+
 			</div>
 		</div>
 	    
@@ -103,7 +152,32 @@
 			<ul class="vertical menu" data-accordion-menu>
 				<li>
 					<a href="#">Menu</a>
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+					<ul class="vertical menu">
+
+						<?php
+						 	$args = array (
+							 	'theme_location' 	=> 'primary',
+							 	'container' 		=> false,
+							 	'menu_class' 		=> '',
+							 	'menu_id' 			=> '',
+							 	'items_wrap' 		=> '%3$s'
+						 	);
+							wp_nav_menu( $args );
+						?>
+					</ul>
+					<ul class="vertical medium-horizontal menu show-for-small-only">
+						<?php 
+						 	$args = array (
+							 	'theme_location' 	=> is_user_logged_in() ? 'logged-in-account': 'logged-out-account',
+							 	'container' 		=> '',
+							 	'menu_class' 		=> '',
+							 	'menu_id' 			=> '',
+							 	'items_wrap' 		=> '%3$s'
+						 	);
+							wp_nav_menu( $args );
+						?>
+					</ul> 
+
 				</li>
 			</ul>
 		</div>

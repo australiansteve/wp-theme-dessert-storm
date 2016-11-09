@@ -1,7 +1,7 @@
 <?php
 /**
- * Template Name: Sidebar Right
- * The template for displaying a page with the sidebar on the left side.
+ * Template Name: Sidebar Right & Under
+ * The template for displaying a page with the sidebar on the right side, and dynamic sidebar underneath the main content.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -35,12 +35,18 @@ get_header(); ?>
 
 	</div><!-- .columns -->
 
-	<div class="small-12 medium-4 columns" >
+	<div class="show-for-medium medium-4 columns">
 
 		<?php get_sidebar(); ?>
 
 	</div><!-- .columns -->
 
 </div><!-- .row -->
+
+<div class="row" id="down-under-sidebar"">
+
+	<?php dynamic_sidebar('austeve_content_underneath'); ?> 
+
+</div>
 
 <?php get_footer(); ?>
