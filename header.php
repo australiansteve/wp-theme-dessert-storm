@@ -35,7 +35,12 @@
 	<div id="background-div" class="fixed">
 	<?php
 	for ($b = 0; $b < $backgrounds; $b++) {
-		echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+		$classes = "bgImage";
+		if ($b > 0)
+		{
+			$classes.=" show-for-medium";
+		}
+		echo '<div id="bgImage'.($b+1).'" class="'.$classes.'">&nbsp;</div>';
 	}
 	?>
 	</div>
@@ -51,7 +56,12 @@
 	<div id="background-div" class="scrolling">
 		<?php
 	for ($b = 0; $b < $backgrounds; $b++) {
-		echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+		$classes = "bgImage";
+		if ($b > 0)
+		{
+			$classes.=" show-for-medium";
+		}
+		echo '<div id="bgImage'.($b+1).'" class="'.$classes.'">&nbsp;</div>';
 	}
 	?>
 

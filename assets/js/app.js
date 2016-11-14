@@ -2,27 +2,37 @@ jQuery(document).ready(function($) {
 
 	$(document).foundation();
 
+	var resizeScrollingBackground = _.debounce(scrollingBackground, 500);
+	var spaceFooter = _.debounce(footerSpacing, 250);
+	var resizeSpinner = _.debounce(spinBackground, 50);
+	var resizePolaroids = _.debounce(polarize, 250);
+
+	setTimeout(function() {		
+		//resize background a few seconds after loading finishes in case image loading was slow		
+		$(window).resize(resizeScrollingBackground);
+		resizeScrollingBackground();
+	}, 100);
+
 	setTimeout(function() {
-		var spaceFooter = _.debounce(footerSpacing, 250);
 		$(window).resize(spaceFooter);
 		spaceFooter();
 
-		var resizeSpinner = _.debounce(spinBackground, 250);
 		$(window).resize(resizeSpinner);
 		resizeSpinner();
 
-		var resizePolaroids = _.debounce(polarize, 250);
 		$(window).resize(resizePolaroids);
 		resizePolaroids();
 
+		//display spinning background layer
+		jQuery("#bgImage3").show();
+
 	}, 300);
 
+
 	setTimeout(function() {		
-		//resize background a few seconds after loading finishes in case image loading was slow
-		var resizeScrollingBackground = _.debounce(scrollingBackground, 750);
-		$(window).resize(resizeScrollingBackground);
+		//Resize background again because instagram images rotating adds height to the page
 		resizeScrollingBackground();
-	}, 1000);
+	}, 3000);
 
 });
 
@@ -56,12 +66,22 @@ function spinBackground()
 		
 		//Get the height & width of the background image initially. This will vary by screen size
 		var existingHeight = jQuery(this).outerHeight();
+		var bg2Height = jQuery("#bgImage2").outerHeight();
 		var windowWidth = jQuery(window).width();
 
-		initialBackgroundHeight = (initialBackgroundHeight === undefined) ? existingHeight : initialBackgroundHeight;
+		//console.log("Existing: " + existingHeight);
+		//console.log("BG2: " + bg2Height);
+		//console.log("windowWidth: " + bg2Height);
 
-		//New height based on the proportions of the original image (1200x810px)
-		var spinningHeight = Math.floor((windowWidth / 1200) * 810);
+		initialBackgroundHeight = (initialBackgroundHeight === undefined) ? existingHeight : initialBackgroundHeight;
+		//If the viewport window changes height (landscape samsung S4) then we should actually grab the height of the 2nd background image rather than the 3rd
+		if (bg2Height != initialBackgroundHeight)
+		{
+			initialBackgroundHeight = bg2Height;
+		}
+
+		//New height based on the proportions of the original image (800x540px)
+		var spinningHeight = Math.floor((windowWidth / 800) * 540);
 
 		//Only update the height if the new height is smaller than the original
 		if (spinningHeight < initialBackgroundHeight)
