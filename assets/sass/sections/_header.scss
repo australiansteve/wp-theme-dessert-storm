@@ -89,3 +89,11 @@
 #large-menu-container {
     margin-top: 2.75rem;
 }
+
+.centered-layout.header, .centered-layout.menu-bar {
+    text-align: center;
+}
+
+.centered-layout.menu-bar ul {
+    display: inline-block;
+}
