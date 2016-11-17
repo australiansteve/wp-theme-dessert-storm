@@ -131,6 +131,11 @@ function polarize()
 		jQuery(this).css('transform', 'rotate(' + angle +'deg)');
 
 	});
+
+	//Half a second later resize the background again to avoid there being a white space behind the footer
+	setTimeout(function() {
+		scrollingBackground();
+	}, 500);
 }
 
 function getRandomInt(min, max) {
