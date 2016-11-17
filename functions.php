@@ -77,7 +77,7 @@ function dessertstorm_setup() {
 	 * See https://codex.wordpress.org/Theme_Logo
 	 */
 	add_theme_support( 'custom-logo', array(
-		'height'      => 75,
+		'height'      => 300,
 		'width'       => 300,
 		'flex-height' => false,
 		'flex-width'  => true,
@@ -191,6 +191,12 @@ function dessertstorm_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'dessertstorm_scripts' );
+
+/* Declare WooCommerce support */
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'woocommerce_support' );
 
 
 /**

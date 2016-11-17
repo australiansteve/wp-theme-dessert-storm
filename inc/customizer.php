@@ -39,6 +39,92 @@ function dessertstorm_customize_register( $wp_customize ) {
 	    'description' => 'Customize the footer',
 	) );
 
+	$wp_customize->add_section( 'dessertstorm_fonts_colours' , array(
+	    'title'      	=> __('Fonts & Colours','dessertstorm'),
+	    'description'	=> __('Font & colour customizations.','dessertstorm'),
+	    'priority'   	=> 30,
+	) );
+
+	/* Logo max sizes */
+   	$wp_customize->add_setting( 'dessertstorm_logo_maxheight' );
+   	$wp_customize->add_control(
+		new WP_Customize_FoundationSize_Control( 
+			$wp_customize, 
+			'dessertstorm_logo_maxheight', 
+			array(
+				'label'      => __( 'Logo max height', 'dessertstorm' ),
+				'section'    => 'title_tagline',
+				'settings'   => 'dessertstorm_logo_maxheight',
+				'default_value' => '100%'
+			) 
+		) 
+	);
+
+   	$wp_customize->add_setting( 'dessertstorm_logo_maxwidth' );
+   	$wp_customize->add_control(
+		new WP_Customize_FoundationSize_Control( 
+			$wp_customize, 
+			'dessertstorm_logo_maxwidth', 
+			array(
+				'label'      => __( 'Logo max width', 'dessertstorm' ),
+				'section'    => 'title_tagline',
+				'settings'   => 'dessertstorm_logo_maxwidth',
+				'default_value' => '100%'
+			) 
+		) 
+	);
+
+	/* Font family */
+	$wp_customize->add_setting( 'font_family' , array(
+	    'default'     => 'Helvetica, Roboto, Arial, sans-serif',
+	    'transport'   => 'postMessage',
+	) );
+
+	$wp_customize->add_control( 'font_family', array(
+			'label'    => __( 'Base font', 'dessertstorm' ),
+			'section'  => 'dessertstorm_fonts_colours',
+			'settings' => 'font_family',
+			'type'     => 'select',
+			'choices'  => array(
+				'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'  => 'Helvetica Neue',
+				'\'Neou Thin\', Helvetica, Roboto, Arial, sans-serif' => 'Neou (thin)',
+				'\'Neou Bold\', Helvetica, Roboto, Arial, sans-serif' => 'Neou (thick)',
+				'\'Fairfield Light\', Times, Serif' => 'Fairfield Light',
+				'\'Times New Roman\', Times, Serif' => 'Times New Roman',
+				'\'Avenir Light\', Arial, sans-serif' => 'Avenir Light',
+			),
+	) );
+
+	$wp_customize->get_setting( 'font_family' )->transport = 'postMessage';
+
+	/* Header background colour */
+	$wp_customize->add_setting( 'header_background_color' , array(
+	    'default'     => '#FFFFFF',
+	    'transport'   => 'postMessage',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
+		'label'        => __( 'Header colour', 'dessertstorm' ),
+		'section'    => 'dessertstorm_fonts_colours',
+		'settings'   => 'header_background_color',
+	) ) );
+
+	$wp_customize->get_setting( 'header_background_color' )->transport = 'postMessage';
+
+	/* Header text colour */
+	$wp_customize->add_setting( 'header_text_color' , array(
+	    'default'     => '#00FF77',
+	    'transport'   => 'postMessage',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_text_color', array(
+		'label'        => __( 'Header Text colour', 'dessertstorm' ),
+		'section'    => 'dessertstorm_fonts_colours',
+		'settings'   => 'header_text_color',
+	) ) );
+
+	$wp_customize->get_setting( 'header_text_color' )->transport = 'postMessage';
+
 	#region Footer settings
 	//Background colour
    	$wp_customize->add_setting( 'dessertstorm_footer_bgColour' );
@@ -216,6 +302,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'help_text'  => 'Select menu layout...',
 				'choices' 	=> array(
 					'topbar-right' 	=> 'Top-bar Right',
+					'centered-single' 	=> 'Centered Single Menu',
 					'none' 	=> 'None',
 				)
 	        )
@@ -380,9 +467,50 @@ add_action( 'customize_preview_init', 'dessertstorm_customize_preview_js' );
  */
 function dessertstorm_customize_css()
 {
+	//Logo max sizes
+	$maxheights = json_decode(get_theme_mod('dessertstorm_logo_maxheight'), true);
+	$maxwidths = json_decode(get_theme_mod('dessertstorm_logo_maxwidth'), true);
+        	
     ?>
         <style type="text/css">
+
+            body, h1, h2, h3, h4, h5, h6, a, .menu-item a, .title-bar-title, #colophon { 
+				font-family: <?php echo get_theme_mod('font_family', 'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'); ?>;
+			}
+			
+            @media only screen and (max-width: 40em) { 
+            	
+             	.primary-navigation {
+				    border-left: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+				    border-right: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+             	}
+
+             	.primary-navigation ul li {
+				    border-bottom: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+				}
+
+             	#small-menu-container .is-accordion-submenu-parent > a {
+             		background:<?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+        	  		color:<?php echo get_theme_mod('header_background_color', '#000000'); ?>;  
+             	}
+
+			}
+
+            .site-title a, .title-bar li a:not(.button), .title-bar li a:not(.button):hover { 
+        	  	color:<?php echo get_theme_mod('header_text_color', '#000000'); ?>; 
+            }
+
+            #colophon button[type="submit"] {
+            	background: <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
+            	color: <?php echo get_theme_mod('header_background_color', '#000000'); ?>;
+            }
+
+        	img.custom-logo {
+        		max-height: <?php echo $maxheights['small']; ?>;
+        		max-width: <?php echo $maxwidths['small']; ?>;;
+        	}
             <?php
+
             $backgrounds = get_theme_mod('austeve_backgrounds', 0);
 
 			for ($b = 0; $b < $backgrounds; $b++) {
@@ -399,6 +527,7 @@ function dessertstorm_customize_css()
             	echo ".section-".$s." .content-background-div { ";
             	echo "    background-color: ".get_theme_mod('dessertstorm_content_'.$s.'_bgColour', '').";";
             	echo "    opacity: ".get_theme_mod('dessertstorm_content_'.$s.'_bgOpacity', '1.0').";";
+            	echo "    transform: translate3d(0, 0, 0);"; /* Required for the background to display in the right plane on Safari */
             	echo "}";
 
             	echo ".section-".$s." .content-background-image { ";
@@ -421,6 +550,23 @@ function dessertstorm_customize_css()
         	echo "    color: rgba($ftc_r, $ftc_g, $ftc_b, ".get_theme_mod('dessertstorm_footer_textOpacity', '1.0').");";
         	echo "}";
         	?>
+
+        </style>
+        <style>
+
+            @media only screen and (min-width: 40em) { 
+	        	img.custom-logo {
+	        		max-height: <?php echo $maxheights['medium']; ?>;
+	        		max-width: <?php echo $maxwidths['medium']; ?>;;
+	        	}
+            }
+
+            @media only screen and (min-width: 64em) { 
+	        	img.custom-logo {
+	        		max-height: <?php echo $maxheights['large']; ?>;
+	        		max-width: <?php echo $maxwidths['large']; ?>;;
+	        	}
+            }
         </style>
     <?php
 }
@@ -428,6 +574,45 @@ add_action( 'wp_head', 'dessertstorm_customize_css');
 
 
 if( class_exists( 'WP_Customize_Control' ) ):
+
+	class WP_Customize_FoundationSize_Control extends WP_Customize_Control {
+	    public $type = 'foundationsize';
+		public $default_value;
+	 
+	    public function render_content() {
+	    	$sizes = ($this->value() == '') ? $this->default_value : $this->value();
+	    	$id = strtolower( esc_html( $this->label ));
+	    	$id = str_replace(" ", "-", $id);
+
+	        ?>
+	        <label>
+		        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+	        </label>
+	        <div style="text-align: right">
+		        Small: <input type="text" id='<?php echo $id; ?>-small' class='<?php echo $id; ?>' value="<?php echo json_decode($sizes, true)['small']; ?>" style="width: 50%"/><br/>
+		        Medium: <input type="text" id='<?php echo $id; ?>-medium' class='<?php echo $id; ?>' value="<?php echo json_decode($sizes, true)['medium']; ?>" style="width: 50%"/><br/>
+		        Large: <input type="text" id='<?php echo $id; ?>-large' class='<?php echo $id; ?>' value="<?php echo json_decode($sizes, true)['large']; ?>" style="width: 50%"/>
+		        <input <?php $this->link(); ?> type="hidden" id='<?php echo $id; ?>' value="<?php echo $sizes; ?>"/>
+	        </div>
+	        <script>
+				
+				jQuery( ".<?php echo $id; ?>" ).change(function() {
+
+					var newSizesArray = {
+						small: jQuery( "#<?php echo $id; ?>-small" ).attr("value"), 
+						medium: jQuery( "#<?php echo $id; ?>-medium" ).attr("value"), 
+						large: jQuery( "#<?php echo $id; ?>-large" ).attr("value")
+					};
+
+				  	jQuery( "#<?php echo $id; ?>" ).attr("value", JSON.stringify(newSizesArray))
+					jQuery( "#<?php echo $id; ?>" ).change();
+				});
+
+			</script>
+
+	        <?php
+	    }
+	}
 
 	class WP_Customize_Textarea_Control extends WP_Customize_Control {
 	    public $type = 'textarea';

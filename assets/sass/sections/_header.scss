@@ -85,7 +85,7 @@
 }
 
 #small-menu-container {
-    background: rgba(255, 255, 255, 0.75);
+    
 }
 
 #medium-menu-container {
@@ -94,4 +94,12 @@
 
 #large-menu-container {
     margin-top: 2.75rem;
+}
+
+.centered-layout.header, .centered-layout.menu-bar {
+    text-align: center;
+}
+
+.centered-layout.menu-bar ul {
+    display: inline-block;
 }
