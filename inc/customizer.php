@@ -489,6 +489,7 @@ function dessertstorm_customize_css()
             	echo ".section-".$s." .content-background-div { ";
             	echo "    background-color: ".get_theme_mod('dessertstorm_content_'.$s.'_bgColour', '').";";
             	echo "    opacity: ".get_theme_mod('dessertstorm_content_'.$s.'_bgOpacity', '1.0').";";
+            	echo "    transform: translate3d(0, 0, 0);"; /* Required for the background to display in the right plane on Safari */
             	echo "}";
 
             	echo ".section-".$s." .content-background-image { ";
