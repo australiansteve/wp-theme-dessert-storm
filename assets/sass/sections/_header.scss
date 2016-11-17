@@ -90,6 +90,14 @@
     margin-top: 2.75rem;
 }
 
+.centered-layout.header, .centered-layout.menu-bar {
+    text-align: center;
+}
+
+.centered-layout.menu-bar ul {
+    display: inline-block;
+}
+
 /* Small screens only */
 @media only screen and (max-width: 40em) { 
 
@@ -108,5 +116,4 @@
     .tertiary-navigation i {
         font-size: 1.5em;
     }
-
 }

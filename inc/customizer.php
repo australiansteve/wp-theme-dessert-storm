@@ -45,6 +45,35 @@ function dessertstorm_customize_register( $wp_customize ) {
 	    'priority'   	=> 30,
 	) );
 
+	/* Logo max sizes */
+   	$wp_customize->add_setting( 'dessertstorm_logo_maxheight' );
+   	$wp_customize->add_control(
+		new WP_Customize_FoundationSize_Control( 
+			$wp_customize, 
+			'dessertstorm_logo_maxheight', 
+			array(
+				'label'      => __( 'Logo max height', 'dessertstorm' ),
+				'section'    => 'title_tagline',
+				'settings'   => 'dessertstorm_logo_maxheight',
+				'default_value' => '100%'
+			) 
+		) 
+	);
+
+   	$wp_customize->add_setting( 'dessertstorm_logo_maxwidth' );
+   	$wp_customize->add_control(
+		new WP_Customize_FoundationSize_Control( 
+			$wp_customize, 
+			'dessertstorm_logo_maxwidth', 
+			array(
+				'label'      => __( 'Logo max width', 'dessertstorm' ),
+				'section'    => 'title_tagline',
+				'settings'   => 'dessertstorm_logo_maxwidth',
+				'default_value' => '100%'
+			) 
+		) 
+	);
+
 	/* Font family */
 	$wp_customize->add_setting( 'font_family' , array(
 	    'default'     => 'Helvetica, Roboto, Arial, sans-serif',
@@ -273,6 +302,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'help_text'  => 'Select menu layout...',
 				'choices' 	=> array(
 					'topbar-right' 	=> 'Top-bar Right',
+					'centered-single' 	=> 'Centered Single Menu',
 					'none' 	=> 'None',
 				)
 	        )
@@ -437,6 +467,10 @@ add_action( 'customize_preview_init', 'dessertstorm_customize_preview_js' );
  */
 function dessertstorm_customize_css()
 {
+	//Logo max sizes
+	$maxheights = json_decode(get_theme_mod('dessertstorm_logo_maxheight'), true);
+	$maxwidths = json_decode(get_theme_mod('dessertstorm_logo_maxwidth'), true);
+        	
     ?>
         <style type="text/css">
 
@@ -471,6 +505,10 @@ function dessertstorm_customize_css()
             	color: <?php echo get_theme_mod('header_background_color', '#000000'); ?>;
             }
 
+        	img.custom-logo {
+        		max-height: <?php echo $maxheights['small']; ?>;
+        		max-width: <?php echo $maxwidths['small']; ?>;;
+        	}
             <?php
 
             $backgrounds = get_theme_mod('austeve_backgrounds', 0);
@@ -512,6 +550,23 @@ function dessertstorm_customize_css()
         	echo "    color: rgba($ftc_r, $ftc_g, $ftc_b, ".get_theme_mod('dessertstorm_footer_textOpacity', '1.0').");";
         	echo "}";
         	?>
+
+        </style>
+        <style>
+
+            @media only screen and (min-width: 40em) { 
+	        	img.custom-logo {
+	        		max-height: <?php echo $maxheights['medium']; ?>;
+	        		max-width: <?php echo $maxwidths['medium']; ?>;;
+	        	}
+            }
+
+            @media only screen and (min-width: 64em) { 
+	        	img.custom-logo {
+	        		max-height: <?php echo $maxheights['large']; ?>;
+	        		max-width: <?php echo $maxwidths['large']; ?>;;
+	        	}
+            }
         </style>
     <?php
 }
@@ -519,6 +574,45 @@ add_action( 'wp_head', 'dessertstorm_customize_css');
 
 
 if( class_exists( 'WP_Customize_Control' ) ):
+
+	class WP_Customize_FoundationSize_Control extends WP_Customize_Control {
+	    public $type = 'foundationsize';
+		public $default_value;
+	 
+	    public function render_content() {
+	    	$sizes = ($this->value() == '') ? $this->default_value : $this->value();
+	    	$id = strtolower( esc_html( $this->label ));
+	    	$id = str_replace(" ", "-", $id);
+
+	        ?>
+	        <label>
+		        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+	        </label>
+	        <div style="text-align: right">
+		        Small: <input type="text" id='<?php echo $id; ?>-small' class='<?php echo $id; ?>' value="<?php echo json_decode($sizes, true)['small']; ?>" style="width: 50%"/><br/>
+		        Medium: <input type="text" id='<?php echo $id; ?>-medium' class='<?php echo $id; ?>' value="<?php echo json_decode($sizes, true)['medium']; ?>" style="width: 50%"/><br/>
+		        Large: <input type="text" id='<?php echo $id; ?>-large' class='<?php echo $id; ?>' value="<?php echo json_decode($sizes, true)['large']; ?>" style="width: 50%"/>
+		        <input <?php $this->link(); ?> type="hidden" id='<?php echo $id; ?>' value="<?php echo $sizes; ?>"/>
+	        </div>
+	        <script>
+				
+				jQuery( ".<?php echo $id; ?>" ).change(function() {
+
+					var newSizesArray = {
+						small: jQuery( "#<?php echo $id; ?>-small" ).attr("value"), 
+						medium: jQuery( "#<?php echo $id; ?>-medium" ).attr("value"), 
+						large: jQuery( "#<?php echo $id; ?>-large" ).attr("value")
+					};
+
+				  	jQuery( "#<?php echo $id; ?>" ).attr("value", JSON.stringify(newSizesArray))
+					jQuery( "#<?php echo $id; ?>" ).change();
+				});
+
+			</script>
+
+	        <?php
+	    }
+	}
 
 	class WP_Customize_Textarea_Control extends WP_Customize_Control {
 	    public $type = 'textarea';
