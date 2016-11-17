@@ -16,6 +16,47 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
+<?php 
+$custom_logo_id = get_theme_mod( 'custom_logo' );
+$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+$maxheights = json_decode(get_theme_mod('dessertstorm_logo_maxheight'), true);
+$maxwidths = json_decode(get_theme_mod('dessertstorm_logo_maxwidth'), true);
+
+$logoMaxWidth = $maxwidths['large'];
+if( $logoMaxWidth == '')
+{
+	$logoMaxWidth = $maxwidths['medium'];
+	if( $logoMaxWidth == '')
+	{
+		$logoMaxWidth = $maxwidths['small'];
+		if( $logoMaxWidth == '')
+		{
+			$logoMaxWidth = '300px';
+		}
+	}
+}
+
+$logoMaxHeight = $maxheights['large'];
+if( $logoMaxHeight  == '')
+{
+	$logoMaxHeight = $maxheights['medium'];
+	if( $logoMaxHeight  == '')
+	{
+		$logoMaxHeight = $maxheights['small'];
+		if( $logoMaxHeight  == '')
+		{
+			$logoMaxHeight = '300px';
+		}
+	}
+}
+
+?>
+<meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
+<meta property="og:description" content="<?php bloginfo( 'description' ); ?>" />
+<meta property="og:image" content="<?php echo $image[0]; ?>" />
+<meta property="og:image:width" content="<?php echo $logoMaxWidth; ?>">
+<meta property="og:image:height" content="<?php echo $logoMaxHeight; ?>">
+
 <?php wp_head(); ?>
 </head>
 
