@@ -101,6 +101,17 @@ function dessertstorm_setup() {
             'after_title'   => '',
         ) );
     }
+
+
+    register_sidebar( array(
+        'name'          => 'Project Listings',
+        'id'            => 'austeve_project_listings',
+        'before_widget' => '',
+        'after_widget'  => '',
+        'before_title'  => '',
+        'after_title'   => '',
+    ) );
+
 }
 endif; // dessertstorm_setup
 add_action( 'after_setup_theme', 'dessertstorm_setup' );
