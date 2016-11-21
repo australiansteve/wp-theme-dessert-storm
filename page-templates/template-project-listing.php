@@ -37,13 +37,9 @@ get_header(); ?>
 
 </div>
 
-<div class="row">
+<div class="row columns">
 
-	<div class="small-12 columns">
-
-		<?php dynamic_sidebar('austeve_project_listings'); ?>
-
-	</div><!-- .columns -->
+	<?php dynamic_sidebar('austeve_project_listings'); ?>
 
 </div><!-- .row -->
 
