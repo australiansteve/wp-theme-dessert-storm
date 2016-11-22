@@ -53,7 +53,12 @@ get_header(); ?>
 						echo $content;  
 					}
 					else if ( $section_style === 'sidebar') {
-						echo "<div class='row'>";
+						$rowClasses = 'row';
+						if ($sectionId == 'what-we-do')
+						{
+							$rowClasses.= " small-up-1 medium-up-2";
+						}
+						echo "<div class='".$rowClasses."'>";
 						dynamic_sidebar(get_theme_mod('dessertstorm_content_'.$s.'_sidebar', null)); 
 						echo "</div>";
 					}
