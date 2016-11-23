@@ -176,10 +176,19 @@ if( $logoMaxHeight  == '')
 				</h1>
 			</div>
 		</div>
-		<div class="row menu-bar centered-layout">
+		<div class="row menu-bar centered-layout show-for-medium">
 			<div class="small-12 columns">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 			</div>
+		</div>
+
+		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
+			<ul class="vertical menu" data-accordion-menu>
+				<li>
+					<a href="#">Menu</a>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+				</li>
+			</ul>
 		</div>
 <?php 
 	} /* End if ($menuLayout == 'centered-single') */
