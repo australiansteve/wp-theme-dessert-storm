@@ -53,9 +53,7 @@ $layers: (
 
 // Screen reader
 @mixin screen-reader-text {
-	position: absolute;
-	top: -9999px;
-	left: -9999px;
+	
 }
 
 // Helper class in case we need to use it via our markup
