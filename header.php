@@ -16,6 +16,47 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
+<?php 
+$custom_logo_id = get_theme_mod( 'custom_logo' );
+$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+$maxheights = json_decode(get_theme_mod('dessertstorm_logo_maxheight'), true);
+$maxwidths = json_decode(get_theme_mod('dessertstorm_logo_maxwidth'), true);
+
+$logoMaxWidth = $maxwidths['large'];
+if( $logoMaxWidth == '')
+{
+	$logoMaxWidth = $maxwidths['medium'];
+	if( $logoMaxWidth == '')
+	{
+		$logoMaxWidth = $maxwidths['small'];
+		if( $logoMaxWidth == '')
+		{
+			$logoMaxWidth = '300px';
+		}
+	}
+}
+
+$logoMaxHeight = $maxheights['large'];
+if( $logoMaxHeight  == '')
+{
+	$logoMaxHeight = $maxheights['medium'];
+	if( $logoMaxHeight  == '')
+	{
+		$logoMaxHeight = $maxheights['small'];
+		if( $logoMaxHeight  == '')
+		{
+			$logoMaxHeight = '300px';
+		}
+	}
+}
+
+?>
+<meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
+<meta property="og:description" content="<?php bloginfo( 'description' ); ?>" />
+<meta property="og:image" content="<?php echo $image[0]; ?>" />
+<meta property="og:image:width" content="<?php echo $logoMaxWidth; ?>">
+<meta property="og:image:height" content="<?php echo $logoMaxHeight; ?>">
+
 <?php wp_head(); ?>
 </head>
 
@@ -183,6 +224,48 @@
 		</div>
 <?php 
 	} /* End if ($menuLayout == 'top-bar-right') */
+	else if ($menuLayout == 'centered-single')
+	{
+?>
+		<div class="row header centered-layout">
+			<div class="small-12 columns">
+				<h1 class="site-title">
+					<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+						<?php 
+						if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+							the_custom_logo();
+						}
+						else {
+							?>
+							<h1>
+								<?php
+								bloginfo( 'name' );
+								?>
+							</h1>
+							<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+						<?php
+						}
+		 				?>
+					</a>
+				</h1>
+			</div>
+		</div>
+		<div class="row menu-bar centered-layout show-for-medium">
+			<div class="small-12 columns">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+			</div>
+		</div>
+
+		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
+			<ul class="vertical menu" data-accordion-menu>
+				<li>
+					<a href="#">Menu</a>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+				</li>
+			</ul>
+		</div>
+<?php 
+	} /* End if ($menuLayout == 'centered-single') */
 	else if ($menuLayout == 'none')
 	{
 ?>

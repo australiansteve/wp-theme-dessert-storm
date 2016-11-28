@@ -89,7 +89,7 @@ function dessertstorm_setup() {
 	 * See https://codex.wordpress.org/Theme_Logo
 	 */
 	add_theme_support( 'custom-logo', array(
-		'height'      => 75,
+		'height'      => 300,
 		'width'       => 300,
 		'flex-height' => false,
 		'flex-width'  => true,
