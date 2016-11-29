@@ -35,6 +35,19 @@ if( $logoMaxWidth == '')
 		}
 	}
 }
+if (substr($logoMaxWidth, -3) === 'rem')
+{
+	$logoMaxWidth = intval(substr($logoMaxWidth, 0, -3)) * 16; //Convert to px
+}
+elseif (substr($logoMaxWidth, -2) === 'em')
+{
+	$logoMaxWidth = intval(substr($logoMaxWidth, 0, -2)) * 16; //Convert to px
+}
+elseif (substr($logoMaxWidth, -2) === 'px' )
+{
+	$logoMaxWidth = substr($logoMaxWidth, 0, -2);
+}
+
 
 $logoMaxHeight = $maxheights['large'];
 if( $logoMaxHeight  == '')
@@ -48,6 +61,18 @@ if( $logoMaxHeight  == '')
 			$logoMaxHeight = '300px';
 		}
 	}
+}
+if (substr($logoMaxHeight, -3) === 'rem')
+{
+	$logoMaxHeight = intval(substr($logoMaxHeight, 0, -3)) * 16; //Convert to px
+}
+elseif (substr($logoMaxHeight, -2) === 'em')
+{
+	$logoMaxHeight = intval(substr($logoMaxHeight, 0, -2)) * 16; //Convert to px
+}
+elseif (substr($logoMaxHeight, -2) === 'px' )
+{
+	$logoMaxHeight = substr($logoMaxHeight, 0, -2);
 }
 
 ?>
