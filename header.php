@@ -76,7 +76,7 @@ elseif (substr($logoMaxHeight, -2) === 'px' )
 }
 
 ?>
-<meta property="fb:app_id" content="" />
+<meta property="fb:app_id" content="1166245853413416" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php site_url(); ?>" />
 <meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>" />
