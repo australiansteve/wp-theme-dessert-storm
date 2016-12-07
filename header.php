@@ -19,62 +19,6 @@
 <?php 
 $custom_logo_id = get_theme_mod( 'custom_logo' );
 $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-$maxheights = json_decode(get_theme_mod('dessertstorm_logo_maxheight'), true);
-$maxwidths = json_decode(get_theme_mod('dessertstorm_logo_maxwidth'), true);
-
-$logoMaxWidth = $maxwidths['large'];
-if( $logoMaxWidth == '')
-{
-	$logoMaxWidth = $maxwidths['medium'];
-	if( $logoMaxWidth == '')
-	{
-		$logoMaxWidth = $maxwidths['small'];
-		if( $logoMaxWidth == '')
-		{
-			$logoMaxWidth = '300px';
-		}
-	}
-}
-if (substr($logoMaxWidth, -3) === 'rem')
-{
-	$logoMaxWidth = intval(substr($logoMaxWidth, 0, -3)) * 16; //Convert to px
-}
-elseif (substr($logoMaxWidth, -2) === 'em')
-{
-	$logoMaxWidth = intval(substr($logoMaxWidth, 0, -2)) * 16; //Convert to px
-}
-elseif (substr($logoMaxWidth, -2) === 'px' )
-{
-	$logoMaxWidth = substr($logoMaxWidth, 0, -2);
-}
-
-
-$logoMaxHeight = $maxheights['large'];
-if( $logoMaxHeight  == '')
-{
-	$logoMaxHeight = $maxheights['medium'];
-	if( $logoMaxHeight  == '')
-	{
-		$logoMaxHeight = $maxheights['small'];
-		if( $logoMaxHeight  == '')
-		{
-			$logoMaxHeight = '300px';
-		}
-	}
-}
-if (substr($logoMaxHeight, -3) === 'rem')
-{
-	$logoMaxHeight = intval(substr($logoMaxHeight, 0, -3)) * 16; //Convert to px
-}
-elseif (substr($logoMaxHeight, -2) === 'em')
-{
-	$logoMaxHeight = intval(substr($logoMaxHeight, 0, -2)) * 16; //Convert to px
-}
-elseif (substr($logoMaxHeight, -2) === 'px' )
-{
-	$logoMaxHeight = substr($logoMaxHeight, 0, -2);
-}
-
 ?>
 <meta property="fb:app_id" content="1166245853413416" />
 <meta property="og:type" content="website" />
@@ -83,8 +27,8 @@ elseif (substr($logoMaxHeight, -2) === 'px' )
 <meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
 <meta property="og:description" content="<?php bloginfo( 'description' ); ?>" />
 <meta property="og:image" content="<?php echo $image[0]; ?>" />
-<meta property="og:image:width" content="<?php echo $logoMaxWidth; ?>">
-<meta property="og:image:height" content="<?php echo $logoMaxHeight; ?>">
+<meta property="og:image:width" content="<?php echo $image[1]; ?>">
+<meta property="og:image:height" content="<?php echo $image[2]; ?>">
 
 <?php wp_head(); ?>
 </head>
