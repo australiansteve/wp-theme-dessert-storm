@@ -17,18 +17,32 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php 
+$sharing_image = get_theme_mod( 'dessertstorm_fb_image' );
 $custom_logo_id = get_theme_mod( 'custom_logo' );
-$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+if ($sharing_image)
+{
+	$image = $sharing_image;
+	$image_size = getimagesize($image);
+    $image_width = $image_size[0];
+    $image_height = $image_size[1];
+}
+else 
+{
+	$image_raw = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+	$image = $image_raw[0];
+    $image_width = $image_raw[1];
+    $image_height = $image_raw[2];
+}
 ?>
 <meta property="fb:app_id" content="1166245853413416" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="<?php home_url(); ?>" />
+<meta property="og:url" content="<?php echo home_url(); ?>" />
 <meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>" />
 <meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
-<meta property="og:description" content="<?php bloginfo( 'description' ); ?>" />
-<meta property="og:image" content="<?php echo $image[0]; ?>" />
-<meta property="og:image:width" content="<?php echo $image[1]; ?>">
-<meta property="og:image:height" content="<?php echo $image[2]; ?>">
+<meta property="og:description" content="<?php bloginfo( 'description' ); ?>. <?php echo get_theme_mod( 'dessertstorm_fb_description' ); ?>" />
+<meta property="og:image" content="<?php echo $image; ?>" />
+<meta property="og:image:width" content="<?php echo $image_width; ?>">
+<meta property="og:image:height" content="<?php echo $image_height; ?>">
 
 <?php wp_head(); ?>
 </head>

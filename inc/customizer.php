@@ -74,6 +74,35 @@ function dessertstorm_customize_register( $wp_customize ) {
 		) 
 	);
 
+   	/* Facebook Sharing settings */
+	$wp_customize->add_setting( 'dessertstorm_fb_image' );
+   	$wp_customize->add_control( 
+   		new WP_Customize_Image_Control( 
+   			$wp_customize, 
+   			'dessertstorm_fb_image', 
+   			array(
+			    'label'    => __( 'Facebook Sharing image', 'dessertstorm' ),
+			    'description' => __( 'Recommended size: 1200x630px', 'dessertstorm' ),
+			    'section'  => 'title_tagline',
+			    'settings' => 'dessertstorm_fb_image',
+			) 
+		) 
+	);
+
+	$wp_customize->add_setting( 'dessertstorm_fb_description' );
+	$wp_customize->add_control(
+	    new WP_Customize_Textarea_Control(
+	        $wp_customize,
+	        'dessertstorm_fb_description',
+	        array(
+				'label' 	=> __( 'Facebook Sharing site description', 'dessertstorm' ),
+				'section' 	=> 'title_tagline',
+				'settings' 	=> 'dessertstorm_fb_description',
+				'default_value' => ''
+	        )
+	    )
+	);
+
 	/* Font family */
 	$wp_customize->add_setting( 'font_family' , array(
 	    'default'     => 'Helvetica, Roboto, Arial, sans-serif',
