@@ -22,7 +22,7 @@ $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
 ?>
 <meta property="fb:app_id" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="<?php site_url(); ?>" />
+<meta property="og:url" content="<?php home_url(); ?>" />
 <meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>" />
 <meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
 <meta property="og:description" content="<?php bloginfo( 'description' ); ?>" />
