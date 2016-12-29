@@ -120,7 +120,9 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'\'Neou Bold\', Helvetica, Roboto, Arial, sans-serif' => 'Neou (thick)',
 				'\'Fairfield Light\', Times, Serif' => 'Fairfield Light',
 				'\'Times New Roman\', Times, Serif' => 'Times New Roman',
-				'\'Avenir Light\', Arial, sans-serif' => 'Avenir Light',
+				'\'Montserrat Light\', Arial, sans-serif' => 'Montserrat Light',
+				'\'Montserrat Regular\', Arial, sans-serif' => 'Montserrat Regular',
+				'\'Ailerons\', Arial, sans-serif' => 'Ailerons',
 			),
 	) );
 
