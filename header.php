@@ -33,13 +33,22 @@ else
     $image_width = $image_raw[1];
     $image_height = $image_raw[2];
 }
+
+//Formulate description
+$description = get_bloginfo( 'description' );
+if (strlen($description) > 0)
+{
+	$description .= ". ";
+}
+$description .= get_theme_mod( 'dessertstorm_fb_description' );
+
 ?>
 <meta property="fb:app_id" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo home_url(); ?>" />
 <meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>" />
 <meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
-<meta property="og:description" content="<?php bloginfo( 'description' ); ?>. <?php echo get_theme_mod( 'dessertstorm_fb_description' ); ?>" />
+<meta property="og:description" content="<?php echo $description; ?>" /> 
 <meta property="og:image" content="<?php echo $image; ?>" />
 <meta property="og:image:width" content="<?php echo $image_width; ?>">
 <meta property="og:image:height" content="<?php echo $image_height; ?>">
