@@ -31,11 +31,20 @@ get_header(); ?>
 
 		for ($s = 0; $s < $sections; $s++)
 		{
+			$sectionName = get_theme_mod('dessertstorm_content_'.$s.'_name', null);
+			if (!$sectionName)
+			{
+				$sectionName = $s;
+			}
+			$sectionId = strtolower(str_replace(' ', '-', $sectionName));
 			?>
-			<div id="section-<?php echo $s; ?>" class="row columns content-section">
+			<div id="section-<?php echo $sectionId; ?>" class="row columns content-section section-<?php echo $s; ?>">
+				<div class="content-background-div">
+					<div class="content-background-image <?php echo (get_theme_mod('dessertstorm_content_'.$s.'_bgForSmall', true) == true ) ? '' : 'show-for-medium'; ?>">&nbsp;</div>
+				</div>
 				<div class="content-container">
 				<?php 
-					$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'page');
+					$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'none');
 
 					if ( $section_style === 'page') {
 						$id=get_theme_mod('dessertstorm_content_'.$s.'_page', 0); 
@@ -48,8 +57,13 @@ get_header(); ?>
 						dynamic_sidebar(get_theme_mod('dessertstorm_content_'.$s.'_sidebar', null)); 
 						echo "</div>";
 					}
+					else if ( $section_style === 'none') {
+						echo "<div class='row columns empty-content'>";
+						echo "&nbsp;";
+						echo "</div>";
+					}
 					else {
-						echo ' - Unknown'; 
+						echo 'Unknown'; 
 					}
 					?>
 				</div>

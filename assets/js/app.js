@@ -9,6 +9,16 @@ jQuery(document).ready(function($) {
 		spaceFooter();
 	}, 500);
 
+	setTimeout(function() {
+		$("#background-div.scrolling").each(function() {
+			var backgroundHeight = $(this).css('height');
+			console.log("backgroundHeight: " + backgroundHeight);
+
+			//Set the first background image to be the same height so that it repeats vertically
+			$(this).find("#bgImage1").css('height', backgroundHeight);
+		});
+	}, 500);
+
 });
 
 

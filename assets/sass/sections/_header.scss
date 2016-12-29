@@ -14,8 +14,8 @@
 	margin: 0;
 }
 
-#background-div {
-    z-index: -1;
+#background-div.fixed {
+    z-index: -10;
     min-width: 100%;
     min-height: 100%;
     position: fixed;
@@ -24,7 +24,7 @@
     overflow: hidden;
 }
 
-#bgImage {
+.fixed .bgImage {
     background-position: 50% 100%;
     bottom: 0;
     left: 0;
@@ -33,7 +33,32 @@
     position: absolute;
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: -1;
+    z-index: -10;
+}
+
+#background-div.scrolling {
+    z-index: -10;
+    min-width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.scrolling .bgImage {
+    background-position: 50% 0%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -10;
+}
+
+.scrolling #bgImage1 {
+    background-repeat: repeat-y;
 }
 
 .header.sticky-container {
@@ -42,6 +67,7 @@
 
 .title-bar {
     background: rgba(255, 255, 255, 0.75);
+    padding: 0;
 }
 
 .sticky.is-stuck.is-at-top {
@@ -53,7 +79,7 @@
 }
 
 #small-menu-container {
-    background: rgba(255, 255, 255, 0.75);
+    
 }
 
 #medium-menu-container {
@@ -62,4 +88,12 @@
 
 #large-menu-container {
     margin-top: 2.75rem;
+}
+
+.centered-layout.header, .centered-layout.menu-bar {
+    text-align: center;
+}
+
+.centered-layout.menu-bar ul {
+    display: inline-block;
 }
