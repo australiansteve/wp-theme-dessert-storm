@@ -269,3 +269,21 @@ add_filter( 'login_headertitle', 'dessertstorm_change_login_logo_title' );
 function dessertstorm_change_login_logo_title() {
 	return get_bloginfo( 'name' );
 }
+
+function dessertstorm_custom_jetpack_sent_message($message ) {
+ 
+ ob_start();
+ 
+ ?>
+ 
+ <p class="jetpack-override-sent">Message Sent!<br/>
+ Thanks</p>
+
+ 
+ <?php
+ 
+ return ob_get_clean();// or $message for default notice
+ 
+}
+
+add_filter( 'grunion_contact_form_success_message', 'dessertstorm_custom_jetpack_sent_message' );
