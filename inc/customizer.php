@@ -507,6 +507,11 @@ function dessertstorm_customize_css()
 				font-family: <?php echo get_theme_mod('font_family', 'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'); ?>;
 			}
 			
+			/* Overwrite FontAwesome font with custom family so that fallback works */
+            .fa { 
+				font-family: 'FontAwesome', <?php echo get_theme_mod('font_family', 'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'); ?>;
+			}
+			
             @media only screen and (max-width: 40em) { 
             	
              	.primary-navigation {
