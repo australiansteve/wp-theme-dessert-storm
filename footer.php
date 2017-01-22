@@ -23,7 +23,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="row columns">
 		<?php
-			$footerContent = get_theme_mod('dessertstorm_footer_content', 'Website by: <a class="fa fa-copyright" href="http://weavercrawford.com"><?php echo date("Y"); ?> Weaver Crawford Creative</a>')
+			$footerContent = get_theme_mod('dessertstorm_footer_content', '<a class="fa fa-copyright" href="http://weavercrawford.com"> '.date("Y").' Weaver Crawford Creative</a>')
 		?>
 			<p class="footer"><?php echo $footerContent; ?></p>
 		</div>
