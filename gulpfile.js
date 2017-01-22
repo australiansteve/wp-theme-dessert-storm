@@ -8,8 +8,9 @@ var	gulp			= require('gulp'),
 	size					= require('gulp-size'),
 	browserSync		= require('browser-sync'), // Sends php, js, and css updates to browser for us
 	concat			= require('gulp-concat'), // Concat our js
-	uglify			= require('gulp-uglify'); // Minify our js
-
+	uglify			= require('gulp-uglify'), // Minify our js
+	argv = require('yargs').argv, //Arguments parser
+    gulpif = require('gulp-if'); //Conditional logic
 
 ////////////////////////////////////////////////////////////////////////////////
 // Path Configs
@@ -204,7 +205,7 @@ gulp.task('fonts', function() {
 });
 
 //Our 'deploy' task which deploys on a local dev environment
-gulp.task('deploylocal', function() {
+gulp.task('deploy', function() {
 
 	var files = [
 		'assets/components/modernizr/modernizr.js',
@@ -222,11 +223,13 @@ gulp.task('deploylocal', function() {
 		'*.php',
 		'*.css'];
 
-	var dest = 'C:/wamp/www/theme-dev/wp-content/themes/dessertstorm';
+	var destThemeDev = 'C:/wamp/www/theme-dev/wp-content/themes/dessertstorm';
+	var destCanvas = 'C:/wamp/www/canvas/wp-content/themes/dessertstorm';
 
 	return gulp.src(files, {base:"."})
-	        .pipe(gulp.dest(dest));
+    		.pipe(gulpif(argv.canvas, gulp.dest(destCanvas), gulp.dest(destThemeDev)));
 });
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Watch our files and fire off a task when something changes
