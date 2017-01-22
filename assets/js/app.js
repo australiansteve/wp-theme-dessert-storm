@@ -19,6 +19,16 @@ jQuery(document).ready(function($) {
 		});
 	}, 500);
 
+
+	$('.project').on("mouseover touchstart", function(){
+	    jQuery(this).find("div.content").show();
+	  
+	});
+
+	$('.project').on("mouseout touchend", function(){
+	    jQuery(this).find("div.content").hide();
+	});
+
 });
 
 
