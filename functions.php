@@ -105,7 +105,7 @@ function dessertstorm_setup() {
     /**
 	* Add theme support for Portfolio Custom Post Type.
 	*/
-	add_action( 'after_setup_theme', austeve_jetpack_portfolio_cpt );
+	add_action( 'after_setup_theme', 'austeve_jetpack_portfolio_cpt' );
 	function austeve_jetpack_portfolio_cpt() {
 		add_theme_support( 'jetpack-portfolio' );
 	}
