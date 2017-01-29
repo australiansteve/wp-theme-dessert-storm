@@ -17,45 +17,41 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php 
+$sharing_image = get_theme_mod( 'dessertstorm_fb_image' );
 $custom_logo_id = get_theme_mod( 'custom_logo' );
-$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-$maxheights = json_decode(get_theme_mod('dessertstorm_logo_maxheight'), true);
-$maxwidths = json_decode(get_theme_mod('dessertstorm_logo_maxwidth'), true);
-
-$logoMaxWidth = $maxwidths['large'];
-if( $logoMaxWidth == '')
+if ($sharing_image)
 {
-	$logoMaxWidth = $maxwidths['medium'];
-	if( $logoMaxWidth == '')
-	{
-		$logoMaxWidth = $maxwidths['small'];
-		if( $logoMaxWidth == '')
-		{
-			$logoMaxWidth = '300px';
-		}
-	}
+	$image = $sharing_image;
+	$image_size = getimagesize($image);
+    $image_width = $image_size[0];
+    $image_height = $image_size[1];
+}
+else 
+{
+	$image_raw = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+	$image = $image_raw[0];
+    $image_width = $image_raw[1];
+    $image_height = $image_raw[2];
 }
 
-$logoMaxHeight = $maxheights['large'];
-if( $logoMaxHeight  == '')
+//Formulate description
+$description = get_bloginfo( 'description' );
+if (strlen($description) > 0)
 {
-	$logoMaxHeight = $maxheights['medium'];
-	if( $logoMaxHeight  == '')
-	{
-		$logoMaxHeight = $maxheights['small'];
-		if( $logoMaxHeight  == '')
-		{
-			$logoMaxHeight = '300px';
-		}
-	}
+	$description .= ". ";
 }
+$description .= get_theme_mod( 'dessertstorm_fb_description' );
 
 ?>
+<meta property="fb:app_id" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<?php echo home_url(); ?>" />
+<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>" />
 <meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
-<meta property="og:description" content="<?php bloginfo( 'description' ); ?>" />
-<meta property="og:image" content="<?php echo $image[0]; ?>" />
-<meta property="og:image:width" content="<?php echo $logoMaxWidth; ?>">
-<meta property="og:image:height" content="<?php echo $logoMaxHeight; ?>">
+<meta property="og:description" content="<?php echo $description; ?>" /> 
+<meta property="og:image" content="<?php echo $image; ?>" />
+<meta property="og:image:width" content="<?php echo $image_width; ?>">
+<meta property="og:image:height" content="<?php echo $image_height; ?>">
 
 <?php wp_head(); ?>
 </head>

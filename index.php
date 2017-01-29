@@ -17,71 +17,63 @@ get_header(); ?>
 
 	<main id="main" class="site-main" role="main">
 
-	<?php if ( have_posts() ) : ?>
-
-		<?php if ( is_home() && ! is_front_page() ) : ?>
-			<header>
-				<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-			</header>
-		<?php endif; ?>
-
-		<?php
-
-		$sections = get_theme_mod('austeve_general_sections', 0);
-
-		for ($s = 0; $s < $sections; $s++)
-		{
-			$sectionName = get_theme_mod('dessertstorm_content_'.$s.'_name', null);
-			if (!$sectionName)
-			{
-				$sectionName = $s;
-			}
-			$sectionId = strtolower(str_replace(' ', '-', $sectionName));
-			?>
-			<div id="section-<?php echo $sectionId; ?>" class="row columns content-section section-<?php echo $s; ?>">
-				<div class="content-background-div">
-					<div class="content-background-image <?php echo (get_theme_mod('dessertstorm_content_'.$s.'_bgForSmall', true) == true ) ? '' : 'show-for-medium'; ?>">&nbsp;</div>
-				</div>
-				<div class="content-container">
-				<?php 
-					$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'none');
-
-					if ( $section_style === 'page') {
-						$id=get_theme_mod('dessertstorm_content_'.$s.'_page', 0); 
-						$post = get_post($id); 
-						$content = apply_filters('the_content', $post->post_content); 
-						echo $content;  
-					}
-					else if ( $section_style === 'sidebar') {
-						$rowClasses = 'row';
-						if ($sectionId == 'what-we-do')
-						{
-							$rowClasses.= " small-up-1 medium-up-2";
-						}
-						echo "<div class='".$rowClasses."'>";
-						dynamic_sidebar(get_theme_mod('dessertstorm_content_'.$s.'_sidebar', null)); 
-						echo "</div>";
-					}
-					else if ( $section_style === 'none') {
-						echo "<div class='row columns empty-content'>";
-						echo "&nbsp;";
-						echo "</div>";
-					}
-					else {
-						echo 'Unknown'; 
-					}
-					?>
-				</div>
-			</div>
-			<?php
-		}
-		?>
-
-	<?php else : ?>
-
-		<?php get_template_part( 'components/content', 'none' ); ?>
-
+	<?php if ( is_home() && ! is_front_page() ) : ?>
+		<header>
+			<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+		</header>
 	<?php endif; ?>
+
+	<?php
+
+	$sections = get_theme_mod('austeve_general_sections', 0);
+
+	for ($s = 0; $s < $sections; $s++)
+	{
+		$sectionName = get_theme_mod('dessertstorm_content_'.$s.'_name', null);
+		if (!$sectionName)
+		{
+			$sectionName = $s;
+		}
+		$sectionId = strtolower(str_replace(' ', '-', $sectionName));
+		?>
+		<div id="section-<?php echo $sectionId; ?>" class="row columns content-section section-<?php echo $s; ?>">
+			<div class="content-background-div">
+				<div class="content-background-image <?php echo (get_theme_mod('dessertstorm_content_'.$s.'_bgForSmall', true) == true ) ? '' : 'show-for-medium'; ?>">&nbsp;</div>
+			</div>
+			<div class="content-container">
+			<?php 
+				$section_style = get_theme_mod('dessertstorm_content_'.$s.'_style', 'none');
+
+				if ( $section_style === 'page') {
+					$id=get_theme_mod('dessertstorm_content_'.$s.'_page', 0); 
+					$post = get_post($id); 
+					$content = apply_filters('the_content', $post->post_content); 
+					echo $content;  
+				}
+				else if ( $section_style === 'sidebar') {
+					$rowClasses = 'row';
+					if ($sectionId == 'what-we-do')
+					{
+						$rowClasses.= " small-up-1 medium-up-2";
+					}
+					echo "<div class='".$rowClasses."'>";
+					dynamic_sidebar(get_theme_mod('dessertstorm_content_'.$s.'_sidebar', null)); 
+					echo "</div>";
+				}
+				else if ( $section_style === 'none') {
+					echo "<div class='row columns empty-content'>";
+					echo "&nbsp;";
+					echo "</div>";
+				}
+				else {
+					echo 'Set section style'; 
+				}
+				?>
+			</div>
+		</div>
+	<?php		
+	}
+	?>
 
 	</main><!-- #main -->
 
