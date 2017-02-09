@@ -29,6 +29,12 @@ jQuery(document).ready(function($) {
 	    jQuery(this).find("div.content").hide();
 	});
 
+	setTimeout(function() {
+		var roundButtons = _.debounce(buttonRounding, 300);
+		$(window).resize(roundButtons);
+		roundButtons();
+	}, 600);
+
 });
 
 
@@ -40,4 +46,12 @@ function footerSpacing()
 	{
 		jQuery("#spacer").css("margin-top", marginNeeded);
 	}
+}
+
+
+function buttonRounding()
+{
+	jQuery(".round-button").each(function() {
+		jQuery(this).css('height', jQuery(this).css('width'));
+	});
 }
