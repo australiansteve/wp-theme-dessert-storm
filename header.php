@@ -188,6 +188,48 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 		</div>
 <?php 
 	} /* End if ($menuLayout == 'centered-single') */
+	else if ($menuLayout == 'centered-single-above')
+	{
+?>
+		<div class="row menu-bar centered-layout show-for-medium">
+			<div class="small-12 columns">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+			</div>
+		</div>
+
+		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
+			<ul class="vertical menu" data-accordion-menu>
+				<li>
+					<a href="#">Menu</a>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+				</li>
+			</ul>
+		</div>
+		<div class="row header centered-layout">
+			<div class="small-12 columns">
+				<h1 class="site-title">
+					<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+						<?php 
+						if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+							the_custom_logo();
+						}
+						else {
+							?>
+							<h1>
+								<?php
+								bloginfo( 'name' );
+								?>
+							</h1>
+							<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+						<?php
+						}
+		 				?>
+					</a>
+				</h1>
+			</div>
+		</div>
+<?php 
+	} /* End if ($menuLayout == 'centered-single-above') */
 	else if ($menuLayout == 'none')
 	{
 ?>
