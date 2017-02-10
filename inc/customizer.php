@@ -121,6 +121,8 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'\'Fairfield Light\', Times, Serif' => 'Fairfield Light',
 				'\'Times New Roman\', Times, Serif' => 'Times New Roman',
 				'\'Avenir Light\', Arial, sans-serif' => 'Avenir Light',
+				'Champagne Limousines, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif' => 'Champagne & Limousines',
+				'Champagne Limousines Bold, Champagne Limousines, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif' => 'Champagne & Limousines Bold',
 			),
 	) );
 
