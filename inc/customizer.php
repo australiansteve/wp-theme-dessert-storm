@@ -121,6 +121,9 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'\'Fairfield Light\', Times, Serif' => 'Fairfield Light',
 				'\'Times New Roman\', Times, Serif' => 'Times New Roman',
 				'\'Avenir Light\', Arial, sans-serif' => 'Avenir Light',
+				'Cantata One, Times, serif' => 'Cantata One',
+				'Roboto, Arial, sans-serif' => 'Roboto',
+				'Raleway, Arial, sans-serif' => 'Raleway Black',
 			),
 	) );
 
