@@ -55,6 +55,39 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 <meta property="og:image:height" content="<?php echo $image_height; ?>">
 
 <?php wp_head(); ?>
+
+<?php
+//Special styling for homepage menu bar
+$menuLayout = get_theme_mod('austeve_menu_layout', 'topbar-right');
+if (is_home() && $menuLayout == 'topbar-right') 
+{
+	?>
+	<style type="text/css">
+
+		.title-bar.sticky:not(.is-anchored) {
+			opacity: 0;
+		}
+
+		.title-bar, .header.sticky-container {
+		    background: none;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+
+	window.onscroll = function() {
+	    jQuery(".header.sticky-container").css('background', 'white');
+		window.onscroll = null;
+	};
+
+	</script>
+	<?php
+}
+echo "<!--FRONT:".is_front_page()."-->";
+echo "<!--HOME:".is_home()."-->";
+?>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -97,12 +130,10 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 		<?php
 	}
 
-	$menuLayout = get_theme_mod('austeve_menu_layout', 'topbar-right');
-
 	if ($menuLayout == 'topbar-right') 
 	{
 
-?>				
+?>	
 		<div data-sticky-container class="header">
 			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
 				<div class="title-bar-left">
