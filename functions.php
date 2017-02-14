@@ -228,6 +228,11 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
+/**
+ * Load Steve's shortcode file.
+ */
+require get_template_directory() . '/shortcodes.php';
+
 
 
 add_filter( 'wp_nav_menu', 'dessertstorm_nav_menu', 10, 2 );
