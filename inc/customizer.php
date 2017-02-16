@@ -324,6 +324,21 @@ function dessertstorm_customize_register( $wp_customize ) {
 
 	}
 
+   	//Background colour of content on pages that aren't the home page
+   	$wp_customize->add_setting( 'dessertstorm_pagecontent_bg_color' );
+   	$wp_customize->add_control( 
+		new WP_Customize_Color_Control( 
+			$wp_customize, 
+			'dessertstorm_pagecontent_bg_color', 
+			array(
+				'label'      => __( 'Regular page background colour:', 'dessertstorm' ),
+				'description'      => __( 'Background colour of pages that aren\'t the home page', 'dessertstorm' ),
+				'section'    => 'dessertstorm_bg_section',
+				'settings'   => 'dessertstorm_pagecontent_bg_color',
+			) 
+		) 
+	);
+
    	//Menu layouts
    	$wp_customize->add_control(
 	    new WP_Customize_Dropdown_Control(
@@ -549,6 +564,14 @@ function dessertstorm_customize_css()
         		max-height: <?php echo $maxheights['small']; ?>;
         		max-width: <?php echo $maxwidths['small']; ?>;;
         	}
+			
+			<?php if (get_theme_mod('dessertstorm_pagecontent_bg_color')) { ?>
+        	.content-area:not(.index) {
+			    background: <?php echo get_theme_mod('dessertstorm_pagecontent_bg_color', 'transparent'); ?>;
+			    padding: 2rem;
+			}
+			<?php } ?>
+
             <?php
 
             $backgrounds = get_theme_mod('austeve_backgrounds', 0);
