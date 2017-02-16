@@ -97,3 +97,19 @@
 .centered-layout.menu-bar ul {
     display: inline-block;
 }
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+
+    .menu .active>a {
+        background: none;
+        border-bottom: 1px solid black;
+    }
+
+    .menu>li>a {
+        padding: 0.7rem 0.7rem 0.2rem 0.7rem;
+        margin: 0 0.15em;
+        font-size: 1.25em;
+    }
+
+}
