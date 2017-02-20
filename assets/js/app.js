@@ -52,6 +52,9 @@ function footerSpacing()
 function buttonRounding()
 {
 	jQuery(".round-button").each(function() {
-		jQuery(this).css('height', jQuery(this).css('width'));
+		var fontSize = jQuery(this).css('font-size');
+		var width = jQuery(this).css('width');
+		jQuery(this).css('height', width);
+		jQuery(this).css('padding-top', 'calc( calc( '+width+' - '+fontSize+' ) / 2 )');
 	});
 }
