@@ -64,6 +64,8 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 
 	$fixedBackground = get_theme_mod('austeve_background_fixed', 'fixed');
 	$backgrounds = get_theme_mod('austeve_backgrounds', 0);
+	$onlyforhome = get_theme_mod('austeve_background_homeonly', false);
+	$pageClasses = is_home() ? "homepage" : "";
 
 	if ($fixedBackground == 'fixed') 
 	{
@@ -73,12 +75,15 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 	<div id="background-div" class="fixed">
 	<?php
 	for ($b = 0; $b < $backgrounds; $b++) {
-		echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+		if (!$onlyforhome || is_home())
+		{
+			echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+		}
 	}
 	?>
 	</div>
 	
-	<div id="page">
+	<div id="page" class="<?php echo $pageClasses; ?>">
 
 <?php 
 	}
@@ -89,11 +94,14 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 	<div id="background-div" class="scrolling">
 		<?php
 	for ($b = 0; $b < $backgrounds; $b++) {
-		echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+		if (!$onlyforhome || is_home())
+		{
+			echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+		}	
 	}
 	?>
 
-		<div id="page">
+		<div id="page" class="<?php echo $pageClasses; ?>">
 		<?php
 	}
 
