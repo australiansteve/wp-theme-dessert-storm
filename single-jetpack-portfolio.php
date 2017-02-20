@@ -14,7 +14,7 @@
 
 	<div class="col-sm-12"><!-- .col-sm-12 start -->
 
-		<div id="primary" class="content-area">
+		<div id="primary" class="content-area no-padding">
 
 			<div id="content" class="site-content" role="main">
 
@@ -33,6 +33,14 @@
 		</div><!-- #primary -->
 
 	</div><!-- .col-sm-12 end -->
+
+</div><!-- .row end -->
+
+<div class="row projects-sidebar"><!-- .row start -->
+
+	<?php 
+	dynamic_sidebar(get_theme_mod('dessertstorm_content_2_sidebar', null)); 
+	?>
 
 </div><!-- .row end -->
 
