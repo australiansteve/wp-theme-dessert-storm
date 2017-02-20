@@ -7,21 +7,24 @@
  * @package Dessertstorm
  */
 ?>
-<div class="column">
 
-	<div class="container">
+<div class="container">
 
-	    <div class="project">
+    <div class="project">
 
-			<div class="bg-image" style="background-image:url( <?php echo the_post_thumbnail_url();?> )">
-				
-			</div>
+		<div class="project-image">
+			<img src="<?php echo the_post_thumbnail_url();?>"/>			
+		</div>
 
-			<div class="content">
+		<div class="project-title">
 
-	         	<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+         	<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
 
-			</div>
+		</div>
+
+		<div class="project-content">
+
+         	<?php the_content( ); ?>
 
 		</div>
 
