@@ -252,6 +252,18 @@ function dessertstorm_customize_register( $wp_customize ) {
 	    )
 	);
 
+   	//Display page background(s) for homepage only
+   	$wp_customize->add_setting( 'austeve_background_homeonly' );
+   	$wp_customize->add_control( 
+   		'austeve_background_homeonly', 
+		array(
+			'label'    => __( 'Display background image for homepage only', 'dessertstorm' ),
+			'section'  => 'dessertstorm_bg_section',
+			'settings' => 'austeve_background_homeonly',
+			'type'     => 'checkbox',
+		)
+	);
+
 	//Backgrounds
 	$wp_customize->add_control( 
    		'austeve_backgrounds', 
