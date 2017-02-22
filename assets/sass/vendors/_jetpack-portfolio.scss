@@ -33,3 +33,25 @@
 		}
 	}
 }
+
+.single-project {
+	padding: 2rem 1rem;
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+		
+	.single-project {
+		padding: 2rem 2rem;
+	}
+
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+		
+	.single-project {
+		padding: 2rem 5rem;
+	}
+
+}

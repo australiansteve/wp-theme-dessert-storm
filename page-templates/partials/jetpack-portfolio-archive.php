@@ -11,15 +11,15 @@
 
 	<div class="container project-archive-item">
 
-		<a href="<?php echo get_permalink(); ?>">
-		
-		    <div class="project">
+	    <div class="project">
 
-	         	<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+			<a href="<?php echo get_permalink(); ?>">
 
-			</div>
+	         	<?php the_title( '<p class="entry-title">', '</p>' ); ?>
+	         	
+			</a>
 
-		</a>
+		</div>
 
 	</div>
 
