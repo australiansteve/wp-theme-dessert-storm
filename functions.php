@@ -313,3 +313,10 @@ add_filter( 'grunion_contact_form_success_message', 'dessertstorm_custom_jetpack
 
 //Remove WooCommerce hook for displaying product information
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 ); 
+
+//Moves the location of 'Coupon Receiver Details' from after the customer details to before the order summary
+remove_action( 'woocommerce_checkout_after_customer_details', array(  $GLOBALS['woocommerce_smart_coupon'], 'gift_certificate_receiver_detail_form' ) );
+add_action( 'woocommerce_checkout_before_order_review', array(  $GLOBALS['woocommerce_smart_coupon'], 'gift_certificate_receiver_detail_form' ) );
+
+//Removes the 'Additional Notes' part of the checkout page
+add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
