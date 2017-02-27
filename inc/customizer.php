@@ -401,6 +401,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 
 		//Add settings
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_name' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_spacing' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_style' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_page' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar' );
@@ -521,6 +522,19 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'type'     => 'checkbox',
 			)
 		);
+
+	   	//Section spacing customized
+	   	$wp_customize->add_control( 
+	   		'dessertstorm_content_'.$s.'_spacing', 
+			array(
+				'label'    => __( 'Custom spacing', 'dessertstorm' ),
+				'description'    => __( 'Percentage of spacing to be placed at the top of the content container. Used if the \'space content\' setting is true', 'dessertstorm' ),
+				'section'  => 'dessertstorm_content_section_'.$s,
+				'settings' => 'dessertstorm_content_'.$s.'_spacing',
+				'type'     => 'text',
+			)
+		);
+
 
 	}
 }

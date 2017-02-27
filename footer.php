@@ -37,46 +37,64 @@
 	} 
 ?>
 
+<?php wp_footer(); ?>
+
 <?php
 	$spaceSections = get_theme_mod('austeve_general_section_height', false);
 	if (is_home() && $spaceSections)
 	{
-?>
-	<script>
-function sectionSpacing()
-{
-	var windowHeight = Number(jQuery(window).height());
-	console.log("Window height: " + windowHeight);
 
-	jQuery("#primary.index .content-section").each(function() {
-		var rawHeight = jQuery(this).css("height")
-		var sectionHeight = Number(rawHeight.substr(0, rawHeight.length - 2));
-		console.log(jQuery(this).attr("id") + ": " + sectionHeight);
+		$sections = get_theme_mod('austeve_general_sections', 0);
 
-		if (sectionHeight > 0 && sectionHeight < windowHeight)
+		$customSpacings = array();
+		for ($s = 0; $s < $sections; $s++) 
 		{
-			var contentPadding = (windowHeight - sectionHeight) / 2;
-			console.log("Content padding top & bottom: " + contentPadding + "px");
-			jQuery(this).find(".content-container").css( { "padding-top" : contentPadding + "px", "padding-bottom" : contentPadding + "px"})
+			$sectionName = get_theme_mod('dessertstorm_content_'.$s.'_name', null);
+			if (!$sectionName)
+			{
+				$sectionName = $s;
+			}
+			$sectionId = strtolower(str_replace(' ', '-', $sectionName));
+
+			//Custom spacing
+			$customSpacings['section-'.$sectionId] = empty(get_theme_mod('dessertstorm_content_'.$s.'_spacing', '50')) ? '50' : get_theme_mod('dessertstorm_content_'.$s.'_spacing', '50');
 		}
 
-	});
-}
+		error_log(print_r($customSpacings, true));
+?>
+	<script>
 
-setTimeout(function() {
-	var spaceSections = _.debounce(sectionSpacing, 100);
-	jQuery(window).resize(spaceSections);
-	spaceSections();
-}, 100);
+		var customSpacings = <?php echo json_encode($customSpacings); ?>;
+
+		function sectionSpacing()
+		{
+			var windowHeight = Number(jQuery(window).height());
+
+			jQuery("#primary.index .content-section").each(function() {
+				var contentContainer = jQuery(this).find(".content-container");
+				var sectionId = jQuery(this).attr("id");
+				var contentHeight = contentContainer.height();
+
+				if (contentHeight > 0)
+				{
+					var paddingTop = Number((windowHeight - contentHeight) * ( Number(customSpacings[sectionId]) / 100 ) );
+					var paddingBottom = Number((windowHeight - contentHeight) - paddingTop);
+
+					contentContainer.css( { "padding-top" : paddingTop + "px", "padding-bottom" : paddingBottom + "px"})
+				}
+
+			});
+		}
+
+		setTimeout(function() {
+			var spaceSections = _.debounce(sectionSpacing, 300);
+			jQuery(window).resize(spaceSections);
+			spaceSections();
+		}, 50);
 
 	</script>
-
 <?php
-
 	}
-
 ?>
-
-<?php wp_footer(); ?>
 </body>
 </html>
