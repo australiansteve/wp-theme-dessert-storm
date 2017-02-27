@@ -18,6 +18,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 	//All our sections, settings, and controls will be added here
    	$wp_customize->add_setting( 'austeve_general_sections' );
    	$wp_customize->add_setting( 'austeve_general_section_height' );
+   	$wp_customize->add_setting( 'austeve_general_section_scroll' );
    	$wp_customize->add_setting( 'austeve_background_fixed' );
    	$wp_customize->add_setting( 'austeve_backgrounds' );
    	$wp_customize->add_setting( 'austeve_menu_layout' );
@@ -267,6 +268,17 @@ function dessertstorm_customize_register( $wp_customize ) {
 			'label'    => __( 'Set minimum height of each section to window height', 'dessertstorm' ),
 			'section'  => 'static_front_page',
 			'settings' => 'austeve_general_section_height',
+			'type'     => 'checkbox',
+		)
+	);
+
+	//Front page scrolling from section to section
+	$wp_customize->add_control( 
+   		'austeve_general_section_scroll', 
+		array(
+			'label'    => __( 'Smoothly scroll from section to section. Best used in conjunction with the minimum height setting.', 'dessertstorm' ),
+			'section'  => 'static_front_page',
+			'settings' => 'austeve_general_section_scroll',
 			'type'     => 'checkbox',
 		)
 	);
