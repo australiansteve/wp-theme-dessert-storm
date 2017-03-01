@@ -581,24 +581,6 @@ function dessertstorm_customize_css()
 				font-family: 'FontAwesome', <?php echo get_theme_mod('font_family', 'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'); ?>;
 			}
 			
-            @media only screen and (max-width: 40em) { 
-            	
-             	.primary-navigation {
-				    border-left: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
-				    border-right: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
-             	}
-
-             	.primary-navigation ul li {
-				    border-bottom: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
-				}
-
-             	#small-menu-container .is-accordion-submenu-parent > a {
-             		background:<?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
-        	  		color:<?php echo get_theme_mod('header_background_color', '#000000'); ?>;  
-             	}
-
-			}
-
             .site-title a, .title-bar li a:not(.button), .title-bar li a:not(.button):hover { 
         	  	color:<?php echo get_theme_mod('header_text_color', '#000000'); ?>; 
             }

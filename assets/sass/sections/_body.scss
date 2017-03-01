@@ -3,11 +3,7 @@ body {
 }
 
 a {
-	color: $black;
-}
-
-a:hover, a:active {
-	color: rgba(0, 0, 0, 0.7);
+	color: $primary-color;
 }
 
 #primary.index .row.content-section {
@@ -67,4 +63,20 @@ nav.post-navigation {
 
 .no-padding {
 	padding: 0 !important;
+}
+
+.content-area:not(.index) {
+    max-width: 80rem;
+    margin: auto;
+    text-align: center;
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+	
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+	
 }

@@ -84,13 +84,17 @@
 				}
 
 			});
+
+			setTimeout(function(){ //One second later reinitialize the foundation sticky bar, so that foundation doesn't think the page is shorter than it is
+				Foundation.reInit('sticky');
+			}, 1000);
 		}
 
 		setTimeout(function() {
 			var spaceSections = _.debounce(sectionSpacing, 300);
 			jQuery(window).resize(spaceSections);
 			spaceSections();
-		}, 50);
+		}, 10);
 
 	</script>
 		<?php
@@ -156,7 +160,7 @@
 			});
 		}
 
-		var autoScroll = _.debounce(scrollIt, 300);
+		var autoScroll = _.debounce(scrollIt, 750);
 		jQuery(window).on('wheel', autoScroll);
 
 	</script>

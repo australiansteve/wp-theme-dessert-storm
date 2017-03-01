@@ -301,3 +301,17 @@ function dessertstorm_custom_jetpack_sent_message($message ) {
 }
 
 add_filter( 'grunion_contact_form_success_message', 'dessertstorm_custom_jetpack_sent_message' );
+
+function portfolio_filter_archive_title( $title ) {
+
+    if ( is_post_type_archive('jetpack-portfolio') ) {
+
+        $title = 'Recent Work';
+
+    }
+
+    return $title;
+
+}
+
+add_filter( 'get_the_archive_title', 'portfolio_filter_archive_title');

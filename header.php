@@ -69,7 +69,7 @@ if (is_home() && $menuLayout == 'topbar-right')
 		}
 
 		.title-bar, .header.sticky-container {
-		    background: none;
+		    background: none; /* Hides the title bar from displaying when the page first loads at the top */
 		}
 
 	</style>
@@ -144,42 +144,39 @@ echo "<!--HOME:".is_home()."-->";
 ?>	
 		<div data-sticky-container class="header">
 			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
-				<div class="title-bar-left">
-					<h1 class="site-title">
-						<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
-							<?php 
-							if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
-								the_custom_logo();
-							}
-							else {
-								?>
+				<div class="title-bar-left show-for-medium">
+					<h1 class="site-title">						
+						<?php 
+						if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+							the_custom_logo();
+						}
+						else {
+							?>
+							<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
 								<h1>
 									<?php
 									bloginfo( 'name' );
 									?>
 								</h1>
 								<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-							<?php
-							}
-			 				?>
-						</a>
+							</a>
+						<?php
+						}
+		 				?>
 					</h1>
 				</div>
-
 			
-				<div class="title-bar-right show-for-medium-only primary-navigation" id="medium-menu-container">
+				<div class="title-bar-right show-for-medium primary-navigation" id="medium-menu-container">
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 				</div>
-				<div class="title-bar-right show-for-large primary-navigation" id="large-menu-container">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
-				</div>
+				
 			</div>
 		</div>
 	    
 		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
 			<ul class="vertical menu" data-accordion-menu>
 				<li>
-					<a href="#">Menu</a>
+					<a href="#">&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></a>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
 				</li>
 			</ul>

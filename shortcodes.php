@@ -70,7 +70,7 @@ function austeve_jetpack_portfolio($atts, $content) {
 ?>
         <div class="row archive-container">
             <div class="col-xs-12">
-                <em>No upcoming events found.</em>
+                <em>No projects found.</em>
             </div>
         </div>
 <?php   

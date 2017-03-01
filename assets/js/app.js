@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
 		var spaceFooter = _.debounce(footerSpacing, 500);
 		$(window).resize(spaceFooter);
 		spaceFooter();
-	}, 500);
+	}, 200);
 
 	setTimeout(function() {
 		$("#background-div.scrolling").each(function() {
@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
 			//Set the first background image to be the same height so that it repeats vertically
 			$(this).find("#bgImage1").css('height', backgroundHeight);
 		});
-	}, 500);
+	}, 50);
 
 
 	$('.project').on("mouseover touchstart", function(){

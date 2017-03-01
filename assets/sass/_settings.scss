@@ -47,7 +47,7 @@
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
-$primary-color: #2199e8;
+$primary-color: #FFFFFF;
 $secondary-color: #777;
 $success-color: #3adb76;
 $warning-color: #ffae00;
@@ -86,7 +86,7 @@ $breakpoint-classes: (small medium large);
 
 $grid-row-width: $global-width;
 $grid-column-count: 12;
-$grid-column-responsive-gutter: (
+$grid-column-gutter: (
   small: 20px,
   medium: 30px,
 );
@@ -200,7 +200,7 @@ $accordion-content-padding: 1rem;
 // 8. Accordion Menu
 // -----------------
 
-$accordionmenu-arrows: true;
+$accordionmenu-arrows: false;
 $accordionmenu-arrow-color: $primary-color;
 
 // 9. Badge
@@ -300,7 +300,7 @@ $dropdown-sizes: (
 // 17. Dropdown Menu
 // -----------------
 
-$dropdownmenu-arrows: true;
+$dropdownmenu-arrows: false;
 $dropdownmenu-arrow-color: $anchor-color;
 $dropdownmenu-min-width: 200px;
 $dropdownmenu-background: $white;

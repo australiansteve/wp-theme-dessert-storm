@@ -25,22 +25,14 @@ get_header(); ?>
 					?>
 				</header><!-- .page-header -->
 
-				<div class="row small-up-1">
+				<h3 class='project-type-title'>- Film & TV -</h3>
+				<?php echo do_shortcode("[austeve_projects include_type='film-tv']"); ?>
 
-				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+				<h3 class='project-type-title'>- Content -</h3>
+				<?php echo do_shortcode("[austeve_projects include_type='content-writing']"); ?>
 
-					<?php 
-
-	            		get_template_part('page-templates/partials/jetpack-portfolio', 'archive');
-
-					?>
-
-				<?php endwhile; ?>
-
-				</div>
-
-				<?php the_posts_navigation(); ?>
+				<h3 class='project-type-title'>- Print -</h3>
+				<?php echo do_shortcode("[austeve_projects include_type='print']"); ?>
 
 			<?php else : ?>
 
