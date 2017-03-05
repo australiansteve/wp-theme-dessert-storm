@@ -35,4 +35,23 @@
 			}
 		} );
 	} );
+
+	//Body font
+	wp.customize('font_family', function( value ) {
+		value.bind( function( to ) {
+			$( 'body, :not(.menu-item)>a, #colophon' ).css( 'font-family', to );
+			$( '.fa' ).css( 'font-family', 'FontAwesome,' + to );
+		} );
+	});
+
+	//Header font
+	wp.customize('header_font', function( value ) {
+		value.bind( function( to ) {
+			$( 'h1, h2, h3, h4, h5, h6, .menu-item a, .title-bar-title' ).css( 'font-family', to );
+		} );
+	});
+
+
+
+
 } )( jQuery );
