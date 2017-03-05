@@ -80,14 +80,13 @@
 					var paddingTop = Number((windowHeight - contentHeight) * ( Number(customSpacings[sectionId]) / 100 ) );
 					var paddingBottom = Number((windowHeight - contentHeight) - paddingTop);
 
-					contentContainer.css( { "padding-top" : paddingTop + "px", "padding-bottom" : paddingBottom + "px"})
+					contentContainer.css( { "padding-top" : paddingTop + "px", "padding-bottom" : paddingBottom + "px"});
+					
+					jQuery(window).trigger('resize'); // trigger the window resize event, so that foundation doesn't think the page is shorter than it is
 				}
 
 			});
 
-			setTimeout(function(){ //One second later reinitialize the foundation sticky bar, so that foundation doesn't think the page is shorter than it is
-				Foundation.reInit('sticky');
-			}, 1000);
 		}
 
 		setTimeout(function() {
