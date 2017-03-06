@@ -12,7 +12,7 @@
 
 <div class="row"><!-- .row start -->
 
-	<div class="col-sm-12"><!-- .col-sm-12 start -->
+	<div class="small-12 columns"><!-- .col-sm-12 start -->
 
 		<div id="primary" class="content-area no-padding">
 

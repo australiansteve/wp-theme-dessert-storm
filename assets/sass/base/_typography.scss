@@ -6,24 +6,20 @@ p {
 }
 
 h1 {
-	font-family: 'Raleway', sans-serif;
-    font-size: 4rem;
-	font-weight: 700;
-}
-
-h1.entry-title {
-	margin-top: 2rem;
-}
-
-h2 {
-    font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 2rem;
 	font-weight: 700;
+	margin-bottom: 2rem;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 2rem;
 }
 
 h3 {
-    font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 1.4rem;
 }
@@ -32,11 +28,7 @@ h3 {
 @media screen and (min-width: 40em) {}
 
 /* Medium-large and up */
-@media screen and (min-width: 48em) {
-	#section-landing h1 {
-	    font-size: 7rem;
-	}
-}
+@media screen and (min-width: 48em) {}
 
 /* Large and up */
 @media screen and (min-width: 64em) {}

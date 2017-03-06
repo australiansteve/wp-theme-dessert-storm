@@ -3,7 +3,15 @@ body {
 }
 
 a {
-	color: $primary-color;
+	color: #000000;
+}
+
+.entry-title, .page-title {
+	margin-top: 2rem;
+}
+
+p.entry-title{
+	margin-top: 0;
 }
 
 #primary.index .row.content-section {

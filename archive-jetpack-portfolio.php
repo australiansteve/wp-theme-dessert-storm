@@ -25,13 +25,13 @@ get_header(); ?>
 					?>
 				</header><!-- .page-header -->
 
-				<h3 class='project-type-title'>- Film & TV -</h3>
+				<h3 class='project-type-title'>Film & TV</h3>
 				<?php echo do_shortcode("[austeve_projects include_type='film-tv']"); ?>
 
-				<h3 class='project-type-title'>- Content -</h3>
+				<h3 class='project-type-title'>Content</h3>
 				<?php echo do_shortcode("[austeve_projects include_type='content-writing']"); ?>
 
-				<h3 class='project-type-title'>- Print -</h3>
+				<h3 class='project-type-title'>Print</h3>
 				<?php echo do_shortcode("[austeve_projects include_type='print']"); ?>
 
 			<?php else : ?>

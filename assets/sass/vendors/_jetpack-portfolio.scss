@@ -1,41 +1,61 @@
-.project-archive-item .project {
-	text-align: center;
-	position: relative;
+#section-projects .row, .projects-sidebar .row, .project-type-title+.row {
+    margin-bottom: 2rem;
+}
 
-	.bg-image {
-		position: relative;
-		min-height: 20rem;
-		max-height: 20rem;
-		background-position: 50% 50%;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
+#section-projects .project, .projects-sidebar .project, .project-archive-item .project {
+    margin-bottom: 1rem;
+}
 
-	.content { 
-		color: white;
-		background: rgba(0,0,0, 0.5);
-		width: 100%;  
-		height: 100%;
-		display: none;
-		opacity: 1;
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		padding-top: 7rem;
+.project-archive-item .project a {
+	color: #000;
+}
 
-		h2 {
-			font-size: 1.45rem;
-		}
-
-		p {
-			font-size: 1rem;
-		}
-	}
+#section-projects .section-title, .projects-sidebar .section-title, #section-projects a, .projects-sidebar a, #section-projects .project-type-title, .projects-sidebar .project-type-title, #section-projects .project-archive-item .project a, .projects-sidebar .project-archive-item .project a {
+	color: white;
 }
 
 .single-project {
 	padding: 2rem 1rem;
+	text-align: left;
+	margin-bottom: 3rem;
+
+	.entry-title {
+		margin-bottom: 0;
+	}
+
+	.subtitle {
+	    font-family: Roboto;
+	    font-size: 1.2rem;
+	}
+
+	.client {
+	    font-family: Roboto;
+	    font-size: 1.2rem;
+	}
+
+	.project-images {
+		margin-top: 2rem;
+
+		.caption {
+			font-size: 0.85rem; 
+    		color: grey;
+		}
+	}
+
+	.project-content {
+	    margin-top: 1rem;
+	    text-align: justify;
+	    margin-bottom: 1rem;
+
+	    p {
+	    	margin-bottom: 0.5rem;
+	    }
+	}
+
+	.pdf a {
+		text-decoration: underline;
+	}
+
 }
 
 /* Medium and up */
@@ -43,6 +63,7 @@
 		
 	.single-project {
 		padding: 2rem 2rem;
+		min-height: 45rem;
 	}
 
 }

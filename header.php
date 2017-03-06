@@ -105,7 +105,7 @@ echo "<!--HOME:".is_home()."-->";
 	?>
 
 
-	<div id="background-div" class="fixed">
+	<div id="background-div" class="fixed <?php echo $pageClasses; ?>">
 	<?php
 	for ($b = 0; $b < $backgrounds; $b++) {
 		if (!$onlyforhome || is_home())
@@ -124,7 +124,7 @@ echo "<!--HOME:".is_home()."-->";
 		//Scrolling
 		?>
 
-	<div id="background-div" class="scrolling">
+	<div id="background-div" class="scrolling <?php echo $pageClasses; ?>">
 		<?php
 	for ($b = 0; $b < $backgrounds; $b++) {
 		if (!$onlyforhome || is_home())
@@ -144,7 +144,7 @@ echo "<!--HOME:".is_home()."-->";
 ?>	
 		<div data-sticky-container class="header">
 			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
-				<div class="title-bar-left show-for-medium">
+				<div class="title-bar-left">
 					<h1 class="site-title">						
 						<?php 
 						if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
