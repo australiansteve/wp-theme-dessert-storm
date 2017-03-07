@@ -17,6 +17,8 @@ function dessertstorm_customize_register( $wp_customize ) {
 
 	//All our sections, settings, and controls will be added here
    	$wp_customize->add_setting( 'austeve_general_sections' );
+   	$wp_customize->add_setting( 'austeve_general_section_height' );
+   	$wp_customize->add_setting( 'austeve_general_section_scroll' );
    	$wp_customize->add_setting( 'austeve_background_fixed' );
    	$wp_customize->add_setting( 'austeve_backgrounds' );
    	$wp_customize->add_setting( 'austeve_menu_layout' );
@@ -106,30 +108,34 @@ function dessertstorm_customize_register( $wp_customize ) {
 	/* Font family */
 	$wp_customize->add_setting( 'font_family' , array(
 	    'default'     => 'Helvetica, Roboto, Arial, sans-serif',
-	    'transport'   => 'postMessage',
+	    'transport'		=> 'postMessage',
 	) );
 
-	$wp_customize->add_control( 'font_family', array(
+	$wp_customize->add_control( new WP_Customize_Font_Control( $wp_customize, 'font_family', array(
 			'label'    => __( 'Base font', 'dessertstorm' ),
 			'section'  => 'dessertstorm_fonts_colours',
 			'settings' => 'font_family',
-			'type'     => 'select',
-			'choices'  => array(
-				'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'  => 'Helvetica Neue',
-				'\'Neou Thin\', Helvetica, Roboto, Arial, sans-serif' => 'Neou (thin)',
-				'\'Neou Bold\', Helvetica, Roboto, Arial, sans-serif' => 'Neou (thick)',
-				'\'Fairfield Light\', Times, Serif' => 'Fairfield Light',
-				'\'Times New Roman\', Times, Serif' => 'Times New Roman',
-				'\'Avenir Light\', Arial, sans-serif' => 'Avenir Light',
-				'Cantata One, Times, serif' => 'Cantata One',
-				'Roboto, Arial, sans-serif' => 'Roboto',
-				'Raleway, Arial, sans-serif' => 'Raleway Black',
-				'Champagne Limousines, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif' => 'Champagne & Limousines',
-				'Champagne Limousines Bold, Champagne Limousines, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif' => 'Champagne & Limousines Bold',
-			),
+			)
+		) 
+	);
+
+	$wp_customize->get_setting( 'font_family' );
+
+	/* Headers/heading font family */
+	$wp_customize->add_setting( 'header_font' , array(
+	    'default'     => 'Helvetica, Roboto, Arial, sans-serif',
+	    'transport'		=> 'postMessage',
 	) );
 
-	$wp_customize->get_setting( 'font_family' )->transport = 'postMessage';
+	$wp_customize->add_control( new WP_Customize_Font_Control( $wp_customize, 'header_font', array(
+			'label'    => __( 'Header/heading font', 'dessertstorm' ),
+			'section'  => 'dessertstorm_fonts_colours',
+			'settings' => 'header_font',
+			)
+		) 
+	);
+
+	$wp_customize->get_setting( 'header_font' );
 
 	#region Footer settings
 	//Background colour
@@ -230,6 +236,28 @@ function dessertstorm_customize_register( $wp_customize ) {
 			'section'  => 'static_front_page',
 			'settings' => 'austeve_general_sections',
 			'type'     => 'text',
+		)
+	);
+
+	//Front page content section height
+	$wp_customize->add_control( 
+   		'austeve_general_section_height', 
+		array(
+			'label'    => __( 'Set minimum height of each section to window height', 'dessertstorm' ),
+			'section'  => 'static_front_page',
+			'settings' => 'austeve_general_section_height',
+			'type'     => 'checkbox',
+		)
+	);
+
+	//Front page scrolling from section to section
+	$wp_customize->add_control( 
+   		'austeve_general_section_scroll', 
+		array(
+			'label'    => __( 'Smoothly scroll from section to section. Best used in conjunction with the minimum height setting.', 'dessertstorm' ),
+			'section'  => 'static_front_page',
+			'settings' => 'austeve_general_section_scroll',
+			'type'     => 'checkbox',
 		)
 	);
 
@@ -363,6 +391,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 
 		//Add settings
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_name' );
+   		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_spacing' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_style' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_page' );
    		$wp_customize->add_setting( 'dessertstorm_content_'.$s.'_sidebar' );
@@ -484,6 +513,19 @@ function dessertstorm_customize_register( $wp_customize ) {
 			)
 		);
 
+	   	//Section spacing customized
+	   	$wp_customize->add_control( 
+	   		'dessertstorm_content_'.$s.'_spacing', 
+			array(
+				'label'    => __( 'Custom spacing', 'dessertstorm' ),
+				'description'    => __( 'Percentage of spacing to be placed at the top of the content container. Used if the \'space content\' setting is true', 'dessertstorm' ),
+				'section'  => 'dessertstorm_content_section_'.$s,
+				'settings' => 'dessertstorm_content_'.$s.'_spacing',
+				'type'     => 'text',
+			)
+		);
+
+
 	}
 }
 add_action( 'customize_register', 'dessertstorm_customize_register' );
@@ -508,8 +550,12 @@ function dessertstorm_customize_css()
     ?>
         <style type="text/css">
 
-            body, h1, h2, h3, h4, h5, h6, a, .menu-item a, .title-bar-title, #colophon { 
+            body, a, #colophon { 
 				font-family: <?php echo get_theme_mod('font_family', 'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'); ?>;
+			}
+			
+            h1, h2, h3, h4, h5, h6, .menu-item a, .title-bar-title { 
+				font-family: <?php echo get_theme_mod('header_font', 'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'); ?>;
 			}
 			
 			/* Overwrite FontAwesome font with custom family so that fallback works */
@@ -759,6 +805,45 @@ if( class_exists( 'WP_Customize_Control' ) ):
 				<?php foreach ( $GLOBALS['wp_registered_sidebars'] as $sidebar ) { 
 					echo "<option " . selected( $this->value(), ucwords($sidebar['id']) ) . " value='" . ucwords( $sidebar['id'] ) . "'>" . ucwords( $sidebar['name'] ) . "</option>";
 						} 
+				?>
+				</select>
+				
+				<script>
+				</script>
+			</label>
+		<?php
+		}
+	}
+
+	class WP_Customize_Font_Control extends WP_Customize_Control {
+		public $type = 'font_dropdown';
+		public $content_section;
+ 
+		public function render_content() {
+
+			$fonts = array(
+				'Helvetica Neue, Helvetica, Roboto, Arial, sans-serif'  => 'Helvetica Neue',
+				'Neou Thin, Helvetica, Roboto, Arial, sans-serif' => 'Neou (thin)',
+				'Neou Bold, Helvetica, Roboto, Arial, sans-serif' => 'Neou (thick)',
+				'Fairfield Light, Times, Serif' => 'Fairfield Light',
+				'Times New Roman, Times, Serif' => 'Times New Roman',
+				'Avenir Light, Arial, sans-serif' => 'Avenir Light',
+				'Cantata One, Times, serif' => 'Cantata One',
+				'Roboto, Arial, sans-serif' => 'Roboto',
+				'Raleway, Arial, sans-serif' => 'Raleway Black',
+				'Champagne Limousines, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif' => 'Champagne & Limousines',
+				'Champagne Limousines Bold, Champagne Limousines, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif' => 'Champagne & Limousines Bold',
+			);
+
+		?>
+			<label>
+				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+				<select <?php $this->link(); ?>>
+					<option value="Helvetica Neue" <?php echo selected( $this->value(), get_the_ID() )?>>Select font...</option>
+				<?php foreach ( $fonts as $k => $v) { 
+						echo "<option " . selected( $this->value(), $k ) . " value='" . $k . "'>" . ucwords( $v ) . "</option>";
+					} 
 				?>
 				</select>
 				
