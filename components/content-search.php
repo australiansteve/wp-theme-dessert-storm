@@ -9,21 +9,37 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+	
+	<div class="row">
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php dessertstorm_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+		<div class="small-12 medium-3 columns">
+			<?php
+				echo get_the_post_thumbnail();
+			?>				
+		</div>
+		
+		<div class="small-12 medium-9 columns">
 
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
+			<header class="entry-header">
+				<?php the_title( sprintf( '<h3 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' ); ?>
 
-	<footer class="entry-footer">
-		<?php dessertstorm_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+				<?php if ( 'post' === get_post_type() ) : ?>
+				<div class="entry-meta">
+					<?php dessertstorm_posted_on(); ?>
+				</div><!-- .entry-meta -->
+				<?php endif; ?>
+			</header><!-- .entry-header -->
+
+			<div class="entry-summary">
+				<?php the_excerpt(); ?>
+			</div><!-- .entry-summary -->
+
+			<footer class="entry-footer">
+				<?php dessertstorm_entry_footer(); ?>
+			</footer><!-- .entry-footer -->
+
+		</div>
+
+	</div>
+	
 </article><!-- #post-## -->

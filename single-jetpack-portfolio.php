@@ -28,6 +28,28 @@
 
 				<?php endwhile; ?>
 
+				<!-- Navigation -->
+				<div class="row">
+
+					<div class="small-12 columns">
+				
+						<div id="project-navigation">
+						
+							<a href="<?php echo get_option('home');?>" title='Home'><?php echo bloginfo('name'); ?></a> > 
+							<?php
+								$categories = get_the_terms( $post->ID, 'jetpack-portfolio-type' );
+								if ( ! empty( $categories ) ) {
+								    echo '<a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . esc_html( $categories[0]->name ) . '</a>';
+								}
+							?>
+							> <?php echo get_the_title(); ?>
+
+						</div>
+
+					</div>
+
+				</div>
+
 			</div><!-- #content -->
 
 		</div><!-- #primary -->

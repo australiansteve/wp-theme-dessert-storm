@@ -108,3 +108,13 @@
 .centered-layout.menu-bar ul {
     display: inline-block;
 }
+
+
+/* Small only */
+@media screen and (max-width: 39.9375em) {
+
+    .homepage .header.sticky-container {
+        display:none;
+    }
+    
+}
