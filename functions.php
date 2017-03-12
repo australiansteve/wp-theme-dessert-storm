@@ -301,3 +301,14 @@ function dessertstorm_custom_jetpack_sent_message($message ) {
 }
 
 add_filter( 'grunion_contact_form_success_message', 'dessertstorm_custom_jetpack_sent_message' );
+
+/*
+ * Adds the Excerpt field to Pages, so that we can define what displays in search results mainly. 
+ * Without this, content within shortcodes will not get rendered in search results, which can be 
+ * all content if we're using shortcodes for page layout
+ *  
+ */
+function austeve_add_excerpts_to_pages() {
+     add_post_type_support( 'page', 'excerpt' );
+}
+add_action( 'init', 'austeve_add_excerpts_to_pages' );
