@@ -315,3 +315,14 @@ function portfolio_filter_archive_title( $title ) {
 }
 
 add_filter( 'get_the_archive_title', 'portfolio_filter_archive_title');
+
+/*
+ * Adds the Excerpt field to Pages, so that we can define what displays in search results mainly. 
+ * Without this, content within shortcodes will not get rendered in search results, which can be 
+ * all content if we're using shortcodes for page layout
+ *  
+ */
+function austeve_add_excerpts_to_pages() {
+     add_post_type_support( 'page', 'excerpt' );
+}
+add_action( 'init', 'austeve_add_excerpts_to_pages' );
