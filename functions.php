@@ -320,3 +320,10 @@ add_action( 'woocommerce_checkout_before_order_review', array(  $GLOBALS['woocom
 
 //Removes the 'Additional Notes' part of the checkout page
 add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
+
+//Removes the 'Downloads' menu item from the My Account WooCommerce page
+function austeve_woocommerce_account_menu_items_callback($items) {
+    unset( $items['downloads'] );
+    return $items;
+}
+add_filter('woocommerce_account_menu_items', 'austeve_woocommerce_account_menu_items_callback', 10, 1);
