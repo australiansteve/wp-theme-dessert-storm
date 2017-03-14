@@ -148,7 +148,7 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
 			<ul class="vertical menu" data-accordion-menu>
 				<li>
-					<a href="#">Menu</a>
+					<a href="#">&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></a>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
 				</li>
 			</ul>
@@ -181,7 +181,7 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 				</h1>
 			</div>
 		</div>
-		<div class="row menu-bar centered-layout show-for-medium">
+		<div class="row menu-bar centered-layout show-for-medium primary-navigation">
 			<div class="small-12 columns">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 			</div>
@@ -190,7 +190,7 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
 			<ul class="vertical menu" data-accordion-menu>
 				<li>
-					<a href="#">Menu</a>
+					<a href="#">&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></a>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
 				</li>
 			</ul>
@@ -200,7 +200,7 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 	else if ($menuLayout == 'centered-single-above')
 	{
 ?>
-		<div class="row menu-bar centered-layout show-for-medium">
+		<div class="row menu-bar centered-layout show-for-medium primary-navigation">
 			<div class="small-12 columns">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 			</div>
@@ -209,7 +209,7 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
 			<ul class="vertical menu" data-accordion-menu>
 				<li>
-					<a href="#">Menu</a>
+					<a href="#">&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></a>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
 				</li>
 			</ul>

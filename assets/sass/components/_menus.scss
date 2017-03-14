@@ -7,6 +7,34 @@
     font-size: 1rem;
 }
 
+#small-menu-container {
+    .is-accordion-submenu-parent>a::after {
+        border-color: transparent;
+    }
+
+    .fa {
+        color: $lightredish;
+        float: right;
+    }
+}
+
+#medium-menu-container {
+    margin-top: 2.5rem;
+}
+
+#large-menu-container {
+    margin-top: 2.75rem;
+}
+
+#small-menu-container.primary-navigation ul li > a {
+    background: $goldish;
+    opacity: 0.8;
+}
+
+#small-menu-container.primary-navigation ul li.active {
+    background: white;
+}
+
 .menu .active > a {
 	color: inherit;
     background: #EEEEEE;
