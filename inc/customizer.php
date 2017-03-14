@@ -571,7 +571,13 @@ function dessertstorm_customize_css()
 			<?php if (get_theme_mod('dessertstorm_pagecontent_bg_color')) { ?>
         	.content-area:not(.index) {
 			    background: <?php echo get_theme_mod('dessertstorm_pagecontent_bg_color', 'transparent'); ?>;
-			    padding: 2rem;
+			    padding: 0.625rem;
+			}
+
+            @media only screen and (min-width: 40em) { 
+				.content-area:not(.index) {
+				    padding: 1.5rem;
+				}
 			}
 			<?php } ?>
 
