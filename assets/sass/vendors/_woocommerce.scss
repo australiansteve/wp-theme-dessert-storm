@@ -6,3 +6,22 @@
 .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover {
     background-color: $button-background-hover;
 }
+
+.show-for-small-only .woocommerce-account-menu {
+	border: 1px solid darkgoldenrod;
+	margin-bottom: 1rem;
+
+	.is-accordion-submenu-parent>a::after {
+		border-color: darkgoldenrod transparent transparent;
+	}
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+
+	.woocommerce form.login {
+	    max-width: 50%;
+	    margin: auto;
+	}
+
+}
