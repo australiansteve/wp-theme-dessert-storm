@@ -321,9 +321,18 @@ add_action( 'woocommerce_checkout_before_order_review', array(  $GLOBALS['woocom
 //Removes the 'Additional Notes' part of the checkout page
 add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 
-//Removes the 'Downloads' menu item from the My Account WooCommerce page
-function austeve_woocommerce_account_menu_items_callback($items) {
-    unset( $items['downloads'] );
-    return $items;
+//Changes the set of endpoints displayed in the menu on the WC My Account page
+function wpb_woo_my_account_order() {
+ $myorder = array(
+ 'dashboard' => __( 'Dashboard', 'woocommerce' ),
+ 'my-reviews' => __( 'Reviews', 'woocommerce' ),
+ 'orders' => __( 'Orders', 'woocommerce' ),
+ 'edit-account' => __( 'Change My Details', 'woocommerce' ),
+ 'edit-address' => __( 'Addresses', 'woocommerce' ),
+ 'payment-methods' => __( 'Payment Methods', 'woocommerce' ),
+ 'wc-smart-coupons' => __( 'Gift Certificates & Coupons', 'woocommerce' ),
+ 'customer-logout' => __( 'Logout', 'woocommerce' ),
+ );
+ return $myorder;
 }
-add_filter('woocommerce_account_menu_items', 'austeve_woocommerce_account_menu_items_callback', 10, 1);
+add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
