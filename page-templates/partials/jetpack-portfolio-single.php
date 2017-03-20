@@ -67,27 +67,17 @@
 			    </div>
 
 		        <?php 
-		        $link = get_field( 'link' );
-		        if ( $link ) { ?>
-				<div class="row columns">
-
-					<div class="link">
-
-			         	<a href="<?php echo $link; ?>" target='_blank'><?php echo $link; ?></a>
-
-					</div>
-
-				</div>
-		        <?php } ?>
-
-		        <?php 
 		        $pdf = get_field( 'pdf_version' );
-		        if ( $pdf ) { ?>
+		        $pdf_link_text = get_field('pdf_link_text'); 
+		        if ( $pdf ) { 
+		        	//Backwards compatibility
+		        	if(!$pdf_link_text) { $pdf_link_text = 'View full article'; }
+				?>
 				<div class="row columns">
 
 					<div class="pdf">
 
-			         	<a href="<?php echo $pdf; ?>" target='_blank' title='See the full article'>View full article</a>
+			         	<a href="<?php echo $pdf; ?>" target='_blank' title='<?php echo $pdf_link_text; ?>'><?php echo $pdf_link_text; ?></a>
 
 					</div>
 

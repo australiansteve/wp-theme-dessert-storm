@@ -25,14 +25,24 @@ get_header(); ?>
 					?>
 				</header><!-- .page-header -->
 
-				<h3 class='project-type-title'>Film & TV</h3>
-				<?php echo do_shortcode("[austeve_projects include_type='film-tv']"); ?>
+				<?php
+				//Get all project types
+				$taxonomy = 'jetpack-portfolio-type';
+				$terms = get_terms($taxonomy); // Get all terms of a taxonomy
 
-				<h3 class='project-type-title'>Content</h3>
-				<?php echo do_shortcode("[austeve_projects include_type='content-writing']"); ?>
+				if ( $terms && !is_wp_error( $terms ) ) :
+				
+					foreach ( $terms as $term ) { ?>
 
-				<h3 class='project-type-title'>Print</h3>
-				<?php echo do_shortcode("[austeve_projects include_type='print']"); ?>
+						<h3 class='project-type-title'><?php echo $term->name; ?></h3>
+						<?php 
+						$shortcode = "[austeve_projects include_type='".$term->slug."']";
+						echo do_shortcode($shortcode); ?>
+
+			        <?php } 
+			    endif;
+
+				?>
 
 			<?php else : ?>
 

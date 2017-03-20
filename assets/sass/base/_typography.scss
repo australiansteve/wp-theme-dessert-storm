@@ -24,6 +24,10 @@ h3 {
     font-size: 1.4rem;
 }
 
+a:hover, a:active {
+    text-decoration: underline;
+}
+
 /* Medium and up */
 @media screen and (min-width: 40em) {}
 
