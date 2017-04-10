@@ -7,6 +7,16 @@
     font-size: 1rem;
 }
 
+.secondary-menu {
+	
+	text-align: right;
+	font-size: 22px;
+	
+	ul {
+		display: inline-block;
+	}
+}
+
 #small-menu-container {
     .is-accordion-submenu-parent>a::after {
         border-color: transparent;

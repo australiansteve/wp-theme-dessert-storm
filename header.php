@@ -140,7 +140,7 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 				</div>
 				<div class="title-bar-right show-for-large primary-navigation" id="large-menu-container">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal fa-2x' ) ); ?>
 				</div>
 			</div>
 		</div>
@@ -159,7 +159,7 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 	{
 ?>
 		<div class="row header centered-layout">
-			<div class="small-12 columns">
+			<div class="small-12 medium-6 medium-offset-3 columns">
 				<h1 class="site-title">
 					<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
 						<?php 
@@ -180,6 +180,9 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 					</a>
 				</h1>
 			</div>
+			<div class="show-for-medium medium-3 columns secondary-menu">
+				<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+			</div>
 		</div>
 		<div class="row menu-bar centered-layout show-for-medium primary-navigation">
 			<div class="small-12 columns">
@@ -191,7 +194,8 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 			<ul class="vertical menu" data-accordion-menu>
 				<li>
 					<a href="#">&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></a>
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical not-awesome' ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu vertical not-awesome' ) ); ?>
 				</li>
 			</ul>
 		</div>
