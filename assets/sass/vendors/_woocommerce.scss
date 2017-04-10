@@ -16,6 +16,17 @@
 	}
 }
 
+/* Show password strength meter as medium colours */
+.woocommerce-password-strength.short, .woocommerce-password-strength.bad {
+	background-color: #ffe399; 
+	    border-color: #ffc733;
+}
+
+.woocommerce-password-strength.good {
+    background-color: #c1e1b9;
+    border-color: #83c373;
+}
+
 /* Large and up */
 @media screen and (min-width: 64em) {
 

@@ -337,3 +337,25 @@ function wpb_woo_my_account_order() {
  return $myorder;
 }
 add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
+
+add_action( 'wp_enqueue_scripts', 'austeve_wc_strength_meter_localize_script' );
+function austeve_wc_strength_meter_localize_script() {
+    wp_localize_script( 'password-strength-meter', 'pwsL10n', array(
+        'empty'    => __( 'Please set a password!', 'theme-domain' ),
+        'short'    => __( 'Weak', 'theme-domain' ),
+        'bad'      => __( 'OK', 'theme-domain' ),
+        'good'     => __( 'Good', 'theme-domain' ),
+        'strong'   => __( 'Strong password!', 'theme-domain' ),
+        'mismatch' => __( 'Password must match', 'theme-domain' )
+    ) );
+}
+
+add_filter( 'wc_password_strength_meter_params', 'my_strength_meter_custom_strings' );
+function my_strength_meter_custom_strings( $data ) {
+    $data_new = array(
+        'i18n_password_error'   => esc_attr__( 'You should use a stronger password', 'theme-domain' ),
+        'i18n_password_hint'    => esc_attr__( 'You should use a stronger password', 'theme-domain' )
+    );
+
+    return array_merge( $data, $data_new );
+}
