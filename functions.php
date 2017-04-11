@@ -323,7 +323,7 @@ add_action( 'woocommerce_checkout_before_order_review', array(  $GLOBALS['woocom
 add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 
 //Changes the set of endpoints displayed in the menu on the WC My Account page
-function wpb_woo_my_account_order() {
+function austeve_woo_my_account_order() {
  $myorder = array(
  'dashboard' => __( 'Dashboard', 'woocommerce' ),
  'my-reviews' => __( 'Reviews', 'woocommerce' ),
@@ -336,26 +336,11 @@ function wpb_woo_my_account_order() {
  );
  return $myorder;
 }
-add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
+add_filter ( 'woocommerce_account_menu_items', 'austeve_woo_my_account_order' );
 
-add_action( 'wp_enqueue_scripts', 'austeve_wc_strength_meter_localize_script' );
-function austeve_wc_strength_meter_localize_script() {
-    wp_localize_script( 'password-strength-meter', 'pwsL10n', array(
-        'empty'    => __( 'Please set a password!', 'theme-domain' ),
-        'short'    => __( 'Weak', 'theme-domain' ),
-        'bad'      => __( 'OK', 'theme-domain' ),
-        'good'     => __( 'Good', 'theme-domain' ),
-        'strong'   => __( 'Strong password!', 'theme-domain' ),
-        'mismatch' => __( 'Password must match', 'theme-domain' )
-    ) );
+function austeve_wc_remove_password_strength() {
+	if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
+		wp_dequeue_script( 'wc-password-strength-meter' );
+	}
 }
-
-add_filter( 'wc_password_strength_meter_params', 'my_strength_meter_custom_strings' );
-function my_strength_meter_custom_strings( $data ) {
-    $data_new = array(
-        'i18n_password_error'   => esc_attr__( 'You should use a stronger password', 'theme-domain' ),
-        'i18n_password_hint'    => esc_attr__( 'You should use a stronger password', 'theme-domain' )
-    );
-
-    return array_merge( $data, $data_new );
-}
+add_action( 'wp_print_scripts', 'austeve_wc_remove_password_strength', 100 );
