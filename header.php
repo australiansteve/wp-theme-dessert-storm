@@ -184,9 +184,12 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 				<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 			</div>
 		</div>
-		<div class="row menu-bar centered-layout show-for-medium primary-navigation">
-			<div class="small-12 columns">
+		<div class="row menu-bar centered-layout show-for-medium">
+			<div class="medium-8 medium-offset-2 columns primary-navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+			</div>
+			<div class="medium-2 columns social-media-menu">
+				<?php wp_nav_menu( array( 'theme_location' => 'social_media', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
 			</div>
 		</div>
 

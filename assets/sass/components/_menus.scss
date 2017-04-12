@@ -17,6 +17,24 @@
 	}
 }
 
+.social-media-menu {
+	
+	text-align: right;
+	font-size: 18px;
+	
+	ul {
+		display: inline-block;
+
+		li {
+		    vertical-align: top;
+
+		    a {
+			    padding-top: 0;
+			}
+		}
+	}
+}
+
 #small-menu-container {
     .is-accordion-submenu-parent>a::after {
         border-color: transparent;

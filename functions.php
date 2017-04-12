@@ -47,6 +47,7 @@ function dessertstorm_setup() {
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary Menu', 'dessertstorm' ),
 		'secondary' => esc_html__( 'Secondary Menu', 'dessertstorm' ),
+		'social_media' => esc_html__( 'Social Media menu', 'dessertstorm' ),
 	) );
 
 	/*
