@@ -7,20 +7,18 @@
 
 // Page background color/image
 body.login {
-	background: #2199e8;
+	background: #fff;
 }
 
-// Your logo goes here
-//.login h1 a {
-	// background-image: url(../../img/logo.png);
-	// background-size: contain;
-	// height: ;
-	// width: ;
-//}
+#login h1 a, .login h1 a {
+	background-size: 100%;
+	height: 180px;
+	width: inherit;
+}
 
 // Login button styling
 #wp-submit {
-	background: #2199e8;
+	background: #d90000;
 	border: none;
 	border-radius: 0;
 	box-shadow: none;
@@ -29,7 +27,7 @@ body.login {
 	transition: all 300ms ease-in-out;
 
   &:hover {
-    background: darken(#2199e8, 10%);
+    background: darken(#d90000, 10%);
     border: none;
     box-shadow: none;
   }
@@ -37,18 +35,26 @@ body.login {
 
 // Text styling for 'lost your password'
 .login #nav a {
-	color: #fff;
+	color: #72777c;
 
   &:hover {
-    color: #fff;
+    color: #72777c;
   }
 }
 
-// Text styling for 'back to dessertstorm'
+// Text styling for 'back to home'
 .login #backtoblog a {
-	color: #fff;
+	color: #72777c;
 
   &:hover {
-    color: #fff;
+    color: #72777c;
   }
+}
+
+.login #login_error {
+    border-left: 4px solid #d90000;
+}
+
+.login .message {
+    border-left: 4px solid darkgoldenrod;
 }
