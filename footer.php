@@ -21,12 +21,46 @@
 	</div>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="row columns">
-		<?php
-			$footerContent = get_theme_mod('dessertstorm_footer_content', '<a class="fa fa-copyright" href="http://weavercrawford.com"> '.date("Y").' Weaver Crawford Creative</a>')
-		?>
-			<p class="footer"><?php echo $footerContent; ?></p>
+		
+		<div class="row">
+
+			<div class="small-12 medium-6 large-5 columns links-menu small-order-1 medium-order-2">
+				<?php wp_nav_menu( array( 'theme_location' => 'links_menu', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+			</div>
+
+			<div class="small-12 medium-3 columns social-media-menu small-order-2 medium-order-3">
+				<?php wp_nav_menu( array( 'theme_location' => 'social_media', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+			</div>
+
+			<div class="small-12 medium-3 large-4 columns logo small-order-3 medium-order-1">
+				<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+					<?php 
+					if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+						the_custom_logo();
+					}
+					else {
+						?>
+						<h1>
+							<?php
+							bloginfo( 'name' );
+							?>
+						</h1>
+						<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+					<?php
+					}
+	 				?>
+				</a>
+
+			</div>
+
 		</div>
+
+		<div class="row columns copyright">
+
+			<?php echo '<a class="fa fa-copyright" href="http://weavercrawford.com"> '.date("Y").' Weaver Crawford Creative</a>'; ?>
+
+		</div>
+
 	</footer><!-- #colophon -->
 
 <?php
