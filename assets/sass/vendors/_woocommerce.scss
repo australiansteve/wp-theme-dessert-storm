@@ -1,3 +1,12 @@
+/* 'Order Received' page overrides */
+.woocommerce .order-received-next-up {
+	margin-top: 2rem;
+
+	.button {
+		margin-top: 1rem;
+	}
+}
+
 /* 'Proceed to checkout' button */
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt {
 	background-color: $button-background;

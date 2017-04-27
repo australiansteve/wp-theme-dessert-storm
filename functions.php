@@ -245,6 +245,11 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require get_template_directory() . '/shortcodes.php';
 
+/**
+ * Load Steve's WooCommerce action customization.
+ */
+require get_template_directory() . '/woocommerce-actions.php';
+
 
 
 add_filter( 'wp_nav_menu', 'dessertstorm_nav_menu', 10, 2 );
