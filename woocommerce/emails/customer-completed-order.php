@@ -40,20 +40,7 @@ do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_tex
  * @hooked WC_Emails::order_meta() Shows order meta data.
  */
 do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, $email );
-?>
 
-<h2>On event night</h2>
-<p><strong>Arrival:</strong> Please arrive at least 15 minutes prior to the event's start time to allow time to sign in, order drinks, and get settled in as painting will begin promptly at the scheduled start time.
-
-<p><strong>Seating:</strong> seating is first-come, first-served, so please come early if you’re with a group or if sitting beside your pal is a must.
-
-<p><strong>Event Length:</strong> it will only take about 2 hours to complete your ready-to-hang masterpiece!
-
-<p><strong>Age Requirement:</strong> Adult event (19 and over).
-
-<p><strong>Dress code:</strong> While it’s important to look cute, painting can get messy – dress accordingly.
-
-<?php
 /**
  * @hooked WC_Emails::customer_details() Shows customer details
  * @hooked WC_Emails::email_address() Shows email address
