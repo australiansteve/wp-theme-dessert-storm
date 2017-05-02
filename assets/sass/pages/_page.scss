@@ -25,3 +25,12 @@
 .entry-content p {
 	margin-bottom: 1.25rem;
 }
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+
+	#content {
+	    margin-left: calc( 2rem - 0.9375rem );
+	}
+
+}
