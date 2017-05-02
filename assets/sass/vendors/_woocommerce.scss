@@ -1,3 +1,18 @@
+/* Product pages styling */
+.woocommerce .variations {
+	
+	margin-top: 2rem;
+	
+	.label {
+	    padding-top: 1rem;
+	    background: white;
+	}
+
+	tbody {
+		border: none;
+	}
+}
+
 /* 'Order Received' page overrides */
 .woocommerce .order-received-next-up {
 	margin-top: 2rem;
