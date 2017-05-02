@@ -27,6 +27,21 @@
 	background: black;
 }
 
+.dropdown.menu>li.is-dropdown-submenu-parent>a {
+    padding-right: 1rem;
+}
+
+.dropdown.menu>li.is-dropdown-submenu-parent>a::after {
+    content: '+';
+    border: none;
+    margin-top: -6px;
+}
+
+.dropdown.menu>li.opens-right>.is-dropdown-submenu {
+    border: none;
+    border-left: 1px solid white;
+}
+
 .menu>li>a i {
     margin-bottom: 0.25rem;
 }
