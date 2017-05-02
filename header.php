@@ -155,6 +155,53 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 		</div>
 <?php 
 	} /* End if ($menuLayout == 'top-bar-right') */
+	else if ($menuLayout == 'topbar-left') 
+	{
+
+?>				
+		<div data-sticky-container class="header">
+			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%" data-top-anchor="1" data-btm-anchor="content:bottom">
+  				<div class="title-bar-left primary-navigation">
+						<ul class="dropdown menu primary-navigation" data-dropdown-menu>
+							<li>
+							<h1 class="site-title">
+								<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+									<?php 
+									if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+										the_custom_logo();
+									}
+									else {
+										?>
+										<h1>
+											<?php
+											bloginfo( 'name' );
+											?>
+										</h1>
+										<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+									<?php
+									}
+					 				?>
+								</a>
+							</h1>
+							</li>
+							<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'items_wrap' => '%3$s', 'walker' => new AUSteve_Foundation_Dropdown_Nav_Menu() ) ); ?>
+						</ul>
+					
+  					</div>
+				</div>
+			</div>
+		</div>
+	    
+		<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
+			<ul class="vertical menu" data-accordion-menu>
+				<li>
+					<a href="#">Menu</a>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu vertical' ) ); ?>
+				</li>
+			</ul>
+		</div>
+<?php 
+	} /* End if ($menuLayout == 'top-bar-left') */
 	else if ($menuLayout == 'centered-single')
 	{
 ?>

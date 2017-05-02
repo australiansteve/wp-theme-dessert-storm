@@ -312,3 +312,19 @@ function austeve_add_excerpts_to_pages() {
      add_post_type_support( 'page', 'excerpt' );
 }
 add_action( 'init', 'austeve_add_excerpts_to_pages' );
+
+class AUSteve_Foundation_Dropdown_Nav_Menu extends Walker_Nav_Menu {
+
+	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+			$t = '';
+			$n = '';
+		} else {
+			$t = "\t";
+			$n = "\n";
+		}
+		$indent = str_repeat( $t, $depth );
+		$output .= "{$n}{$indent}<ul class=\"menu vertical\">{$n}";
+	}
+
+}

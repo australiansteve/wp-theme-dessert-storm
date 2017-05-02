@@ -391,6 +391,7 @@ function dessertstorm_customize_register( $wp_customize ) {
 				'help_text'  => 'Select menu layout...',
 				'choices' 	=> array(
 					'topbar-right' 	=> 'Top-bar Right',
+					'topbar-left' 	=> 'Top-bar Left',
 					'centered-single' 	=> 'Centered Single Menu',
 					'centered-single-above' 	=> 'Centered above logo',
 					'none' 	=> 'None',

@@ -1,15 +1,30 @@
 
 .primary-navigation {
 	background: none;
-}
 
-.primary-navigation ul li > a {
-    font-size: 1rem;
+	.menu>li {
+	    vertical-align: bottom;
+	}
+
+	ul li > a {
+	    font-size: 1rem;
+	}
+
 }
 
 .menu .active > a {
 	color: inherit;
-    background: #EEEEEE;
+    background: black;
+}
+
+.menu > a {
+	color: inherit;
+    background: black;
+}
+
+.is-dropdown-submenu {
+	min-width: 300px;
+	background: black;
 }
 
 .menu>li>a i {
@@ -80,7 +95,7 @@
     		font-size: 0.8rem;
 		}
 
-		ul {
+		ul:not(.submenu) {
 			display: inline-block;
 		}
 
