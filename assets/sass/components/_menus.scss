@@ -10,6 +10,14 @@
 	    font-size: 1rem;
 	}
 
+	a:hover, a:focus, a:active {
+		text-decoration: underline;
+	}
+
+	a:not([href]) {
+		text-decoration:none;
+	}
+
 }
 
 .menu .active > a {

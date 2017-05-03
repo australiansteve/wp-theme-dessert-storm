@@ -1,4 +1,14 @@
 input[type="submit"],
 input[type="button"] {
   @include button;
+
+  background: black;
+  border-color: white;
+  color: white;
 }
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background: #717171;
+}
+

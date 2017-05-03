@@ -1,0 +1,39 @@
+.mfp-content {
+
+	color: #333;
+
+	label {
+		color: #333;
+	}
+
+	span {
+		color: #333;
+	}
+
+
+}
+
+.give-btn {
+    background: black;
+    color: white;
+}
+
+
+.give-btn:active {
+    outline-color: grey;
+    border-color: grey;
+}
+
+.give-btn:hover {
+    background: #717171;
+}
+
+.give-btn-modal {
+	font-size: 1.25rem;
+}
+
+.give-btn-modal:before {
+   font-family: FontAwesome;
+   content: '\f1ed';
+   margin-right: 0.55rem;
+}
