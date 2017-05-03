@@ -31,6 +31,17 @@
 
 	#content {
 	    margin-left: calc( 2rem - 0.9375rem );
+	    max-width: 50%;
+	}
+
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+
+	#content {
+	    margin-left: calc( 2rem - 0.9375rem );
+	    max-width: 58.33%;
 	}
 
 }
