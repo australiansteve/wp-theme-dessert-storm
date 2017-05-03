@@ -7,20 +7,29 @@
 
 // Page background color/image
 body.login {
-	background: #2199e8;
+	background: white;
+}
+
+#login {
+	background: black;
+    padding: 3rem;
+}
+
+#loginform {
+	border-radius: 30px;
 }
 
 // Your logo goes here
-//.login h1 a {
-	// background-image: url(../../img/logo.png);
-	// background-size: contain;
-	// height: ;
-	// width: ;
-//}
+.login h1 a {
+	background-image: url(http://rondosdancetheatre.com/wp-content/uploads/2017/03/RDT-LOGO.png);
+	background-size: contain;
+    width: 200px;
+    height: 200px;
+}
 
 // Login button styling
 #wp-submit {
-	background: #2199e8;
+	background: #a0a0a0;
 	border: none;
 	border-radius: 0;
 	box-shadow: none;
@@ -29,7 +38,7 @@ body.login {
 	transition: all 300ms ease-in-out;
 
   &:hover {
-    background: darken(#2199e8, 10%);
+    background: darken(#a0a0a0, 10%);
     border: none;
     box-shadow: none;
   }
@@ -51,4 +60,15 @@ body.login {
   &:hover {
     color: #fff;
   }
+}
+
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+	
+	#login {
+	    margin-top: 4rem;
+	    border-radius: 40px;
+	}
+
 }
