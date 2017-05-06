@@ -160,29 +160,29 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 
 ?>				
 		<div class="header">
-			<div class="title-bar" data-options="marginTop:0;" style="width:100%">
+			<div class="title-bar show-for-medium" data-options="marginTop:0;" style="width:100%">
   				<div class="title-bar-left primary-navigation">
 					<ul class="dropdown menu primary-navigation" data-dropdown-menu>
 						<li>
-						<h1 class="site-title">
-							<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
-								<?php 
-								if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
-									the_custom_logo();
-								}
-								else {
-									?>
-									<h1>
-										<?php
-										bloginfo( 'name' );
+							<h1 class="site-title">
+								<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+									<?php 
+									if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+										the_custom_logo();
+									}
+									else {
 										?>
-									</h1>
-									<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-								<?php
-								}
-				 				?>
-							</a>
-						</h1>
+										<h1>
+											<?php
+											bloginfo( 'name' );
+											?>
+										</h1>
+										<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+									<?php
+									}
+					 				?>
+								</a>
+							</h1>
 						</li>
 						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'items_wrap' => '%3$s', 'walker' => new AUSteve_Foundation_Dropdown_Nav_Menu() ) ); ?>
 					</ul>
@@ -191,6 +191,26 @@ $description .= get_theme_mod( 'dessertstorm_fb_description' );
 			</div>
 	    
 			<div class="row columns show-for-small-only primary-navigation" id="small-menu-container">
+				<h1 class="site-title">
+					<a href="<?php esc_attr_e( home_url( '/' ) ); ?>" rel="home">
+						<?php 
+						if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+							the_custom_logo();
+						}
+						else {
+							?>
+							<h1>
+								<?php
+								bloginfo( 'name' );
+								?>
+							</h1>
+							<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+						<?php
+						}
+		 				?>
+					</a>
+				</h1>
+
 				<ul class="vertical menu" data-accordion-menu>
 					<li>
 						<a href="#">Menu</a>

@@ -82,6 +82,24 @@
 
 #small-menu-container {
     
+    .site-title {
+        text-align: center;
+        margin: 1.5rem 0;
+    }
+
+    ul {
+        list-style-type: none;
+
+        li.is-submenu-item {
+            padding: 0.5rem 0 0.5rem 0.5rem;
+        }
+    }
+
+    ul.menu:not(.submenu) {
+        border: 2px solid white;
+        max-width: 60%;
+        margin: auto;
+    }
 }
 
 #medium-menu-container {

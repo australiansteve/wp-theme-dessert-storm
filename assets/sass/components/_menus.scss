@@ -20,6 +20,23 @@
 
 }
 
+#small-menu-container .is-accordion-submenu-parent > a {
+	background: #000000;
+	color: #ffffff;  
+}
+
+#small-menu-container .is-accordion-submenu-parent>a::after {
+	content: '+';
+    border: none;
+    margin-top: -8px;
+    margin-right: 0.5rem;
+}
+
+#small-menu-container .is-accordion-submenu-parent[aria-expanded=true]>a::after {
+	content: '-';
+    margin-top: 6px;
+}
+
 .menu .active > a {
 	color: inherit;
     background: black;
@@ -101,8 +118,8 @@
 @media only screen and (max-width: 40em) { 
 
 	.primary-navigation {
-			background: none;
-			padding: 0;
+		background: none;
+		padding: 0;
 	}
 	
 }
@@ -120,6 +137,10 @@
 
 		ul:not(.submenu) {
 			display: inline-block;
+		}
+
+		li {
+			padding-right: 2rem;
 		}
 
 	}
