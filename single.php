@@ -18,15 +18,24 @@ get_header(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php get_template_part( 'components/content', 'single' ); ?>
+				<?php 
 
-				<?php the_post_navigation(); ?>
+				if (has_category( array( 'past-productions', 'upcoming-events' )))
+				{
+					get_template_part( 'components/content', 'event' ); 
+				}
+				else
+				{
+					get_template_part( 'components/content', 'single' ); 
 
-				<?php
+					the_post_navigation();
+
 					// If comments are open or we have at least one comment, load up the comment template.
 					if ( comments_open() || get_comments_number() ) :
 						comments_template();
 					endif;
+				}
+
 				?>
 
 			<?php endwhile; // End of the loop. ?>
