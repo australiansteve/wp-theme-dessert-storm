@@ -893,6 +893,7 @@ if( class_exists( 'WP_Customize_Control' ) ):
 				'Cantata One, Times, serif' => 'Cantata One',
 				'Roboto, Arial, sans-serif' => 'Roboto',
 				'Raleway, Arial, sans-serif' => 'Raleway Black',
+				'Futura Pro, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif' => 'Futura Pro',
 			);
 
 		?>
