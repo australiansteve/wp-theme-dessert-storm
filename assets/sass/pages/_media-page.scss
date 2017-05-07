@@ -1,0 +1,34 @@
+.austeve-display-posts {
+
+	margin: 3rem 0;
+
+	article.austeve-single-media {
+		
+		margin-bottom: 3rem;
+		
+		.media-thumbnail {
+			max-width: 80%;
+			text-align: center;
+		}
+		
+	}
+
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+	
+	.austeve-display-posts {
+
+		article.austeve-single-media {
+	
+			margin-bottom: 5rem;
+			
+			.media-thumbnail {
+				max-width: none;
+			}
+
+		}
+	}
+}
+

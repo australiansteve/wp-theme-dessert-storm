@@ -24,6 +24,10 @@ get_header(); ?>
 				{
 					get_template_part( 'components/content', 'event' ); 
 				}
+				else if (has_category( array( 'rondos-in-the-media' )))
+				{
+					get_template_part( 'components/content', 'media' ); 
+				}
 				else
 				{
 					get_template_part( 'components/content', 'single' ); 
