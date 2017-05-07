@@ -45,6 +45,8 @@ function footerSpacing()
 	if (marginNeeded > 0)
 	{
 		jQuery("#spacer").css("margin-top", marginNeeded);
+		
+		jQuery(window).trigger('resize'); // trigger the window resize event, so that foundation doesn't think the page is shorter than it is
 	}
 }
 
