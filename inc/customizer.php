@@ -320,6 +320,18 @@ function dessertstorm_customize_register( $wp_customize ) {
 		)
 	);
 
+   	//Display individual page background(s) for pages that have featured images set
+   	$wp_customize->add_setting( 'austeve_background_page_featuredimage' );
+   	$wp_customize->add_control( 
+   		'austeve_background_page_featuredimage', 
+		array(
+			'label'    => __( 'Display featured images as the background for pages', 'dessertstorm' ),
+			'section'  => 'dessertstorm_bg_section',
+			'settings' => 'austeve_background_page_featuredimage',
+			'type'     => 'checkbox',
+		)
+	);
+
 	//Backgrounds
 	$wp_customize->add_control( 
    		'austeve_backgrounds', 
@@ -653,6 +665,18 @@ function dessertstorm_customize_css()
             echo "#colophon a{";
         	echo "    color: rgba($ftc_r, $ftc_g, $ftc_b, ".get_theme_mod('dessertstorm_footer_textOpacity', '1.0').");";
         	echo "}";
+
+			//Individual page backgrounds using featured image
+			error_log("Is page(".get_the_ID()."): ".is_page());
+			error_log("Use featured image: ".get_theme_mod('austeve_background_page_featuredimage', false));
+			error_log("Has featured image: ".has_post_thumbnail());
+			if (is_page() && get_theme_mod('austeve_background_page_featuredimage', false) && has_post_thumbnail())
+			{
+				error_log("Use individual page background for page: ".get_the_ID());
+				echo ".bgImage {";
+				echo "background-image: url(".get_the_post_thumbnail_url(get_the_ID(), 'full').") !important;";
+				echo "}";
+			}
         	?>
 
         </style>
