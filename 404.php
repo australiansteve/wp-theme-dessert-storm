@@ -11,7 +11,7 @@ get_header(); ?>
 
 <div class="row">
 
-	<div class="medium-8 columns"><!-- .columns start -->
+	<div class="small-12 columns"><!-- .columns start -->
 
 		<div id="primary" class="content-area">
 			<main id="main" class="site-main" role="main">
@@ -45,25 +45,11 @@ get_header(); ?>
 						</div><!-- .widget -->
 						<?php endif; ?>
 
-						<?php
-							/* translators: %1$s: smiley */
-							$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'dessertstorm' ), convert_smilies( ':)' ) ) . '</p>';
-							the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-						?>
-
-						<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>
-
 					</div><!-- .page-content -->
 				</section><!-- .error-404 -->
 
 			</main><!-- #main -->
 		</div><!-- #primary -->
-
-	</div><!-- .columns -->
-
-	<div class="medium-4 columns">
-
-		<?php get_sidebar(); ?>
 
 	</div><!-- .columns -->
 
