@@ -19,12 +19,17 @@
 
 	<div class="entry-content">
 		<?php the_content(); ?>
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'dessertstorm' ),
-				'after'  => '</div>',
-			) );
-		?>
+		
+		<!-- pagination -->
+	    <div class='row pagination'>
+		    <div class='small-12 medium-6 columns small-text-center medium-text-left page-link newer-posts'>
+				<?php next_post_link('<strong>%link</strong>', '<i class="fa fa-angle-double-left" aria-hidden="true"></i> Previous post: %title'); ?>
+		    </div>
+		    <div class='small-12 medium-6 columns small-text-center medium-text-right page-link older-posts'>
+				<?php previous_post_link('<strong>%link</strong>', 'Next post: %title <i class="fa fa-angle-double-right" aria-hidden="true"></i>'); ?>
+		    </div>
+	    </div>
+
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">

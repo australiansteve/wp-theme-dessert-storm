@@ -1,0 +1,23 @@
+
+article.post 
+{
+
+	margin-bottom: 3rem;
+	padding-bottom: 3rem;
+	border-bottom: 1px dotted black;
+
+	.post-edit-link 
+	{
+		display: block;
+	}
+
+}
+
+.pagination 
+{
+    margin-top: 3rem;
+}
+
+.pagination a, .pagination button {
+    display:inline-block;
+}

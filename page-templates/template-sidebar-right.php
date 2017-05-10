@@ -35,7 +35,7 @@ get_header(); ?>
 
 	</div><!-- .columns -->
 
-	<div class="medium-4 columns">
+	<div class="medium-4 columns sidebar">
 
 		<?php get_sidebar(); ?>
 
