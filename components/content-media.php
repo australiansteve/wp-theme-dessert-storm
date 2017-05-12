@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="row">
-		<div class="small-12 medium-4 columns">
+		<div class="small-12 large-4 columns">
 			<div class="media-thumbnail">
 			<?php
 				if ( has_post_thumbnail() ) {
@@ -26,7 +26,7 @@
 			?>
 			</div>
 		</div>
-		<div class="small-12 medium-8 columns">
+		<div class="small-12 large-8 columns">
 
 			<div class="row">
 				<div class="small-12 columns">

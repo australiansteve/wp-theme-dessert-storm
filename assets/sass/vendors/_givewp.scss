@@ -10,14 +10,12 @@
 		color: #333;
 	}
 
-
 }
 
 .give-btn {
     background: black;
     color: white;
 }
-
 
 .give-btn:active {
     outline-color: grey;
@@ -36,4 +34,8 @@
    font-family: FontAwesome;
    content: '\f1ed';
    margin-right: 0.55rem;
+}
+
+.give_error, .give_success {
+	color: black !important;
 }
