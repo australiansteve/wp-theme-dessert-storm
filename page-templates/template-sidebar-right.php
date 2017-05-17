@@ -12,7 +12,7 @@ get_header(); ?>
 
 <div class="row">
 
-	<div class="medium-8 columns">
+	<div class="small-12 medium-8 columns">
 
 		<div id="primary" class="content-area page">
 			<main id="main" class="site-main" role="main">
@@ -35,7 +35,7 @@ get_header(); ?>
 
 	</div><!-- .columns -->
 
-	<div class="medium-4 columns sidebar">
+	<div class="small-12 medium-4 columns sidebar">
 
 		<?php get_sidebar(); ?>
 
