@@ -3,11 +3,8 @@
  * Custom template tags for this theme.
  *
  * Eventually, some of the functionality here could be replaced by core features.
- *
- * @package Dessertstorm
  */
 
-if ( ! function_exists( 'dessertstorm_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
@@ -35,15 +32,13 @@ function dessertstorm_posted_on() {
 	);
 
 	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
-
 }
-endif;
 
-if ( ! function_exists( 'dessertstorm_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
 function dessertstorm_entry_footer() {
+
 	// Hide category and tag text for pages.
 	if ( 'post' === get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
@@ -75,8 +70,6 @@ function dessertstorm_entry_footer() {
 		'</span>'
 	);
 }
-endif;
-
 
 /**
  * Returns true if a blog has more than 1 category.
@@ -84,7 +77,9 @@ endif;
  * @return bool
  */
 function dessertstorm_categorized_blog() {
+
 	if ( false === ( $all_the_cool_cats = get_transient( 'dessertstorm_categories' ) ) ) {
+
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -116,7 +111,6 @@ function dessertstorm_category_transient_flusher() {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
-	// Like, beat it. Dig?
 	delete_transient( 'dessertstorm_categories' );
 }
 add_action( 'edit_category', 'dessertstorm_category_transient_flusher' );

@@ -17,7 +17,7 @@ function dessertstorm_jetpack_setup() {
 		'render'    => 'dessertstorm_infinite_scroll_render',
 		'footer'    => 'page',
 	) );
-} // end function dessertstorm_jetpack_setup
+} 
 add_action( 'after_setup_theme', 'dessertstorm_jetpack_setup' );
 
 /**
@@ -28,4 +28,4 @@ function dessertstorm_infinite_scroll_render() {
 		the_post();
 		get_template_part( 'page-templates/content', get_post_format() );
 	}
-} // end function dessertstorm_infinite_scroll_render
+}
