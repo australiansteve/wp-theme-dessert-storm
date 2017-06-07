@@ -11,40 +11,39 @@ get_header(); ?>
 
 <div class="row column">
 
-	<section id="primary" class="content-area">
+	<div id="primary" class="content-area">
+
 		<main id="main" class="site-main" role="main">
 
-		<?php if ( have_posts() ) : ?>
+		<?php
+		if ( have_posts() ) : ?>
 
 			<header class="page-header">
 				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'dessertstorm' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+			</header>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+		<?php
+			while ( have_posts() ) :
 
-				<?php
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'components/content', 'search' );
-				?>
+				the_post();
 
-			<?php endwhile; ?>
+				get_template_part( 'template-parts/content', 'search' );
 
-			<?php the_posts_navigation(); ?>
+			endwhile;
 
-		<?php else : ?>
+			the_posts_navigation();
 
-			<?php get_template_part( 'components/content', 'none' ); ?>
+		else :
 
-		<?php endif; ?>
+			get_template_part( 'template-parts/content', 'none' );
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
+		endif; ?>
 
-</div><!-- row -->
+		</main>
 
-<?php get_footer(); ?>
+	</div>
+
+</div>
+
+<?php
+get_footer();

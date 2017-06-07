@@ -22,3 +22,16 @@ function dessertstorm_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'dessertstorm_body_classes' );
+
+/**
+ * Make YouTube and Vimeo oembed elements responsive. Add Foundation's .flex-video
+ * class wrapper around any oembeds
+ */
+function dessertstorm_oembed_flex_wrapper( $html, $url, $attr, $post_ID ) {
+	if ( strpos( $url, 'youtube' ) || strpos( $url, 'youtu.be' ) || strpos( $url, 'vimeo' ) ) {
+		return '<div class="flex-video widescreen">' . $html . '</div>';
+	}
+
+	return $html;
+}
+add_filter( 'embed_oembed_html', 'dessertstorm_oembed_flex_wrapper', 10, 4 );

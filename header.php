@@ -4,63 +4,66 @@
  *
  * This is the template that displays all of the <head> section and everything up until <div id="content">
  *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ * @link    https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
  * @package Dessertstorm
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-<link href="https://fonts.googleapis.com/css?family=Cantata+One|Raleway:black|Roboto" rel="stylesheet">
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<link href="https://fonts.googleapis.com/css?family=Cantata+One|Raleway:black|Roboto" rel="stylesheet">
 
-<?php 
-$sharing_image = get_theme_mod( 'dessertstorm_fb_image' );
-$custom_logo_id = get_theme_mod( 'custom_logo' );
-if ($sharing_image)
-{
-	$image = $sharing_image;
-	$image_size = getimagesize($image);
-    $image_width = $image_size[0];
-    $image_height = $image_size[1];
-}
-else 
-{
-	$image_raw = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-	$image = $image_raw[0];
-    $image_width = $image_raw[1];
-    $image_height = $image_raw[2];
-}
+	<?php 
+	$sharing_image = get_theme_mod( 'dessertstorm_fb_image' );
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	if ($sharing_image)
+	{
+		$image = $sharing_image;
+		$image_size = getimagesize($image);
+	    $image_width = $image_size[0];
+	    $image_height = $image_size[1];
+	}
+	else 
+	{
+		$image_raw = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+		$image = $image_raw[0];
+	    $image_width = $image_raw[1];
+	    $image_height = $image_raw[2];
+	}
 
-//Formulate description
-$description = get_bloginfo( 'description' );
-if (strlen($description) > 0)
-{
-	$description .= ". ";
-}
-$description .= get_theme_mod( 'dessertstorm_fb_description' );
+	//Formulate description
+	$description = get_bloginfo( 'description' );
+	if (strlen($description) > 0)
+	{
+		$description .= ". ";
+	}
+	$description .= get_theme_mod( 'dessertstorm_fb_description' );
 
-?>
-<meta property="fb:app_id" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="<?php echo home_url(); ?>" />
-<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>" />
-<meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
-<meta property="og:description" content="<?php echo $description; ?>" /> 
-<meta property="og:image" content="<?php echo $image; ?>" />
-<meta property="og:image:width" content="<?php echo $image_width; ?>">
-<meta property="og:image:height" content="<?php echo $image_height; ?>">
+	?>
+	<meta property="fb:app_id" content="" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="<?php echo home_url(); ?>" />
+	<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>" />
+	<meta property="og:title" content="<?php bloginfo( 'name' ); ?>" />
+	<meta property="og:description" content="<?php echo $description; ?>" /> 
+	<meta property="og:image" content="<?php echo $image; ?>" />
+	<meta property="og:image:width" content="<?php echo $image_width; ?>">
+	<meta property="og:image:height" content="<?php echo $image_height; ?>">
 
-<?php wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 
-<?php echo file_get_contents( get_template_directory() . '/assets/dist/sprite/sprite.svg' ); 
-
+<?php 
+	$svg_sprite = file_get_contents( get_template_directory() . '/assets/dist/sprite/sprite.svg' );
+	if ( file_exists( $svg_sprite ) ) {
+		echo $svg_sprite;
+	} 
 
 	$fixedBackground = get_theme_mod('austeve_background_fixed', 'fixed');
 	$backgrounds = get_theme_mod('austeve_backgrounds', 0);

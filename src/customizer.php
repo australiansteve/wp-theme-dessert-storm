@@ -2,7 +2,6 @@
 /**
  * Dessertstorm Theme Customizer.
  *
- * @package Dessertstorm
  */
 
 /**
@@ -573,10 +572,15 @@ add_action( 'customize_register', 'dessertstorm_customize_register' );
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function dessertstorm_customize_preview_js() {
-	wp_enqueue_script( 'dessertstorm_customizer', get_template_directory_uri().'/inc/js/customizer.js', array( 'customize-preview' ), '20130508', true );
-}
-add_action( 'customize_preview_init', 'dessertstorm_customize_preview_js' );
+add_action( 'customize_preview_init', function() {
+	wp_enqueue_script(
+		'dessertstorm_customizer',
+		DESSERTSTORM_URL . '/assets/js/customizer.js',
+		['customize-preview'],
+		DESSERTSTORM_VERSION,
+		true
+	);
+} );
 
 /**
  * Live CSS handlers to make Theme Customizer preview reload changes asynchronously.
@@ -716,7 +720,6 @@ function dessertstorm_customize_css()
     <?php
 }
 add_action( 'wp_head', 'dessertstorm_customize_css');
-
 
 if( class_exists( 'WP_Customize_Control' ) ):
 
@@ -931,4 +934,5 @@ if( class_exists( 'WP_Customize_Control' ) ):
 		}
 	}
 endif;
+
 ?>
