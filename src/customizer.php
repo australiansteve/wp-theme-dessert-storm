@@ -639,9 +639,9 @@ function dessertstorm_customize_css()
         	echo "}";
 
 			//Individual page backgrounds using featured image
-			error_log("Is page(".get_the_ID()."): ".is_page());
-			error_log("Use featured image: ".get_theme_mod('austeve_background_page_featuredimage', false));
-			error_log("Has featured image: ".has_post_thumbnail());
+			//error_log("Is page(".get_the_ID()."): ".is_page());
+			//error_log("Use featured image: ".get_theme_mod('austeve_background_page_featuredimage', false));
+			//error_log("Has featured image: ".has_post_thumbnail());
 			if (is_page() && get_theme_mod('austeve_background_page_featuredimage', false) && has_post_thumbnail())
 			{
 				error_log("Use individual page background for page: ".get_the_ID());
