@@ -272,10 +272,10 @@ gulp.task('deploy', function() {
 		'*.css'];
 
 	var destThemeDev = 'C:/wamp/www/theme-dev/wp-content/themes/dessertstorm';
-	var destCanvas = 'C:/wamp/www/canvas/wp-content/themes/dessertstorm';
+	var destMarrow = 'C:/wamp/www/store/wp-content/themes/dessertstorm';
 
 	return gulp.src(files, {base:"."})
-    		.pipe(gulpif(argv.canvas, gulp.dest(destCanvas), gulp.dest(destThemeDev)))
+    		.pipe(gulpif(argv.themedev, gulp.dest(destThemeDev), gulp.dest(destMarrow)))
     		.pipe(notify({
 				message: "✔︎ Deploy task complete",
 				onLast: true
