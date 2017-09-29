@@ -118,9 +118,9 @@ add_action( 'wp_enqueue_scripts', function () {
 
 	// Enqueue our stylesheet
 	$handle = 'dessertstorm_styles';
-	$src =  get_template_directory_uri() . '/assets/dist/css/app.css';
+	$src =  get_template_directory_uri() . '/assets/dist/css/app.min.css';
 	$deps = '';
-	$ver = filemtime( get_template_directory() . '/assets/dist/css/app.css');
+	$ver = filemtime( get_template_directory() . '/assets/dist/css/app.min.css');
 	$media = '';
 	wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 
