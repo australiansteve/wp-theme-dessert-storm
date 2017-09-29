@@ -124,8 +124,8 @@ add_action( 'wp_enqueue_scripts', function () {
 	$media = '';
 	wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 
-	wp_enqueue_style( 'dessertstorm_web_fonts', get_stylesheet_directory_uri() . '/assets/dist/css/web-fonts.css', '', '1.0' );
-	wp_enqueue_style( 'fontawesome_styles', get_stylesheet_directory_uri() . '/assets/dist/css/font-awesome.css', '', '9' );
+	wp_enqueue_style( 'dessertstorm_web_fonts', get_stylesheet_directory_uri() . '/assets/dist/css/web-fonts.min.css', '', '1.0' );
+	wp_enqueue_style( 'fontawesome_styles', get_stylesheet_directory_uri() . '/assets/dist/css/font-awesome.min.css', '', '9' );
 	wp_enqueue_style( 'home_styles', get_stylesheet_directory_uri() . '/style.css', '', '9' );
 
 } );
