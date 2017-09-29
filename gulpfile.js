@@ -152,6 +152,30 @@ gulp.task('login-css', function() {
 });
 
 ////////////////////////////////////////////////////////////////////////////////
+// Web fonts CSS
+////////////////////////////////////////////////////////////////////////////////
+
+gulp.task('web-fonts-css', function() {
+	gulp.src(paths.sassPath + 'web-fonts.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass({outputStyle: 'compressed'})
+			.on('error', notify.onError(function(error) {
+				return "Error: " + error.message;
+			}))
+		)
+		.pipe(autoprefixer({ browsers: ['last 2 versions'] }))
+		.pipe(rename('web-fonts.min.css'))
+		.pipe(sourcemaps.write('.'))
+		.pipe(size({showFiles: true}))
+		.pipe(gulp.dest(paths.destPath + 'css'))
+		.pipe(browserSync.stream({match: '**/*.css'}))
+		.pipe(notify({
+			message: "✔︎ Web fonts CSS task complete",
+			onLast: true
+		}));
+});
+
+////////////////////////////////////////////////////////////////////////////////
 // JS
 ////////////////////////////////////////////////////////////////////////////////
 
