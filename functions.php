@@ -17,4 +17,5 @@ require_once __DIR__ . '/src/jetpack.php';
 require_once __DIR__ . '/src/setup.php';
 require_once __DIR__ . '/src/sidebars.php';
 require_once __DIR__ . '/src/template-tags.php';
+require_once __DIR__ . '/src/woocommerce.php';
 require_once __DIR__ . '/shortcodes.php';
