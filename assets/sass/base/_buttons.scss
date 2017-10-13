@@ -2,3 +2,7 @@ input[type="submit"],
 input[type="button"] {
 	@include button;
 }
+
+.button {
+	outline-color: $primary-color;
+}

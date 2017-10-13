@@ -21,9 +21,11 @@ add_action( 'wp_head', function() {
 	add_action('woocommerce_single_product_summary', 'woocommerce_product_description_tab', 35 );
 	add_action('woocommerce_single_product_summary', 'woocommerce_product_additional_information_tab', 35 );
 
-	//Remove the 'Description' and 'Additional Information' headers from single product pages because they aren't displayed in tabs any more
+	//Remove the 'Description' header from single product pages because it isn't displayed in a tab anymore
 	add_filter('woocommerce_product_description_heading', '__return_empty_string');
-	add_filter('woocommerce_product_additional_information_heading', '__return_empty_string');
+
+	//Changes the text and style of the stock availability message
+	add_filter( 'woocommerce_get_stock_html', 'austeve_filter_woocommerce_get_stock_html', 10, 1 ); 
 
 });
 
@@ -39,5 +41,25 @@ function austeve_before_after_content($content) {
     return $fullcontent;
 }
 add_filter('the_content', 'austeve_before_after_content');
+
+function austeve_filter_woocommerce_get_stock_html( $html ) { 
+    
+    //If product is in stock, do not show the html
+    if (strpos($html, 'in-stock')) :
+    	return "";
+    endif;
+
+    //If product is out of stock, change shit up
+    if (strpos($html, 'out-of-stock')) :
+    	$html = str_replace('Out of stock', 'SOLD', $html); 
+    	$html = str_replace('<p', '<button', $html); 
+    	$html = str_replace('</p', '</button', $html); 
+    	$html = str_replace('class="', 'class="button alt ', $html); 
+    	return $html;
+    endif;
+
+    //any other cases
+    return $html;
+}; 
 
 ?>

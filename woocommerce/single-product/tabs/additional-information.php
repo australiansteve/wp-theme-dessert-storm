@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 
-$heading = esc_html( apply_filters( 'woocommerce_product_additional_information_heading', __( 'Additional information', 'woocommerce' ) ) );
+$heading = esc_html( apply_filters( 'woocommerce_product_additional_information_heading', __( 'Product Information', 'woocommerce' ) ) );
 
 ?>
 
@@ -30,24 +30,30 @@ $heading = esc_html( apply_filters( 'woocommerce_product_additional_information_
 	<h2><?php echo $heading; ?></h2>
 <?php endif; ?>
 
-<?php if ( $product->has_dimensions() ) : ?>
-<div class="row" id="product-dimensions">
-	<div class='small-12 medium-4 columns'>
-		Dimensions:
-	</div>
-	<div class='small-12 medium-8 columns'>
-		<?php echo wc_format_dimensions($product->get_dimensions(false)); ?>
-	</div>
-</div>
-<?php endif; ?>
+<div class="product_information">
 
-<?php if ( $product->has_weight() ) : ?>
-<div class="row" id="product-weight">
-	<div class='small-12 medium-4 columns'>
-		Weight:
+	<?php if ( $product->has_dimensions() ) : ?>
+	<div class="row product-information" id="product-dimensions">
+		<div class='small-3 columns'>
+			Dimensions:
+		</div>
+		<div class='small-9 columns'>
+			<?php echo wc_format_dimensions($product->get_dimensions(false)); ?>
+		</div>
 	</div>
-	<div class='small-12 medium-8 columns'>
-		<?php echo wc_format_weight($product->get_weight()); ?>
+	<?php endif; ?>
+
+	<?php if ( $product->has_weight() ) : ?>
+	<div class="row product-information" id="product-weight">
+		<div class='small-3 columns'>
+			Weight:
+		</div>
+		<div class='small-9 columns'>
+			<?php echo wc_format_weight($product->get_weight()); ?>
+		</div>
 	</div>
+	<?php endif; ?>
+
 </div>
-<?php endif; ?>
+
+
