@@ -33,7 +33,7 @@
 			    while ( have_rows('related_products') ) : the_row();
 
 		    	?>
-			    	<div class="column">
+			    	<div class="column related-product">
 				    	<?php
 				        // display a sub field value
 				        //the_sub_field('product');
