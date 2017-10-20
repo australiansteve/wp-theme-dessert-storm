@@ -12,13 +12,37 @@
 	<div class="row columns">
 		<?php 
 
-			$image = get_field('cover_photo');
+			// check if the flexible content field has rows of data
+			if( have_rows('cover') ):
 
-			if( !empty($image) ): ?>
+			     // loop through the rows of data
+			    while ( have_rows('cover') ) : the_row();
 
-				<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+			        if( get_row_layout() == 'image' ):
 
-		<?php endif; ?>
+			        	$image = get_sub_field('cover_image');
+
+						if( !empty($image) ): 
+		?>
+							<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+		<?php 
+						endif;
+
+			        elseif( get_row_layout() == 'video' ): 
+
+			        	$videoUrl = get_sub_field('cover_video');
+
+			        endif;
+
+			    endwhile;
+
+			else :
+
+			    // no layouts found
+
+			endif;
+
+			 ?>
 
 	</div>
 
