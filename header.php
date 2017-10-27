@@ -60,9 +60,8 @@
 <body <?php body_class(); ?>>
 
 <?php 
-	$svg_sprite = file_get_contents( get_template_directory() . '/assets/dist/sprite/sprite.svg' );
-	if ( file_exists( $svg_sprite ) ) {
-		echo $svg_sprite;
+	if ( file_exists( get_template_directory() . '/assets/dist/sprite/sprite.svg' ) ) {
+		echo file_get_contents( get_template_directory() . '/assets/dist/sprite/sprite.svg' );;
 	} 
 
 	$fixedBackground = get_theme_mod('austeve_background_fixed', 'fixed');
