@@ -35,6 +35,13 @@ jQuery(document).ready(function($) {
 		roundButtons();
 	}, 600);
 
+
+	/* WooCommerce related JS */
+	$(".product-thumb").on("click", function() {
+
+		jQuery(".woocommerce-product-gallery__wrapper").html($(this).html());
+		
+	});
 });
 
 

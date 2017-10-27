@@ -68,6 +68,10 @@
 
 .woocommerce.single {
 
+	.row.product-main {
+		margin-bottom: 6rem;
+	}
+
 	.product {
 
 		h1 {
@@ -115,6 +119,25 @@
 				white-space: pre;
 			}
 
+		}
+
+		.woocommerce-product-gallery__wrapper {
+			margin-bottom: 0;
+		}
+
+		.thumbnail-holder {
+		    display: inline-flex;
+		    max-width: 600px;
+		    margin-top: 1rem;
+
+			a.product-thumb {
+				margin-right: 0.5rem;
+			    max-width: 25%;
+			}
+
+		    a:last-of-type {
+		    	margin-right: 0;
+		    }
 		}
 
 	}

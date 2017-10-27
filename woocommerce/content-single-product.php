@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<div class="row">	
+	<div class="row product-main">	
 		<div class="small-12 medium-7 columns">
 			<?php
 				/**
@@ -74,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row product-related">
 		<div class="small-12 columns">
 
 			<?php

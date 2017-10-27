@@ -45,9 +45,8 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 		);
 
 		if ( has_post_thumbnail() ) {
-			$html  = '<div data-thumb="' . get_the_post_thumbnail_url( $post->ID, 'shop_thumbnail' ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( $full_size_image[0] ) . '">';
-			$html .= get_the_post_thumbnail( $post->ID, 'shop_single', $attributes );
-			$html .= '</a></div>';
+			$attributes['data-thumb'] = get_the_post_thumbnail_url( $post->ID, 'shop_thumbnail' );
+			$html = get_the_post_thumbnail( $post->ID, 'shop_single', $attributes );
 		} else {
 			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
 			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src() ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
@@ -55,8 +54,25 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 		}
 
 		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, get_post_thumbnail_id( $post->ID ) );
-
-		do_action( 'woocommerce_product_thumbnails' );
 		?>
 	</figure>
+
+	<div class='thumbnail-holder'>
+
+		<?php
+
+			//If the product has more images in the gallery, display the main image again in the thumbnails, and then the rest of the gallery images
+			$attachment_ids = $product->get_gallery_image_ids();
+
+			if ( $attachment_ids && has_post_thumbnail() ) {
+				echo "<a class='product-thumb' data-position='1'>";
+				echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, get_post_thumbnail_id( $post->ID ) );
+				echo "</a>";
+
+				do_action( 'woocommerce_product_thumbnails' );
+			}
+		?>
+
+	</div>
+
 </div>

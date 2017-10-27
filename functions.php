@@ -5,7 +5,7 @@
 
 namespace Dessertstorm;
 
-define( 'DESSERTSTORM_VERSION', '2.0.5' );
+define( 'DESSERTSTORM_VERSION', '2.0.7' );
 define( 'DESSERTSTORM_DIR', __DIR__ );
 define( 'DESSERTSTORM_URL', get_template_directory_uri() );
 
