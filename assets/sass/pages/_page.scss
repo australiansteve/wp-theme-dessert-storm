@@ -4,6 +4,21 @@
 
 .entry-meta {
 	margin-bottom: 1.25rem;
+
+	span:after {
+		content: '\A';
+    	white-space: pre;
+	}
+
+	span:last-of-type():after {
+		content: '';
+	}
+
+}
+
+.entry-excerpt {
+	font-size: 1.25rem;
+    font-style: italic;
 }
 
 .updated {
@@ -24,4 +39,30 @@
 
 .entry-content p {
 	margin-bottom: 1.25rem;
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+	
+	.gallery figure.gallery-item {
+	    display: inline-block;
+	    text-align: center;
+	}
+
+	.gallery.gallery-columns-1 figure.gallery-item {
+	    width: 100%;
+	}
+
+	.gallery.gallery-columns-2 figure.gallery-item {
+	    width: 50%;
+	}
+
+	.gallery.gallery-columns-3 figure.gallery-item {
+	    width: 33%;
+	}
+
+	.gallery.gallery-columns-4 figure.gallery-item {
+	    width: 25%;
+	}
+
 }
