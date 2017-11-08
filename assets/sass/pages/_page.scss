@@ -65,4 +65,12 @@
 	    width: 25%;
 	}
 
+	.gallery.gallery-columns-2 figure.gallery-item:nth-child(odd) {
+	    padding-right: 1rem;
+	}
+
+	.gallery.gallery-columns-2 figure.gallery-item:nth-child(even) {
+	    padding-left: 1rem;
+	}
+
 }
