@@ -67,10 +67,13 @@
 
 	.gallery.gallery-columns-2 figure.gallery-item:nth-child(odd) {
 	    padding-right: 1rem;
+	    text-align: left;
+
 	}
 
 	.gallery.gallery-columns-2 figure.gallery-item:nth-child(even) {
 	    padding-left: 1rem;
+	    text-align: right;
 	}
 
 }
