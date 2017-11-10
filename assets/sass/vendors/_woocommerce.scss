@@ -51,6 +51,11 @@
     border-color: #83c373;
 }
 
+/* Ensure page background colour extends to the bottom of the Checkout page, with the coupons info box */
+.sc_info_box {
+	float: none;
+}
+
 /* Large and up */
 @media screen and (min-width: 64em) {
 
