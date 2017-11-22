@@ -21,7 +21,7 @@
     font-style: italic;
 }
 
-.updated {
+.updated:not(.published) {
 	display: none;
 }
 
@@ -39,6 +39,10 @@
 
 .entry-content p {
 	margin-bottom: 1.25rem;
+}
+
+article.post {
+	margin-bottom: 3rem;	
 }
 
 /* Medium and up */
