@@ -55,17 +55,18 @@
 
 			 	// loop through the rows of data
 			    while ( have_rows('related_products') ) : the_row();
+			    	$relatedProduct = get_sub_field('product');
 
-		    	?>
-			    	<div class="column related-product">
-				    	<?php
-				        // display a sub field value
-				        //the_sub_field('product');
+			    	if ($relatedProduct) :
+			    	?>
+				    	<div class="column related-product">
+					    	<?php
+					        echo do_shortcode("[product id='".$relatedProduct."']");
+					    	?>
+				    	</div>
+					<?php
+					endif;
 
-				        echo do_shortcode("[product id='".get_sub_field('product')."']");
-				    	?>
-			    	</div>
-				<?php
 			    endwhile;
 
 			else :
