@@ -65,11 +65,7 @@ nav.post-navigation {
     z-index: -5;
 }
 
-nav {
-    display: inline-block;
-}
-
-header {
+.post header {
     margin-bottom: 3rem;
 }
 
@@ -77,7 +73,7 @@ header {
 @media screen and (min-width: 40em) {
 	
 
-	header {
+	.post header {
 	    margin-bottom: 6rem;
 	}
 

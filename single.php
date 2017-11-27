@@ -17,13 +17,18 @@ get_header(); ?>
 
 			<main id="main" class="site-main" role="main">
 			<?php
-			while ( have_posts() ) :
+				while ( have_posts() ) :
 
-				the_post();
+					the_post();
 
-				get_template_part( 'template-parts/content', 'single' );
-
-				the_post_navigation();
+					if (has_category('season'))
+					{
+						get_template_part( 'template-parts/content', 'single-season' );
+					}
+					else
+					{
+						get_template_part( 'template-parts/content', 'single' );
+					}
 
 					if ( comments_open() || get_comments_number() ) :
 						comments_template();

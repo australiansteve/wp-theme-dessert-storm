@@ -203,3 +203,12 @@ add_filter( 'grunion_contact_form_success_message', function($message ) {
 add_action( 'init', function () {
      add_post_type_support( 'page', 'excerpt' );
 } );
+
+
+add_filter( 'get_the_archive_title', function ( $title ) {
+    if( is_category('season') ) {
+        $title = 'Seasons';
+    }
+
+    return $title;
+});

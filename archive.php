@@ -20,9 +20,10 @@ get_header(); ?>
 				if ( have_posts() ) : ?>
 
 					<header class="page-header">
-						<?php
+					<?php
 						the_archive_title( '<h1 class="page-title">', '</h1>' );
-						the_archive_description( '<div class="taxonomy-description">', '</div>' );	?>
+					// the_archive_description( '<div class="taxonomy-description">', '</div>' );	
+					?>
 					</header>
 
 					<?php
@@ -30,7 +31,14 @@ get_header(); ?>
 
 						the_post();
 
-						get_template_part( 'template-parts/content', get_post_format() );
+						if (has_category('season'))
+						{
+							get_template_part( 'template-parts/content', 'archive-season' );
+						}
+						else
+						{
+							get_template_part( 'template-parts/content', get_post_format() );
+						}
 
 					endwhile;
 
