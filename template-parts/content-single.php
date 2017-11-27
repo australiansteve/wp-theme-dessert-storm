@@ -51,12 +51,18 @@
 			</div>
 		</div>
 
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'dessertstorm' ),
-				'after'  => '</div>',
-			) );
-		?>
 	</div><!-- .entry-content -->
 
 </article><!-- #post-## -->
+
+<nav class="navigation post-navigation" role="navigation">
+	<h2 class="screen-reader-text">Post navigation</h2>
+	<div class="nav-links">
+		<div class="nav-previous">
+			<?php previous_post_link('%link', '%title', true);?>
+		</div>
+		<div class="nav-next">
+			<?php next_post_link('%link', '%title', true);?>
+		</div>
+	</div>
+</nav>
