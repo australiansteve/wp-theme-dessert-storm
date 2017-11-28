@@ -69,12 +69,52 @@ nav.post-navigation {
     margin-bottom: 3rem;
 }
 
+form.search-form 
+{
+	label {
+		display: inline-block;
+	}
+
+	input {
+		margin-bottom: 0.3rem;
+	}
+}
+
+.widget_search {
+	margin-bottom: 1rem;
+}
+
+/* Small screen only and up */
+@media screen and (max-width: 39.75em) {
+	
+	form.search-form 
+	{
+		label {
+			min-width: 75%;
+		}
+	}
+
+	.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    	border: 1px solid #767676;
+	    background: #767676;
+	}
+
+	#filters-accordion {
+		margin-bottom: 2rem;
+	}
+
+}
+
 /* Medium and up */
 @media screen and (min-width: 40em) {
 	
 
 	.post header {
 	    margin-bottom: 6rem;
+	}
+
+	.widget_search {
+		margin-bottom: 2rem;
 	}
 
 }
