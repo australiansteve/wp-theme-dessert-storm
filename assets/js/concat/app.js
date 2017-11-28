@@ -42,6 +42,16 @@ jQuery(document).ready(function($) {
 		jQuery(".woocommerce-product-gallery__wrapper").html($(this).html());
 		
 	});
+
+	$(window).scroll(function(){                          
+        if ($(this).scrollTop() > 300) {
+            $('.sticky-logo').show();
+            $('#menu-main').css('margin-top', '0px');
+        } else {
+            $('.sticky-logo').hide();
+            $('#menu-main').css('margin-top', '30px');
+        }
+    });
 });
 
 

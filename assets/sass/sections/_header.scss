@@ -62,16 +62,36 @@
 }
 
 .header.sticky-container {
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 1);
 }
 
 .title-bar {
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 1);
     padding: 0;
 }
 
 .sticky.is-stuck.is-at-top {
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.sticky-logo {
+    background-position-y: center;
+    background-size: contain;
+    background-repeat-x: no-repeat;
+    background-position-x: center;
+
+    a {
+        min-height: 100px;
+        display: block;
+    }
+}
+
+.is-anchored.is-at-top .sticky-logo {
+    display: none;
+}
+
+.is-anchored #menu-main {
+    margin-top: 30.5px;
 }
 
 .site-title {

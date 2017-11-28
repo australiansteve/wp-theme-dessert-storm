@@ -201,10 +201,20 @@
 	} /* End if ($menuLayout == 'centered-single') */
 	else if ($menuLayout == 'centered-single-above')
 	{
+		$stickyLogo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' );
 ?>
-		<div class="row menu-bar centered-layout show-for-medium">
-			<div class="small-12 columns">
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+		<div data-sticky-container class="menu-bar centered-layout show-for-medium">
+			<div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%" data-top-anchor="1" data-btm-anchor="content:bottom">
+				<div class="row align-middle">
+					<div class="medium-3 columns">
+						<div class='sticky-logo' style='background-image:url(<?php echo $stickyLogo[0]; ?>);'>
+							<a href='<?php site_url();?>'></a>
+			 			</div>
+					</div>
+					<div class="medium-6 columns">
+						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu horizontal' ) ); ?>
+					</div>
+				</div>
 			</div>
 		</div>
 
