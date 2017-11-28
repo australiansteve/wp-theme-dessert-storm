@@ -618,11 +618,6 @@ function dessertstorm_customize_css()
 				    border-bottom: 1px solid <?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
 				}
 
-             	#small-menu-container .is-accordion-submenu-parent > a {
-             		background:<?php echo get_theme_mod('header_text_color', '#FFFFFF'); ?>;
-        	  		color:<?php echo get_theme_mod('header_background_color', '#000000'); ?>;  
-             	}
-
 			}
 
             .site-title a, .title-bar li a:not(.button), .title-bar li a:not(.button):hover { 

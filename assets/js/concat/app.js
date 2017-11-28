@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
             $('#menu-main').css('margin-top', '0px');
         } else {
             $('.sticky-logo').hide();
-            $('#menu-main').css('margin-top', '30px');
+            $('#menu-main').css('margin-top', '28px');
         }
     });
 });
