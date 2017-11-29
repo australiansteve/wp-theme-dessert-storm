@@ -49,7 +49,3 @@
 	</header><!-- .entry-header -->
 
 </article><!-- #post-## -->
-
-	</header><!-- .entry-header -->
-	
-</article><!-- #post-## -->
