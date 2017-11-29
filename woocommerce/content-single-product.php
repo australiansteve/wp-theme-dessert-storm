@@ -38,7 +38,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<div class="row product-main">	
+	<div class="row product-breadcrumbs">
+		<div class="small-12 columns">
+    		<?php 
+    			$args = array(
+			        'delimiter' => ' + ',
+			    );
+
+    			woocommerce_breadcrumb( $args );
+    		?> 
+		</div>
+	</div>
+
+	<div class="row product-main">
 		<div class="small-12 medium-6 columns">
 			<?php
 				/**
