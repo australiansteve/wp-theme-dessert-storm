@@ -23,6 +23,7 @@
 
 .woocommerce .woocommerce-breadcrumb {
     color: $primary-color;
+    display: inline-block;
 }
 
 .woocommerce .woocommerce-breadcrumb a {
@@ -70,6 +71,10 @@
 
 	.widget {
 		margin-bottom: 1rem;
+	}
+
+	.sold-out {
+		color: $primary-color;
 	}
 
 }
@@ -145,6 +150,10 @@
 			.posted_in:after {
 				content: "\A";
 				white-space: pre;
+			}
+
+			.sku_wrapper {
+				display: none;
 			}
 
 		}

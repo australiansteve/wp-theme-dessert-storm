@@ -14,3 +14,15 @@ h2 {
 	font-size: 1.25rem;
 	font-weight: 700;
 }
+
+h1.page-title, .page h1.entry-title {
+	width: 1px;
+	height: 1px;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.page div.austeve-display-posts h1.entry-title {
+	width: inherit;
+	height: inherit;
+}
