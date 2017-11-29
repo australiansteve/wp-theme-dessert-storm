@@ -38,6 +38,9 @@ add_action( 'wp_head', function() {
     add_action( 'woocommerce_before_shop_loop', 'woocommerce_breadcrumb', 20, 0 );
     add_filter( 'woocommerce_breadcrumb_defaults', 'austeve_wc_change_breadcrumb_delimiter' );
     
+    //Update price display based on stock status
+    add_filter( 'woocommerce_get_price_html', 'austeve_wc_price_html', 100, 2 );
+
 });
 
 function austeve_before_after_content($content) {
@@ -62,7 +65,7 @@ function austeve_filter_woocommerce_get_stock_html( $html ) {
 
     //If product is out of stock, change shit up
     if (strpos($html, 'out-of-stock')) :
-    	$html = str_replace('Out of stock', 'SOLD', $html); 
+    	$html = str_replace('Out of stock', 'SOLD OUT', $html); 
     	$html = str_replace('<p', '<button', $html); 
     	$html = str_replace('</p', '</button', $html); 
     	$html = str_replace('class="', 'class="button alt ', $html); 
@@ -112,5 +115,11 @@ function austeve_wc_change_breadcrumb_delimiter( $defaults ) {
     // Change the breadcrumb delimeter from '/' to '+'
     $defaults['delimiter'] = ' + ';
     return $defaults;
+}
+
+function austeve_wc_price_html( $price, $product ){
+    if (!$product->is_in_stock() && is_archive())
+        return "<span class='sold-out'>Sold out</span>";
+    return $price;
 }
 ?>
